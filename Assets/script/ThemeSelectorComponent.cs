@@ -40,35 +40,31 @@ public class ThemeSelectorComponent : MonoBehaviour {
 		}
 	}
 
-	public	bool SetAnimalType(AnimalType at) {
+	public	AnimalType SetGetAnimalType() {
 		theme = ThemeInfo.Find((AnimalType)System.Enum.Parse(typeof(AnimalType), GetComponent<Image>().sprite.name, true));
 		_balItem		= StoreInventory.GetItemBalance(theme.id);
-//		_balProduct		= StoreInventory.GetItemBalance(theme.productId);
 
-//		if (((double)theme.coin+theme.price)==0.0f) {
 		if ((double)theme.coin==0.0f) {
 			if (_balItem==0) {
 				StoreInventory.GiveItem(theme.id, 1);
 			}
 			Unlocked();
 		}
-//		else if ((_balItem>0) || (_balProduct>0)) {
 		else if (_balItem>0) {
 			Unlocked();
 		} else {
 			Blinded();
 		}
 
-		return (theme.type==at);
+		return theme.type;
 	}
 
 	public	void OnClickButton() {
 		switch (state) {
 		case ThemeSelectorState.UNLOCKED:
-			SendMessageUpwards("ReserveTheme", theme.type);
-			break;
 		case ThemeSelectorState.LOCKED:
-			SendMessageUpwards("BuyAnimal", theme);
+		case ThemeSelectorState.BLINDED:
+			SendMessageUpwards("OnClickSelector", this);
 			break;
 		}
 	}
@@ -105,6 +101,7 @@ public class ThemeSelectorComponent : MonoBehaviour {
 			break;
 		case ThemeSelectorState.UNLOCKING:
 			_state = ThemeSelectorState.UNLOCKED;
+			SendMessageUpwards("RefreshHead", this);
 			break;
 		}
 	}

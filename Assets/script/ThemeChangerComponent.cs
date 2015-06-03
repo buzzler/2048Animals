@@ -11,7 +11,7 @@ public class ThemeChangerComponent : MonoBehaviour
 	private	GameObject		background;
 	private	PlayerInfo		info;
 	private	Observer		observer;
-	private	AnimalType		reserved;
+	private	ThemeInfo		reserved;
 
 	public	TextAsset		assetTheme;
 	public	TextAsset		assetStore;
@@ -19,7 +19,6 @@ public class ThemeChangerComponent : MonoBehaviour
 	void Start() {
 		info = PlayerInfoKeeper.GetInstance().playerInfo;
 		observer = Observer.GetInstance();
-		reserved = AnimalType.NONE;
 
 		List<string> category = new List<string>();
 //		List<string> catPrice= new List<string>();
@@ -70,9 +69,8 @@ public class ThemeChangerComponent : MonoBehaviour
 		}
 	}
 
-	public	void ChangeTheme(AnimalType type) {
+	public	void ChangeTheme(ThemeInfo selected) {
 		ThemeInfo current = ThemeInfo.Find(info.type);
-		ThemeInfo selected = ThemeInfo.Find(type);
 
 		if ((current==selected)||(selected==null)||(current==null)) {
 			return;
@@ -81,22 +79,23 @@ public class ThemeChangerComponent : MonoBehaviour
 		if (current.bg!=selected.bg) {
 			GameObject.Destroy(background);
 			background = null;
-			SetTheme(type, true);
+			SetTheme(selected.type, true);
 		} else {
-			SetTheme(type, false);
+			SetTheme(selected.type, false);
 		}
 	}
 
-	public	void ReserveTheme(AnimalType type) {
-		reserved = type;
+	public	void ReserveTheme(ThemeInfo info) {
+		reserved = info;
 		observer.maskClose += OnMaskClose;
 		ui_mask_back.CloseMask ();
 	}
 
 	public	void OnMaskClose() {
-		if (reserved != AnimalType.NONE) {
+		if (reserved != null) {
 			observer.maskClose -= OnMaskClose;
 			ChangeTheme(reserved);
+			reserved = null;
 		}
 	}
 }

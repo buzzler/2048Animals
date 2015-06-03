@@ -1,13 +1,17 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using Soomla.Store;
 
 public class TitleComponent : UIComponent {
 
-	public	ThemeChangerComponent	themeChanger;
-	public	RectTransform			themeContent;
-	public	ThemeSelectorComponent	themeSelector;
-	private	Observer				observer;
-	private	GameObject				head;
+	public	ThemeChangerComponent							themeChanger;
+	public	RectTransform									themeContent;
+//	public	ThemeSelectorComponent							themeSelector;
+	public	TitlePurchaseComponent							purchaser;					
+	private	Observer										observer;
+	private	GameObject										head;
+	private	Dictionary<AnimalType, ThemeSelectorComponent>	dictionary;
 
 	void Start () {
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -17,6 +21,7 @@ public class TitleComponent : UIComponent {
 	public	override void OnUIStart() {
 		base.OnUIStart();
 		observer = Observer.GetInstance ();
+		dictionary = new Dictionary<AnimalType, ThemeSelectorComponent>();
 
 		int index = 0;
 		int counter = 0;
@@ -24,13 +29,16 @@ public class TitleComponent : UIComponent {
 		ThemeSelectorComponent[] selectors = themeContent.GetComponentsInChildren<ThemeSelectorComponent>();
 		PlayerInfo info = PlayerInfoKeeper.GetInstance().playerInfo;
 		foreach (ThemeSelectorComponent tsc in selectors) {
-			if (tsc.SetAnimalType(info.type)) {
+			if (tsc.SetGetAnimalType()==info.type) {
 				index = counter;
 			}
 			if ((locked!=true) && (tsc.state==ThemeSelectorState.BLINDED)) {
 				tsc.Lock();
 				locked = true;
 			}
+
+			dictionary.Add(tsc.theme.type, tsc);
+
 			counter++;
 		}
 
@@ -67,7 +75,18 @@ public class TitleComponent : UIComponent {
 	}
 
 	public void MakeHead(ThemeInfo info) {
-		head = GameObject.Instantiate (Resources.Load("head/"+info.name.ToLower())) as GameObject;
+		ThemeSelectorComponent tsc = dictionary[info.type];
+		if (tsc.state == ThemeSelectorState.UNLOCKED) {
+			ClearHead ();
+			head = GameObject.Instantiate (Resources.Load("head/"+info.name.ToLower())) as GameObject;
+			purchaser.ClearThemeInfo();
+		} else if (tsc.state == ThemeSelectorState.LOCKED) {
+			ClearHead ();
+			purchaser.SetThemeInfo(info);
+		} else if (tsc.state == ThemeSelectorState.BLINDED) {
+			ClearHead ();
+			purchaser.SetThemeInfo(info, false);
+		}
 	}
 
 	public void OnThemeChange(ThemeInfo info) {
@@ -75,17 +94,23 @@ public class TitleComponent : UIComponent {
 		MakeHead (info);
 	}
 
+	public	void RefreshHead(ThemeSelectorComponent tsc) {
+		ClearHead();
+		purchaser.ClearThemeInfo();
+		MakeHead (tsc.theme);
+	}
+
 	public void OnClickPlay() {
 		SendMessageUpwards("ReserveNextUI", UIType.GAME);
 		OnUIChange ();
 	}
 
-	public void SelectAnimal(AnimalType type) {
-		SendMessageUpwards("ReserveTheme", type);
+	public	void OnClickSelector(ThemeSelectorComponent tsc) {
+		SendMessageUpwards("ReserveTheme", tsc.theme);
 	}
 
-	public	void BuyAnimal(ThemeInfo theme) {
-		DebugComponent.Log("TODO: open buy interface....");
+	public	void OnClickBuy(ThemeInfo info) {
+		StoreInventory.BuyItem(info.id);
 	}
 
 	public	ThemeSelectorComponent[] CheckNextUnlock() {
@@ -112,7 +137,7 @@ public class TitleComponent : UIComponent {
 	public	ThemeSelectorComponent[] LostCurrentTheme() {
 		ThemeSelectorComponent[] selectors = themeContent.GetComponentsInChildren<ThemeSelectorComponent>();
 		foreach (ThemeSelectorComponent tsc in selectors) {
-			SelectAnimal(tsc.theme.type);
+			SendMessageUpwards("ReserveTheme", tsc.theme.type);
 			break;
 		}
 		return selectors;
