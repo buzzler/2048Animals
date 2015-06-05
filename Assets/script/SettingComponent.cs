@@ -36,31 +36,34 @@ public class SettingComponent : UIComponent {
 	}
 
 	public	void OnClickLanguage() {
+		SendMessageUpwards ("PlayFx", "fx_click");
 		animator.SetTrigger("trigger_language");
 	}
 
 	public	void OnClickMute() {
-
+		SendMessageUpwards ("PlayFx", "fx_click");
 	}
 
 	public	void OnClickRestore() {
-
+		SendMessageUpwards ("PlayFx", "fx_click");
 	}
 
 	public	void OnClickCredits() {
-
+		SendMessageUpwards ("PlayFx", "fx_click");
 	}
 
 	public	void OnClickRank() {
-
+		SendMessageUpwards ("PlayFx", "fx_click");
 	}
 
 	public	void OnClickTutorial() {
+		SendMessageUpwards ("PlayFx", "fx_click");
 		OnUIReserve(UIType.TUTORIAL);
 		OnUIChange();
 	}
 	
 	public	void OnClickClose() {
+		SendMessageUpwards ("PlayFx", "fx_click");
 		AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
 		if (info.IsName("Base Layer.language")!=true) {
 			OnUIReserve(parent);
@@ -79,10 +82,12 @@ public class SettingComponent : UIComponent {
 	}
 
 	public	void OnClickEnglish() {
+		SendMessageUpwards ("PlayFx", "fx_click");
 		ChangeLanguage("en");
 	}
 
 	public	void OnClickKorean() {
+		SendMessageUpwards ("PlayFx", "fx_click");
 		ChangeLanguage("ko");
 	}
 }

@@ -20,12 +20,6 @@ public class CoreComponent : MonoBehaviour {
 	public	Image			speaker;
 	public	Sprite			speakerNormal;
 	public	Sprite			speakerBoom;
-	private	float			timeBeat;
-	private float			timeBestMin;
-	private	float			timeNormalMin;
-	private	float			timeBad;
-	private	float			timeNormalMax;
-	private	float			timeBestMax;
 	private	Observer		observer;
 
 	void Start() {
@@ -48,16 +42,8 @@ public class CoreComponent : MonoBehaviour {
 
 	public	void OnBeat(float time) {
 		if (isActiveAndEnabled) {
-			float seg		= time/4f;
-			timeBeat		= Time.time;
-			timeBestMin		= timeBeat + seg / 2f;
-			timeNormalMin	= timeBestMin + seg;
-			timeBad			= timeNormalMin + seg;
-			timeNormalMax	= timeBad + seg;
-			timeBestMax		= timeNormalMax + seg;
-
 			speaker.sprite	= speakerBoom;
-			Invoke("OnBoom", seg);
+			Invoke("OnBoom", time/4f);
 			if (fever && (observer.beatFever!=null)) {
 				observer.beatFever();
 			} else {
@@ -200,51 +186,63 @@ public class CoreComponent : MonoBehaviour {
 		return true;
 	}
 
-	private void CheckCombo(int count) {
+	private	void CheckCombo(int count) {
 		if (count == 0) {
 			combo = 0;
-			if (fever) {
+			if (fever==true) {
 				fever = false;
 				SendMessageUpwards("FeverOff");
 			}
 			return;
 		}
-
-		bool bad	= false;
-		bool normal	= false;
-		bool best	= false;
-		float t		= Time.time;
-
-		if (t < timeBeat) {
-			bad = true;
-		} else if (t < timeBestMin) {
-			best = true;
-		} else if (t < timeNormalMin) {
-			normal = true;
-		} else if (t < timeBad) {
-			bad = true;
-		} else if (t < timeNormalMax) {
-			normal = true;
-		} else if (t < timeBestMax) {
-			best = true;
-		} else {
-			bad = true;
-		}
-
-		if (bad || normal) {
-			combo = 0;
-			if (fever) {
-				fever = false;
-				SendMessageUpwards("FeverOff");
-			}
-		} else if (best) {
-			combo++;
-			if ((fever!=true) && (combo>=combo_threshold)) {
-				fever = true;
-				SendMessageUpwards("FeverOn");
-			}
-		}
 	}
+
+//	private void CheckCombo(int count) {
+//		if (count == 0) {
+//			combo = 0;
+//			if (fever) {
+//				fever = false;
+//				SendMessageUpwards("FeverOff");
+//			}
+//			return;
+//		}
+//
+//		bool bad	= false;
+//		bool normal	= false;
+//		bool best	= false;
+//		float t		= Time.time;
+//
+//		if (t < timeBeat) {
+//			bad = true;
+//		} else if (t < timeBestMin) {
+//			best = true;
+//		} else if (t < timeNormalMin) {
+//			normal = true;
+//		} else if (t < timeBad) {
+//			bad = true;
+//		} else if (t < timeNormalMax) {
+//			normal = true;
+//		} else if (t < timeBestMax) {
+//			best = true;
+//		} else {
+//			bad = true;
+//		}
+//
+//		if (bad || normal) {
+//			combo = 0;
+//			if (fever) {
+//				fever = false;
+//				SendMessageUpwards("FeverOff");
+//			}
+//		} else if (best) {
+//			combo++;
+//			if ((fever!=true) && (combo>=combo_threshold)) {
+//				fever = true;
+//				SendMessageUpwards ("PlayFx", "fx_fever");
+//				SendMessageUpwards("FeverOn");
+//			}
+//		}
+//	}
 
 	public void OnMerge(SlotComponent slot) {
 		BoxComponent box1 = slot.box;
@@ -279,12 +277,14 @@ public class CoreComponent : MonoBehaviour {
 
 			// insert coin increment
 			if (fx_coin[level]!=null) {
+				SendMessageUpwards ("PlayFx", "fx_coin");
 				SendMessageUpwards("AppendCoin", 1);
 				Instantiate(fx_coin[level], pos, Quaternion.identity);
 			}
 
 			// insert effect 'combo'
 			if (combo>0) {
+				SendMessageUpwards ("PlayFx", "fx_combo");
 				int fx = Mathf.Min(combo, fx_combo.Length-1);
 				if (fx_combo[fx]!=null) {
 					Instantiate(fx_combo[fx], pos, Quaternion.identity);

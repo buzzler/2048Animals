@@ -41,25 +41,28 @@ public class HeaderComponent : UIComponent {
 	}
 
 	public	void OnClickRank() {
-
+		SendMessageUpwards ("PlayFx", "fx_click");
 	}
 
 	public	void OnClickCoin() {
+		SendMessageUpwards ("PlayFx", "fx_click");
 		OnUIReserve(UIType.COINPACK);
 		OnUIChange();
 	}
 
 	public	void OnClickSetting() {
+		SendMessageUpwards ("PlayFx", "fx_click");
 		OnUIReserve(UIType.SETTING);
 		OnUIChange();
 	}
 
 	public	void OnClickPause() {
+		SendMessageUpwards ("PlayFx", "fx_click");
 		OnUIReserve(UIType.PAUSE);
 		OnUIChange();
 	}
 
 	public	void OnClickFacebook() {
-
+		SendMessageUpwards ("PlayFx", "fx_click");
 	}
 }

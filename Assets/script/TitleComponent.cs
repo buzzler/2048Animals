@@ -101,15 +101,18 @@ public class TitleComponent : UIComponent {
 	}
 
 	public void OnClickPlay() {
+		SendMessageUpwards ("PlayFx", "fx_click");
 		SendMessageUpwards("ReserveNextUI", UIType.GAME);
 		OnUIChange ();
 	}
 
 	public	void OnClickSelector(ThemeSelectorComponent tsc) {
+		SendMessageUpwards ("PlayFx", "fx_click");
 		SendMessageUpwards("ReserveTheme", tsc.theme);
 	}
 
 	public	void OnClickBuy(ThemeInfo info) {
+		SendMessageUpwards ("PlayFx", "fx_click");
 		StoreInventory.BuyItem(info.id);
 	}
 

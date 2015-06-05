@@ -140,7 +140,7 @@ public class AudioPlayerComponent : MonoBehaviour {
 	}
 
 	public	void PlayFx(string id) {
-		AudioSource aSource = bgm[nextFxChannel];
+		AudioSource aSource = fx[nextFxChannel];
 		if (aSource.isPlaying) {
 			aSource.Stop();
 		}

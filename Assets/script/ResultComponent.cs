@@ -24,33 +24,35 @@ public class ResultComponent : UIComponent {
 	}
 
 	public	void OnClickRetry() {
+		SendMessageUpwards ("PlayFx", "fx_click");
 		OnUIReserve (UIType.GAME);
 		OnUIChange ();
 	}
 
 	public	void OnClickTitle() {
+		SendMessageUpwards ("PlayFx", "fx_click");
 		OnUIReserve (UIType.TITLE);
 		OnUIChange ();
 	}
 
 	public	void OnClickShare() {
-
+		SendMessageUpwards ("PlayFx", "fx_click");
 	}
 
 	public	void OnClickRank() {
-
+		SendMessageUpwards ("PlayFx", "fx_click");
 	}
 
 	public	void OnClickAd() {
-		
+		SendMessageUpwards ("PlayFx", "fx_click");
 	}
 	
 	public	void OnClickGift() {
-		
+		SendMessageUpwards ("PlayFx", "fx_click");
 	}
 	
 	public	void OnClickGacha() {
-		
+		SendMessageUpwards ("PlayFx", "fx_click");
 	}
 
 	public	void SetBestScore() {
