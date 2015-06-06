@@ -15,7 +15,10 @@ public class CoreComponent : MonoBehaviour {
 	private Dictionary<string, BoxComponent> boxes;
 	private int				count;
 	public	int				combo;
-	private	bool			fever;
+	public	bool			fever;
+	public	float			timeLastCombo;
+	public	float			timeDuration;
+	public	float			timeFever;
 	
 	public	Image			speaker;
 	public	Sprite			speakerNormal;
@@ -187,14 +190,30 @@ public class CoreComponent : MonoBehaviour {
 	}
 
 	private	void CheckCombo(int count) {
-		if (count == 0) {
-			combo = 0;
-			if (fever==true) {
-				fever = false;
-				SendMessageUpwards("FeverOff");
-			}
+		if (fever) {
 			return;
 		}
+
+		float timeDelta = Time.time - timeLastCombo;
+		timeLastCombo = Time.time;
+		if ((count == 0) || (timeDelta > timeDuration)) {
+			combo = 0;
+			return;
+		}
+
+		combo++;
+		DebugComponent.Log ("COMBO: " + combo.ToString());
+		if (combo >= combo_threshold) {
+			fever = true;
+			SendMessageUpwards("FeverOn");
+			Invoke("OnFeverComplete", timeFever);
+		}
+	}
+
+	private	void OnFeverComplete() {
+		combo = 0;
+		fever = false;
+		SendMessageUpwards("FeverOff");
 	}
 
 //	private void CheckCombo(int count) {
