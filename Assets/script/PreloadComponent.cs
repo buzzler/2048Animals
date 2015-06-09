@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Advertisements;
 using System.Collections;
 using SmartLocalization;
 
 public class PreloadComponent : UIComponent {
 	public	override void OnUIStart() {
 		base.OnUIStart();
+
+		// for International Language
 		LanguageManager lm = LanguageManager.Instance;
 		PlayerInfoKeeper pk = PlayerInfoKeeper.GetInstance();
 		if (pk.playerInfo.language==null) {
@@ -17,6 +20,10 @@ public class PreloadComponent : UIComponent {
 			pk.Save();
 		}
 		lm.ChangeLanguage(pk.playerInfo.language);
+
+		// for Unity Ads
+		Advertisement.Initialize("44690", false);
+
 		Invoke ("OnDelay", 2);
 	}
 

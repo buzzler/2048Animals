@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Advertisements;
 using System.Collections;
 using System.Collections.Generic;
 using Soomla;
@@ -78,50 +79,10 @@ public class DebugComponent : MonoBehaviour {
 		bgc.D();
 	}
 
-	public	void ForceBuyNext() {
-		ThemeSelectorComponent[] selectors = GameObject.FindObjectOfType<TitleComponent> ().CheckNextUnlock ();
-		foreach (ThemeSelectorComponent tsc in selectors) {
-			if (tsc.state==ThemeSelectorState.LOCKED) {
-				StoreInventory.BuyItem(tsc.theme.id);
-				break;
-			}
+	public	void ShowAds() {
+		if (Advertisement.isReady()) {
+			Advertisement.Show();
 		}
-//		StoreInventory.BuyItem(ThemeInfo.Find(AnimalType.SOAN).id);
-	}
-
-	public	void ForceUnlockNext() {
-		ThemeSelectorComponent[] selectors = GameObject.FindObjectOfType<TitleComponent> ().CheckNextUnlock ();
-		foreach (ThemeSelectorComponent tsc in selectors) {
-			if (tsc.state==ThemeSelectorState.LOCKED) {
-				StoreInventory.GiveItem(tsc.theme.id, 1);
-				break;
-			}
-		}
-//		StoreInventory.GiveItem(ThemeInfo.Find(AnimalType.BOO).id, 1);
-	}
-
-	public	void ForceLockLast() {
-		ThemeSelectorComponent[] selectors = GameObject.FindObjectOfType<TitleComponent> ().CheckNextUnlock ();
-		for (int i = selectors.Length-1 ; i >= 0 ; i--) {
-			ThemeSelectorComponent tsc = selectors[i];
-			if (tsc.state==ThemeSelectorState.UNLOCKED) {
-				StoreInventory.TakeItem(tsc.theme.id, 1);
-				break;
-			}
-		}
-//		StoreInventory.TakeItem(ThemeInfo.Find(AnimalType.BOO).id, 1);
-	}
-
-	public	void ForceEquipLast() {
-		ThemeSelectorComponent[] selectors = GameObject.FindObjectOfType<TitleComponent> ().CheckNextUnlock ();
-		for (int i = selectors.Length-1 ; i >= 0 ; i--) {
-			ThemeSelectorComponent tsc = selectors[i];
-			if (tsc.state==ThemeSelectorState.UNLOCKED) {
-				StoreInventory.EquipVirtualGood(tsc.theme.id);
-				break;
-			}
-		}
-//		StoreInventory.EquipVirtualGood(ThemeInfo.Find(AnimalType.BOO).id);
 	}
 
 	public void TurnOn () {
