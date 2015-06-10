@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Soomla.Store;
@@ -7,8 +8,8 @@ public class TitleComponent : UIComponent {
 
 	public	ThemeChangerComponent							themeChanger;
 	public	RectTransform									themeContent;
-//	public	ThemeSelectorComponent							themeSelector;
 	public	TitlePurchaseComponent							purchaser;					
+	public	Button											buttonStart;
 	private	Observer										observer;
 	private	GameObject										head;
 	private	Dictionary<AnimalType, ThemeSelectorComponent>	dictionary;
@@ -75,18 +76,20 @@ public class TitleComponent : UIComponent {
 	}
 
 	public void MakeHead(ThemeInfo info) {
+		ClearHead ();
+
 		ThemeSelectorComponent tsc = dictionary[info.type];
 		if (tsc.state == ThemeSelectorState.UNLOCKED) {
-			ClearHead ();
 			head = GameObject.Instantiate (Resources.Load("head/"+info.name.ToLower())) as GameObject;
 			purchaser.ClearThemeInfo();
-		} else if (tsc.state == ThemeSelectorState.LOCKED) {
-			ClearHead ();
-			purchaser.SetThemeInfo(info);
+			buttonStart.interactable = true;
 		} else if (tsc.state == ThemeSelectorState.BLINDED) {
-			ClearHead ();
 			purchaser.SetThemeInfo(info, false);
-		}
+			buttonStart.interactable = false;
+		} else {
+			purchaser.SetThemeInfo(info);
+			buttonStart.interactable = false;
+		} 
 	}
 
 	public void OnThemeChange(ThemeInfo info) {

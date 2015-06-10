@@ -61,8 +61,4 @@ public class HeaderComponent : UIComponent {
 		OnUIReserve(UIType.PAUSE);
 		OnUIChange();
 	}
-
-	public	void OnClickFacebook() {
-		SendMessageUpwards ("PlayFx", "fx_click");
-	}
 }

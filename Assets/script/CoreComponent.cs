@@ -196,13 +196,13 @@ public class CoreComponent : MonoBehaviour {
 
 		float timeDelta = Time.time - timeLastCombo;
 		timeLastCombo = Time.time;
+
 		if ((count == 0) || (timeDelta > timeDuration)) {
 			combo = 0;
 			return;
 		}
 
 		combo++;
-		DebugComponent.Log ("COMBO: " + combo.ToString());
 		if (combo >= combo_threshold) {
 			fever = true;
 			SendMessageUpwards("FeverOn");
@@ -215,53 +215,6 @@ public class CoreComponent : MonoBehaviour {
 		fever = false;
 		SendMessageUpwards("FeverOff");
 	}
-
-//	private void CheckCombo(int count) {
-//		if (count == 0) {
-//			combo = 0;
-//			if (fever) {
-//				fever = false;
-//				SendMessageUpwards("FeverOff");
-//			}
-//			return;
-//		}
-//
-//		bool bad	= false;
-//		bool normal	= false;
-//		bool best	= false;
-//		float t		= Time.time;
-//
-//		if (t < timeBeat) {
-//			bad = true;
-//		} else if (t < timeBestMin) {
-//			best = true;
-//		} else if (t < timeNormalMin) {
-//			normal = true;
-//		} else if (t < timeBad) {
-//			bad = true;
-//		} else if (t < timeNormalMax) {
-//			normal = true;
-//		} else if (t < timeBestMax) {
-//			best = true;
-//		} else {
-//			bad = true;
-//		}
-//
-//		if (bad || normal) {
-//			combo = 0;
-//			if (fever) {
-//				fever = false;
-//				SendMessageUpwards("FeverOff");
-//			}
-//		} else if (best) {
-//			combo++;
-//			if ((fever!=true) && (combo>=combo_threshold)) {
-//				fever = true;
-//				SendMessageUpwards ("PlayFx", "fx_fever");
-//				SendMessageUpwards("FeverOn");
-//			}
-//		}
-//	}
 
 	public void OnMerge(SlotComponent slot) {
 		BoxComponent box1 = slot.box;

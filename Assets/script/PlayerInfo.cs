@@ -14,6 +14,7 @@ public class PlayerInfo {
 	public AnimalType	type;
 	public DateTime		first;
 	public DateTime		last;
+	public DateTime		ads;
 	public string		language;
 
 	public PlayerInfo() {
@@ -24,6 +25,7 @@ public class PlayerInfo {
 		type = AnimalType.BEAR;
 		first = DateTime.Now;
 		last = DateTime.Now;
+		ads = DateTime.Now;
 		language = null;
 	}
 

@@ -6,6 +6,6 @@ using System.Collections;
 public class TutorialComponent : UIComponent {
 	public	void OnClickClose() {
 		OnUIReserve(parent);
-		OnUIChange();
+		OnUIBackward();
 	}
 }
