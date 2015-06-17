@@ -1728,7 +1728,15 @@ public abstract class JellySprite : MonoBehaviour
 		
 		return -1;
 	}
-	
+
+	public void Boing() {
+		ReferencePoint rp = GetRandomReferencePoint ();
+		if (rp != null) {
+			JellySpriteReferencePoint jrp = rp.Body2D.GetComponent<JellySpriteReferencePoint>();
+			jrp.Boing(-0.2f);
+		}
+	}
+
 	void UpdateReferencePoint()	{
 		if (this.m_ReferencePoints!=null) {
 			if (Input.GetButtonDown ("Fire1")) {
@@ -1804,6 +1812,30 @@ public abstract class JellySprite : MonoBehaviour
 				{
                     m_AttachPoints[attachPointIndex].transform.localPosition = m_InitialAttachPointPositions[attachPointIndex] + totalOffset + rotatedBodyOffset;
 				}
+			}
+		}
+	}
+
+	public ReferencePoint GetRandomReferencePoint() {
+		if (m_ReferencePoints != null) {
+			int r = Random.Range(0, m_ReferencePoints.Count-1);
+			return m_ReferencePoints[r];
+		} else {
+			return null;
+		}
+	}
+
+	public	void AddForceRandom(Vector2 force) {
+		ReferencePoint rp = GetRandomReferencePoint ();
+		if (rp != null) {
+			if(rp.Body2D)
+			{
+				rp.Body2D.AddForce(force);
+			}
+			
+			if(rp.Body3D)
+			{
+				rp.Body3D.AddForce(force);
 			}
 		}
 	}

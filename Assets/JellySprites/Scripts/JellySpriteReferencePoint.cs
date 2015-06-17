@@ -148,6 +148,13 @@ public class JellySpriteReferencePoint : MonoBehaviour
 		}
 	}
 
+	public	void Boing(float scalar) {
+		if ((!dragging) && (joint!=null)) {
+			Vector2 ca = joint.connectedAnchor.normalized;
+			joint.anchor = ca * scalar;
+		}
+	}
+
 	public void DragOn()
 	{
 		if ((!dragging) && (joint!=null)) {
@@ -166,13 +173,14 @@ public class JellySpriteReferencePoint : MonoBehaviour
 
 	void Update()
 	{
-		if (dragging)
-		{
-			Vector2 curPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		if (dragging) {
+			Vector2 curPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 			Vector2 anc = oriPos - curPos;
 			anc.x *= 0.7f;
 			anc.y *= 0.7f;
 			joint.anchor = anc;
+		} else if ((joint!=null) && (joint.anchor!=Vector2.zero)) {
+			joint.anchor = Vector2.zero;
 		}
 	}
 }

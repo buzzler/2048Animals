@@ -87,6 +87,7 @@
      <Compile Include="Assets\script\Enums.cs" />
      <Compile Include="Assets\script\GameComponent.cs" />
      <Compile Include="Assets\script\GyroComponent.cs" />
+     <Compile Include="Assets\script\HeadComponent.cs" />
      <Compile Include="Assets\script\HeaderComponent.cs" />
      <Compile Include="Assets\script\InputComponent.cs" />
      <Compile Include="Assets\script\JSONObject.cs" />
