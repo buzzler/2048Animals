@@ -23,7 +23,7 @@ public class TitlePurchaseComponent : UIComponent {
 	}
 
 	private bool CheckAvailability() {
-		if (StoreInventory.CanAfford (info.id)) {
+		if ((info != null) && StoreInventory.CanAfford (info.id)) {
 			textCoin.color = Color.white;
 			return true;
 		} else {
@@ -36,6 +36,7 @@ public class TitlePurchaseComponent : UIComponent {
 		textName.gameObject.SetActive(false);
 		textDescription.gameObject.SetActive(false);
 		buttonCoin.gameObject.SetActive(false);
+		this.info = null;
 	}
 
 	public	void SetThemeInfo(ThemeInfo info, bool interactable = true) {

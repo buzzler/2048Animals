@@ -45,8 +45,9 @@ public class CoreComponent : MonoBehaviour {
 
 	public	void OnBeat(float time) {
 		if (isActiveAndEnabled) {
-			speaker.sprite	= speakerBoom;
-			Invoke("OnBoom", time/4f);
+			speaker.sprite = (speaker.sprite==speakerBoom) ? speakerNormal:speakerBoom;
+//			speaker.sprite	= speakerBoom;
+//			Invoke("OnBoom", time/4f);
 			if (fever && (observer.beatFever!=null)) {
 				observer.beatFever();
 			} else {
@@ -55,9 +56,9 @@ public class CoreComponent : MonoBehaviour {
 		}
 	}
 
-	public	void OnBoom() {
-		speaker.sprite = speakerNormal;
-	}
+//	public	void OnBoom() {
+//		speaker.sprite = speakerNormal;
+//	}
 
 	private void Init() {
 		boxes = new Dictionary<string, BoxComponent>();

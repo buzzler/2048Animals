@@ -9,7 +9,7 @@ using UT.UEditor;
 [CustomEditor( typeof( OLDTVTube) )]
 [CanEditMultipleObjects]
 public class OLDTVTubeEditor : Editor {
-    private Texture2D background = null;
+//    private Texture2D background = null;
     private SerializedObject _so;
 
     private bool _foldScanline = true;
