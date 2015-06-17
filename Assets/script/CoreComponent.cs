@@ -264,6 +264,7 @@ public class CoreComponent : MonoBehaviour {
 			}
 
 			if (level==(prefabs.Length-1)) {
+				SendMessageUpwards("FeverOff");
 				SendMessageUpwards("Win");
 			} 
 		} catch (UnityException error) {
@@ -286,6 +287,7 @@ public class CoreComponent : MonoBehaviour {
 			}
 
 			if (gameover) {
+				SendMessageUpwards("FeverOff");
 				SendMessageUpwards("GameOver");
 			}
 		}
