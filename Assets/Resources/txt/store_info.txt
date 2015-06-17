@@ -1,15 +1,6 @@
-<<<<<<< HEAD
-item id,name,description,currency,amount,productId,price
-pack1,10000,10K Pack,coin,10000,cpack1,0.99
-pack2,55000,55K Pack,coin,55000,cpack2,4.99
-pack3,110000,110K Pack,coin,110000,cpack3,9.99
-pack4,260000,260K Pack,coin,260000,cpack4,19.99
-pack5,510000,510K Pack,coin,510000,cpack5,39.99
-=======
 item id,name,description,currency,amount,productId,price
 pack1,5000,5K Pack,coin,5000,cpack1,0.99
 pack2,26000,26K Pack,coin,26000,cpack2,4.99
 pack3,55000,55K Pack,coin,55000,cpack3,9.99
 pack4,125000,125K Pack,coin,125000,cpack4,20.99
 pack5,250000,250K Pack,coin,250000,cpack5,39.99
->>>>>>> origin/master
