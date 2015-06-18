@@ -11,7 +11,6 @@ public class ThemeSelectorComponent : MonoBehaviour {
 	public	ThemeSelectorState	state {get{return _state;}}
 	private	ThemeSelectorState	_state;
 	private	int					_balItem;
-//	private int					_balProduct;
 
 	void OnEnable() {
 		Observer ob = Observer.GetInstance();
@@ -30,10 +29,7 @@ public class ThemeSelectorComponent : MonoBehaviour {
 			update = true;
 			
 		}
-//		else if (id==theme.productId) {
-//			_balProduct = balance;
-//			update = true;
-//		}
+
 		if (update && (state==ThemeSelectorState.LOCKED) && (balance>0)) {
 			Unlock();
 			SendMessageUpwards("CheckNextUnlock");

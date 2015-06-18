@@ -89,6 +89,16 @@ public class DebugComponent : MonoBehaviour {
 		StoreInventory.GiveItem(StoreAssetInfo.COIN,100000);
 	}
 
+	public	void EnableTV() {
+		Camera.main.GetComponent<OLDTVScreen> ().enabled = true;
+		Camera.main.GetComponent<OLDTVTube> ().enabled = true;
+	}
+
+	public	void DisableTV() {
+		Camera.main.GetComponent<OLDTVScreen> ().enabled = false;
+		Camera.main.GetComponent<OLDTVTube> ().enabled = false;
+	}
+
 	public void TurnOn () {
 		for (int i = 0 ; i < transform.childCount ; i++) {
 			transform.GetChild(i).gameObject.SetActive(true);

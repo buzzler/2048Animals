@@ -1,7 +1,5 @@
 id(string),name(string),bpm(int),type(bgm|fx)
 bgm0,bgm loop,133,1
-bgm1,bgm loop,120,1
-bgm2,bgm loop,120,1
 fx_click,click,0,2
 fx_coin,coin,0,2
 fx_combo,combo,0,2
