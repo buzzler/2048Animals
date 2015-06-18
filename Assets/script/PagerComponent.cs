@@ -21,6 +21,12 @@ public class PagerComponent : ScrollRect {
 		totalPage	= Mathf.RoundToInt(cw/w);
 	}
 
+	protected override void OnDisable ()
+	{
+		base.OnDisable ();
+		JumpPage (1);
+	}
+
 	public override void OnEndDrag (UnityEngine.EventSystems.PointerEventData eventData)
 	{
 		base.OnEndDrag (eventData);
@@ -50,21 +56,28 @@ public class PagerComponent : ScrollRect {
 		}
 		if (index>=0) {
 			currentPage = index+1;
-			SetPage(currentPage);
+			FlipPage(currentPage);
 		}
 	}
 
 	public	void NextPage() {
 		currentPage = Mathf.Min(currentPage+1,totalPage);
-		SetPage(currentPage);
+		FlipPage(currentPage);
 	}
 
 	public	void PrevPage() {
 		currentPage = Mathf.Max(currentPage-1,1);
-		SetPage(currentPage);
+		FlipPage(currentPage);
 	}
 
-	public	void SetPage(int page) {
+	public	void JumpPage(int page) {
+		float targetPos = rightMost - snap * ((float)page-1f);
+
+		StopMovement ();
+		content.localPosition = new Vector3 (targetPos, 0f, 0f);
+	}
+
+	public	void FlipPage(int page) {
 		float targetPos = rightMost - snap * ((float)page-1f);
 
 		horizontal = false;

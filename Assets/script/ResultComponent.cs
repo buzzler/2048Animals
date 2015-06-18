@@ -16,11 +16,16 @@ public class ResultComponent : UIComponent {
 
 	public	override void OnUIStart () {
 		base.OnUIStart();
-		info = PlayerInfoKeeper.GetInstance().playerInfo;
+
+		PlayerInfoKeeper keeper = PlayerInfoKeeper.GetInstance ();
+		info = keeper.playerInfo;
+		keeper.Save();
+
 		// change medium image to selected animal's one
+
+		SetDeltaCoin ();
 		SetBestScore();
-		labelCoin.text = StoreInventory.GetItemBalance(StoreAssetInfo.COIN).ToString();
-		labelCoinDelta.text = info.coinDelta.ToString();
+		SetCurrentScore ();
 	}
 
 	public	void OnClickRetry() {
@@ -55,6 +60,11 @@ public class ResultComponent : UIComponent {
 		SendMessageUpwards ("PlayFx", "fx_click");
 	}
 
+	public	void SetDeltaCoin() {
+		labelCoin.text = StoreInventory.GetItemBalance(StoreAssetInfo.COIN).ToString();
+		labelCoinDelta.text = info.coinDelta.ToString();
+	}
+
 	public	void SetBestScore() {
 		bestGroup.SetScore(info.bestScore);
 		bestGroup.SetColor(colorNormal);
@@ -79,9 +89,5 @@ public class ResultComponent : UIComponent {
 		if (value>=info.bestScore) {
 			currentGroup.SetColor(colorUpdate);
 		}
-	}
-
-	public	void OnScoreComplete() {
-		PlayerInfoKeeper.GetInstance().Save();
 	}
 }
