@@ -46,8 +46,6 @@ public class CoreComponent : MonoBehaviour {
 	public	void OnBeat(float time) {
 		if (isActiveAndEnabled) {
 			speaker.sprite = (speaker.sprite==speakerBoom) ? speakerNormal:speakerBoom;
-//			speaker.sprite	= speakerBoom;
-//			Invoke("OnBoom", time/4f);
 			if (fever && (observer.beatFever!=null)) {
 				observer.beatFever();
 			} else {
@@ -55,10 +53,6 @@ public class CoreComponent : MonoBehaviour {
 			}
 		}
 	}
-
-//	public	void OnBoom() {
-//		speaker.sprite = speakerNormal;
-//	}
 
 	private void Init() {
 		boxes = new Dictionary<string, BoxComponent>();
@@ -265,7 +259,6 @@ public class CoreComponent : MonoBehaviour {
 			}
 
 			if (level==(prefabs.Length-1)) {
-				SendMessageUpwards("FeverOff");
 				SendMessageUpwards("Win");
 			} 
 		} catch (UnityException error) {
@@ -288,7 +281,6 @@ public class CoreComponent : MonoBehaviour {
 			}
 
 			if (gameover) {
-				SendMessageUpwards("FeverOff");
 				SendMessageUpwards("GameOver");
 			}
 		}

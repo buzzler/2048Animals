@@ -19,13 +19,14 @@ public class ResultComponent : UIComponent {
 
 		PlayerInfoKeeper keeper = PlayerInfoKeeper.GetInstance ();
 		info = keeper.playerInfo;
-		keeper.Save();
 
 		// change medium image to selected animal's one
 
 		SetDeltaCoin ();
 		SetBestScore();
 		SetCurrentScore ();
+
+		keeper.Save();
 	}
 
 	public	void OnClickRetry() {

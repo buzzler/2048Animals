@@ -16,8 +16,6 @@ public class ThemeInfo
 	public	BackgroundStatus	bgNormal	{get{return _bgNormal;		}}
 	public	BackgroundStatus	bgFever		{get{return _bgFever;		}}
 	public	int					coin		{get{return _coin;			}}
-//	public	double				price		{get{return _price;			}}
-//	public	string				productId	{get{return _productId;		}}
 	public	string				categoryName{get{return _categoryName;	}}
 	public	string				bgm			{get{return _bgm;			}}
 
@@ -30,8 +28,6 @@ public class ThemeInfo
 	private	BackgroundStatus	_bgNormal;
 	private	BackgroundStatus	_bgFever;
 	private	int					_coin;
-//	private	double				_price;
-//	private	string				_productId;
 	private	string				_categoryName;
 	private	string				_bgm;
 
@@ -56,8 +52,6 @@ public class ThemeInfo
 		theme._name			= line[1];
 		theme._description	= line[2];
 		theme._coin			= int.Parse(line[3]);
-//		theme._price		= double.Parse(line[4]);
-//		theme._productId	= line[5];
 		theme._categoryName	= line[6];
 		theme._type			= (AnimalType)System.Enum.Parse(typeof(AnimalType), theme.name, true);
 		theme._trigger		= line[7];

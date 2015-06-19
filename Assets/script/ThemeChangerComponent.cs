@@ -21,7 +21,6 @@ public class ThemeChangerComponent : MonoBehaviour
 		observer = Observer.GetInstance();
 
 		List<string> category = new List<string>();
-//		List<string> catPrice= new List<string>();
 		string[][] grid = CSVReader.SplitCsvJaggedGrid(assetTheme.text);
 		int count = grid.Length-1;		// without header
 
@@ -31,13 +30,9 @@ public class ThemeChangerComponent : MonoBehaviour
 			themes[y] = t;
 			ThemeInfo.Resister(t);
 			StoreAssetInfo.Register(new EquippableVG(EquippableVG.EquippingModel.GLOBAL, t.name, t.description, t.id, new PurchaseWithVirtualItem(StoreAssetInfo.COIN, t.coin)));
-//			StoreAssetInfo.Register(new EquippableVG(EquippableVG.EquippingModel.GLOBAL, t.name, t.description, t.productId, new PurchaseWithMarket(t.productId, t.price)));
-//			StoreAssetInfo.Register(new VirtualCategory(t.categoryName, new List<string>(new string[] {t.id, t.productId})));
 			category.Add(t.id);
-//			catPrice.Add(t.productId);
 		}
 		StoreAssetInfo.Register(new VirtualCategory("cat_theme", category));
-//		StoreAssetInfo.Register(new VirtualCategory("cat_price", catPrice));
 
 		category = new List<string>();
 		grid = CSVReader.SplitCsvJaggedGrid(assetStore.text);
@@ -80,7 +75,11 @@ public class ThemeChangerComponent : MonoBehaviour
 			GameObject.Destroy(background);
 			background = null;
 			SetTheme(selected.type, true);
-		} else {
+		} else if (current.bgNormal!=selected.bgNormal) {
+			background.GetComponent<BackgroundComponent>().SetTheme(selected.bgNormal);
+			SetTheme(selected.type, false);
+		}
+		else {
 			SetTheme(selected.type, false);
 		}
 	}

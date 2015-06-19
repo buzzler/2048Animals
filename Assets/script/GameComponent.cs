@@ -31,6 +31,7 @@ public class GameComponent : UIComponent {
 
 	public	override void OnUIStop() {
 		base.OnUIStop();
+		FeverOff();
 		SendMessageUpwards("TurnOnFilter");
 	}
 
@@ -76,12 +77,14 @@ public class GameComponent : UIComponent {
 
 	public	void GameOver() {
 		SaveScore();
+		FeverOff();
 		SendMessageUpwards("ReserveNextUI", UIType.RESULT);
 		animator.SetTrigger("trigger_gameover");
 	}
 
 	public	void Win() {
 		SaveScore();
+		FeverOff();
 		SendMessageUpwards("ReserveNextUI", UIType.RESULT);
 		animator.SetTrigger("trigger_win");
 	}
