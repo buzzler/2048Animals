@@ -4,6 +4,7 @@ using System.Collections;
 public class AnimalComponent : MonoBehaviour {
 
 	public	bool			animated;
+	public	bool			dependLevel;
 	public	bool			independent;
 	public	AnimalType		type;
 	public	Animator		themeAnimator;
@@ -12,11 +13,17 @@ public class AnimalComponent : MonoBehaviour {
 
 	void OnEnable() {
 		if (independent!=true) {
-			type = PlayerInfoKeeper.GetInstance().playerInfo.type;
+			PlayerInfo info = PlayerInfoKeeper.GetInstance().playerInfo;
 			Observer ob = Observer.GetInstance();
+
+			type = info.type;
 			ob.beatNormal += OnBeatNormal;
 			ob.beatFever += OnBeatFever;
 			ob.themeChange += OnChangeTheme;
+			if (dependLevel) {
+				ob.highLevelChange += OnChangeHighLevel;
+				size = ConvertLevelToSize(info.highLevel);
+			}
 
 			SetTheme(type);
 		} else {
@@ -31,6 +38,29 @@ public class AnimalComponent : MonoBehaviour {
 			ob.beatNormal -= OnBeatNormal;
 			ob.beatFever -= OnBeatFever;
 			ob.themeChange -= OnChangeTheme;
+			if (dependLevel) {
+				ob.highLevelChange -= OnChangeHighLevel;
+			}
+		}
+	}
+
+	public	AnimalSize ConvertLevelToSize(int level) {
+		if (level < 4) {
+			return AnimalSize.SMALL;
+		} else if (level < 7) {
+			return AnimalSize.MEDIUM;
+		} else if (level < 10) {
+			return AnimalSize.LARGE;
+		} else {
+			return AnimalSize.EXTRA;
+		}
+	}
+
+	public	void OnChangeHighLevel(int level) {
+		AnimalSize newSize = ConvertLevelToSize(level);
+		if (size!=newSize) {
+			size = newSize;
+			SetTheme(type);
 		}
 	}
 

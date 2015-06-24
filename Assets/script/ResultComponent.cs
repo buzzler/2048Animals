@@ -10,6 +10,8 @@ public class ResultComponent : UIComponent {
 	public	Text			labelCoinDelta;
 	public	ScoreComponent	bestGroup;
 	public	ScoreComponent	currentGroup;
+	public	RawImage		rawImage;
+	public	Texture2D[]		boxes;
 	public	Color			colorUpdate;
 	public	Color			colorNormal;
 	private	PlayerInfo		info;
@@ -25,6 +27,7 @@ public class ResultComponent : UIComponent {
 		SetDeltaCoin ();
 		SetBestScore();
 		SetCurrentScore ();
+		SetBox();
 
 		keeper.Save();
 	}
@@ -59,6 +62,10 @@ public class ResultComponent : UIComponent {
 	
 	public	void OnClickGacha() {
 		SendMessageUpwards ("PlayFx", "fx_click");
+	}
+
+	public	void SetBox() {
+		rawImage.texture = boxes[info.highLevel-1];
 	}
 
 	public	void SetDeltaCoin() {

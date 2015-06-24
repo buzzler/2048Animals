@@ -11,6 +11,7 @@ public class PlayerInfo {
 	public uint			bestScore;
 	public uint			score;
 	public int			coinDelta;
+	public int			highLevel;
 	public AnimalType	type;
 	public DateTime		first;
 	public DateTime		last;
@@ -22,6 +23,7 @@ public class PlayerInfo {
 		bestScore = 0;
 		score = 0;
 		coinDelta = 0;
+		highLevel = 1;
 		type = AnimalType.BEAR;
 		first = DateTime.Now;
 		last = DateTime.Now;

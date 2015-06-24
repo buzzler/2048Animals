@@ -229,11 +229,7 @@ public class CoreComponent : MonoBehaviour {
 			GameObject.DestroyImmediate(box2.gameObject);
 			New(level, slot);
 			// insert score increament
-			if (fever) {
-				SendMessageUpwards("AppendScore", (uint)Mathf.Pow(2, level+2));
-			} else {
-				SendMessageUpwards("AppendScore", (uint)Mathf.Pow(2, level+1));
-			}
+			SendMessageUpwards("AppendScore", level+1);
 
 			Vector3 pos = slot.transform.position;
 

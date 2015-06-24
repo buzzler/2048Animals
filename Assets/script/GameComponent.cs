@@ -15,12 +15,14 @@ public class GameComponent : UIComponent {
 	private PlayerInfo			playerInfo;
 	private	uint				score;
 	private	BackgroundComponent	bg;
+	private	Observer			observer;
 
 	public	override void OnUIStart() {
 		base.OnUIStart();
 		animator = GetComponent(typeof(Animator)) as Animator;
 		playerInfo = PlayerInfoKeeper.GetInstance().playerInfo;
 		bg = GameObject.FindObjectOfType<BackgroundComponent>();
+		observer = Observer.GetInstance();
 		// change medium image to selected animal's one
 		ClearScore();
 		ClearCoin();
@@ -52,12 +54,17 @@ public class GameComponent : UIComponent {
 	}
 
 	public	void ClearScore() {
+		playerInfo.highLevel = 0;
 		score = 0;
 		UpdateScore();
 	}
 
-	public	void AppendScore(uint delta = 0) {
-		score += delta;
+	public	void AppendScore(int level) {
+		if ((level>playerInfo.highLevel) && (observer.highLevelChange!=null)) {
+			playerInfo.highLevel = level;
+			observer.highLevelChange(level);
+		}
+		score += (uint)Mathf.Pow(2, fever ? level+1:level);
 		UpdateScore();
 	}
 
