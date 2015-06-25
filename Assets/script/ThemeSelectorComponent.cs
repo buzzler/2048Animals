@@ -23,16 +23,13 @@ public class ThemeSelectorComponent : MonoBehaviour {
 	}
 
 	public	void OnUpdateInventory(string id, int balance) {
-		bool update = false;
-		if (id==theme.id) {
+		if (id == theme.id) {
 			_balItem = balance;
-			update = true;
-			
-		}
-
-		if (update && (state==ThemeSelectorState.LOCKED) && (balance>0)) {
-			Unlock();
-			SendMessageUpwards("CheckNextUnlock");
+			if ((balance > 0) && (state == ThemeSelectorState.LOCKED)) {
+				Unlocked();
+				SendMessageUpwards("RefreshHead", this);
+				SendMessageUpwards("CheckNextUnlock");
+			}
 		}
 	}
 
@@ -70,11 +67,6 @@ public class ThemeSelectorComponent : MonoBehaviour {
 		animator.SetTrigger("trigger_unlocked");
 	}
 
-	public	void Unlock() {
-		_state = ThemeSelectorState.UNLOCKING;
-		animator.SetTrigger("trigger_unlock");
-	}
-
 	public	void Blinded() {
 		_state = ThemeSelectorState.BLINDED;
 		animator.SetTrigger("trigger_blinded");
@@ -83,22 +75,5 @@ public class ThemeSelectorComponent : MonoBehaviour {
 	public	void Locked() {
 		_state = ThemeSelectorState.LOCKED;
 		animator.SetTrigger("trigger_locked");
-	}
-
-	public	void Lock() {
-		_state = ThemeSelectorState.LOCKING;
-		animator.SetTrigger("trigger_lock");
-	}
-
-	public	void OnAnimationComplete() {
-		switch (_state) {
-		case ThemeSelectorState.LOCKING:
-			_state = ThemeSelectorState.LOCKED;
-			break;
-		case ThemeSelectorState.UNLOCKING:
-			_state = ThemeSelectorState.UNLOCKED;
-			SendMessageUpwards("RefreshHead", this);
-			break;
-		}
 	}
 }

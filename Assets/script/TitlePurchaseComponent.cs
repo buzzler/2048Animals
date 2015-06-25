@@ -54,7 +54,6 @@ public class TitlePurchaseComponent : UIComponent {
 	}
 
 	public	void OnClick() {
-		SendMessageUpwards ("PlayFx", "fx_click");
 		if (CheckAvailability ()) {
 			SendMessageUpwards ("OnClickBuy", info);
 		} else {

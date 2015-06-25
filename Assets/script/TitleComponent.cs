@@ -34,7 +34,7 @@ public class TitleComponent : UIComponent {
 				index = counter;
 			}
 			if ((locked!=true) && (tsc.state==ThemeSelectorState.BLINDED)) {
-				tsc.Lock();
+				tsc.Locked();
 				locked = true;
 			}
 
@@ -131,7 +131,7 @@ public class TitleComponent : UIComponent {
 				break;
 			case ThemeSelectorState.BLINDED:
 				if (!locked) {
-					tsc.Lock();
+					tsc.Locked();
 					locked = true;
 				}
 				break;
@@ -143,7 +143,7 @@ public class TitleComponent : UIComponent {
 	public	ThemeSelectorComponent[] LostCurrentTheme() {
 		ThemeSelectorComponent[] selectors = themeContent.GetComponentsInChildren<ThemeSelectorComponent>();
 		foreach (ThemeSelectorComponent tsc in selectors) {
-			SendMessageUpwards("ReserveTheme", tsc.theme.type);
+			SendMessageUpwards("ReserveTheme", tsc.theme);
 			break;
 		}
 		return selectors;

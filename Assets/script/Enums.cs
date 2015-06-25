@@ -97,8 +97,6 @@ public	enum AudioType {
 public	enum ThemeSelectorState {
 	NONE = 0,
 	BLINDED,
-	LOCKING,
 	LOCKED,
-	UNLOCKING,
 	UNLOCKED
 }

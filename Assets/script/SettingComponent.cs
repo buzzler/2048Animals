@@ -79,15 +79,55 @@ public class SettingComponent : UIComponent {
 		
 		LanguageManager.Instance.ChangeLanguage(code);
 		animator.SetTrigger("trigger_exit");
+
+		SendMessageUpwards ("PlayFx", "fx_click");
 	}
 
 	public	void OnClickEnglish() {
-		SendMessageUpwards ("PlayFx", "fx_click");
 		ChangeLanguage("en");
 	}
 
+	public	void OnClickDeutch() {
+		ChangeLanguage("de");
+	}
+
+	public	void OnClickEspanol() {
+		ChangeLanguage("es");
+	}
+
+	public	void OnClickJapanese() {
+		ChangeLanguage("ja");
+	}
+
+	public	void OnClickChineseSimple() {
+
+	}
+
+	public	void OnClickRussian() {
+		ChangeLanguage("ru");
+	}
+
+	public	void OnClickFrancais() {
+		ChangeLanguage("fr");
+	}
+
+	public	void OnClickItaliano() {
+		ChangeLanguage("it");
+	}
+
+	public	void OnClickPortugues() {
+		ChangeLanguage("pt");
+	}
+
 	public	void OnClickKorean() {
-		SendMessageUpwards ("PlayFx", "fx_click");
 		ChangeLanguage("ko");
+	}
+
+	public	void OnClickChineseTranditional() {
+
+	}
+
+	public	void OnClickArabic() {
+		ChangeLanguage("ar");
 	}
 }

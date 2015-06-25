@@ -25,7 +25,24 @@ public class AdsComponent : MonoBehaviour {
 			PlayerInfo info = PlayerInfoKeeper.GetInstance ().playerInfo;
 			info.ads = DateTime.Now;
 			PlayerInfoKeeper.GetInstance().Save();
-			Advertisement.Show();
+
+			ShowOptions opt = new ShowOptions();
+			opt.resultCallback = OnShowComplete;
+			Advertisement.Show(null, opt);
+		}
+	}
+
+	public	void OnShowComplete(ShowResult result) {
+		switch (result) {
+		case ShowResult.Finished:
+			DebugComponent.Log("UNITY AD FINISHED");
+			break;
+		case ShowResult.Failed:
+			DebugComponent.Log("UNITY AD FAILED");
+			break;
+		case ShowResult.Skipped:
+			DebugComponent.Log("UNITY AD SKIPPED");
+			break;
 		}
 	}
 }

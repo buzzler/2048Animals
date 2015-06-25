@@ -89,6 +89,10 @@ public class DebugComponent : MonoBehaviour {
 		StoreInventory.GiveItem(StoreAssetInfo.COIN,100000);
 	}
 
+	public	void TakeAllCoin() {
+		StoreInventory.TakeItem(StoreAssetInfo.COIN, StoreInventory.GetItemBalance(StoreAssetInfo.COIN));
+	}
+
 	public	void EnableTV() {
 		Camera.main.GetComponent<OLDTVScreen> ().enabled = true;
 		Camera.main.GetComponent<OLDTVTube> ().enabled = true;
