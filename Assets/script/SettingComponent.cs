@@ -8,6 +8,7 @@ public class SettingComponent : UIComponent {
 	public	Text labelOption;
 	public	Text labelLanguage;
 	public	Text labelMute;
+	public	Text labelUnmute;
 	public	Text labelPurchases;
 	public	Text labelRank;
 	public	Text labelTutorial;
@@ -30,6 +31,7 @@ public class SettingComponent : UIComponent {
 		labelKorean.text	= lm.GetTextValue("TGM.Korean");
 		labelCredits.text	= lm.GetTextValue("TGM.Credits");
 		labelMute.text		= lm.GetTextValue("TGM.Mute");
+		labelUnmute.text	= lm.GetTextValue("TGM.Unmute");
 		labelPurchases.text	= lm.GetTextValue("TGM.Restore");
 		labelRank.text		= lm.GetTextValue("TGM.Rank");
 		labelTutorial.text	= lm.GetTextValue("TGM.Tutorial");
@@ -41,7 +43,15 @@ public class SettingComponent : UIComponent {
 	}
 
 	public	void OnClickMute() {
-		SendMessageUpwards ("PlayFx", "fx_click");
+		AudioListener.volume = 0f;
+		labelMute.transform.parent.gameObject.SetActive (false);
+		labelUnmute.transform.parent.gameObject.SetActive (true);
+	}
+
+	public	void OnClickUnmute() {
+		AudioListener.volume = 1f;
+		labelMute.transform.parent.gameObject.SetActive (true);
+		labelUnmute.transform.parent.gameObject.SetActive (false);
 	}
 
 	public	void OnClickRestore() {

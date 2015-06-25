@@ -11,15 +11,16 @@ public class Observer
 		return instance;
 	}
 
-	public	DelegateBeat		beat;
-	public	DelegateBeatNormal	beatNormal;
-	public	DelegateBeatFever	beatFever;
-	public	DelegateThemeChange themeChange;
-	public	DelegateHighLevel	highLevelChange;
+	public	DelegateBeat			beat;
+	public	DelegateBeatNormal		beatNormal;
+	public	DelegateBeatFever		beatFever;
+	public	DelegateThemeChange	 themeChange;
+	public	DelegateHighLevel		highLevelChange;
 	public	DelegateChangeInventory	inventoryChange;
-	public	DelegateCurrencyChange currencyChange;
-	public	DelegateMaskOpen	maskOpen;
-	public	DelegateMaskClose	maskClose;
+	public	DelegateCurrencyChange	currencyChange;
+	public	DelegateMaskOpen		maskOpen;
+	public	DelegateMaskClose		maskClose;
+	public	DelegateNetworkStatus	networkStatusChange;
 }
 
 public	delegate void DelegateBeat(float time);
@@ -31,3 +32,4 @@ public	delegate void DelegateChangeInventory(string id, int balance);
 public	delegate void DelegateMaskClose();
 public	delegate void DelegateMaskOpen();
 public	delegate void DelegateCurrencyChange(int balance, int delta);
+public	delegate void DelegateNetworkStatus(bool availability);

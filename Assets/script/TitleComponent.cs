@@ -10,6 +10,7 @@ public class TitleComponent : UIComponent {
 	public	RectTransform									themeContent;
 	public	TitlePurchaseComponent							purchaser;					
 	public	Button											buttonStart;
+	public	Button											buttonAds;
 	private	Observer										observer;
 	private	GameObject										head;
 	private	Dictionary<AnimalType, ThemeSelectorComponent>	dictionary;
@@ -46,11 +47,13 @@ public class TitleComponent : UIComponent {
 		themeContent.anchoredPosition = new Vector3(index * -180 + 300, 0);
 		MakeHead (selectors[index].theme);
 		observer.themeChange += OnThemeChange;
+		observer.networkStatusChange += OnChangeNetwork;
 	}
 
 	public	override void OnUIStop() {
 		base.OnUIStop ();
 		observer.themeChange -= OnThemeChange;
+		observer.networkStatusChange -= OnChangeNetwork;
 		ClearHead ();
 	}
 
@@ -92,7 +95,11 @@ public class TitleComponent : UIComponent {
 		} 
 	}
 
-	public void OnThemeChange(ThemeInfo info) {
+	public	void OnChangeNetwork(bool availability) {
+		buttonAds.gameObject.SetActive (availability);
+	}
+
+	public	void OnThemeChange(ThemeInfo info) {
 		ClearHead ();
 		MakeHead (info);
 	}

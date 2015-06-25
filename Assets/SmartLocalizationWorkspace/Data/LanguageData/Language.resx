@@ -119,6 +119,9 @@
 	<data name="TGM.Arabic" xml:space="preserve">
 		<value>Language العربية</value>
 	</data>
+	<data name="TGM.Buy" xml:space="preserve">
+		<value>BUY</value>
+	</data>
 	<data name="TGM.ChineseSimple" xml:space="preserve">
 		<value>Language 正体字</value>
 	</data>
@@ -179,7 +182,7 @@
 	<data name="TGM.Tutorial" xml:space="preserve">
 		<value>TUTORIAL</value>
 	</data>
-	<data name="TGM.Buy" xml:space="preserve">
-		<value>BUY</value>
+	<data name="TGM.Unmute" xml:space="preserve">
+		<value>Unmute Sound</value>
 	</data>
 </root>

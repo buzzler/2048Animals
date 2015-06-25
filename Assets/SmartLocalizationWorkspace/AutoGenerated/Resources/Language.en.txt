@@ -182,4 +182,7 @@
 	<data name="TGM.Tutorial" xml:space="preserve">
 		<value>TUTORIAL</value>
 	</data>
+	<data name="TGM.Unmute" xml:space="preserve">
+		<value>UNMUTE</value>
+	</data>
 </root>
