@@ -48,12 +48,14 @@ public class TitleComponent : UIComponent {
 		MakeHead (selectors[index].theme);
 		observer.themeChange += OnThemeChange;
 		observer.networkStatusChange += OnChangeNetwork;
+		observer.inventoryChange += OnUpdateInventory;
 	}
 
 	public	override void OnUIStop() {
 		base.OnUIStop ();
 		observer.themeChange -= OnThemeChange;
 		observer.networkStatusChange -= OnChangeNetwork;
+		observer.inventoryChange -= OnUpdateInventory;
 		ClearHead ();
 	}
 
@@ -102,6 +104,30 @@ public class TitleComponent : UIComponent {
 	public	void OnThemeChange(ThemeInfo info) {
 		ClearHead ();
 		MakeHead (info);
+	}
+
+	public	void OnUpdateInventory(string id, int balance) {
+		ThemeInfo theme = ThemeInfo.Find(id);
+		if ((theme!=null) && (balance>0)) {
+			ThemeSelectorComponent tsc = dictionary[theme.type];
+			tsc.Unlocked();
+			RefreshHead(tsc);
+			CheckNextUnlock();
+
+			PlayerInfoKeeper keeper = PlayerInfoKeeper.GetInstance();
+			switch (theme.buffInfo.type) {
+			case BuffType.COIN:
+				keeper.playerInfo.buffInfoCoin = theme.buffInfo;
+				break;
+			case BuffType.SCORE:
+				keeper.playerInfo.buffInfoScore = theme.buffInfo;
+				break;
+			case BuffType.REWARD:
+				keeper.playerInfo.buffInfoReward = theme.buffInfo;
+				break;
+			}
+			keeper.Save();
+		}
 	}
 
 	public	void RefreshHead(ThemeSelectorComponent tsc) {

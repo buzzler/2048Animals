@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Advertisements;
 using System;
 using System.Collections;
+using Soomla.Store;
 
 [RequireComponent(typeof(Button))]
 public class AdsComponent : MonoBehaviour {
@@ -48,10 +49,9 @@ public class AdsComponent : MonoBehaviour {
 	public	void OnShowComplete(ShowResult result) {
 		switch (result) {
 		case ShowResult.Finished:
-			DebugComponent.Log("UNITY AD FINISHED");
+			StoreInventory.GiveItem(StoreAssetInfo.COIN, Mathf.Max((int)info.buffInfoReward.Calculate(1),1));
 			info.ads = DateTime.Now;
 			PlayerInfoKeeper.GetInstance().Save();
-			// reward
 			break;
 		case ShowResult.Failed:
 			DebugComponent.Log("UNITY AD FAILED");

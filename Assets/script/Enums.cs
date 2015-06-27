@@ -100,3 +100,11 @@ public	enum ThemeSelectorState {
 	LOCKED,
 	UNLOCKED
 }
+
+public	enum BuffType {
+	NONE = 0,
+	COIN,
+	SCORE,
+	REWARD
+}
+

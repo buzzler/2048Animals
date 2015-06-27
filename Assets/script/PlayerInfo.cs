@@ -16,6 +16,9 @@ public class PlayerInfo {
 	public DateTime		first;
 	public DateTime		last;
 	public DateTime		ads;
+	public BuffInfo		buffInfoCoin;
+	public BuffInfo		buffInfoScore;
+	public BuffInfo		buffInfoReward;
 	public string		language;
 
 	public PlayerInfo() {
@@ -28,6 +31,9 @@ public class PlayerInfo {
 		first = DateTime.Now;
 		last = DateTime.Now;
 		ads = DateTime.Now;
+		buffInfoCoin = new BuffInfo();
+		buffInfoScore = new BuffInfo();
+		buffInfoReward = new BuffInfo();
 		language = null;
 	}
 
@@ -87,7 +93,6 @@ public class PlayerInfoKeeper {
 			info.last = DateTime.Now;
 			bf.Serialize(fs, info);
 			fs.Close();
-//			LanguageManager.Instance.ChangeLanguage(info.language);
 		} else {
 			Create();
 			Load();

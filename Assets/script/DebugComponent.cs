@@ -91,6 +91,13 @@ public class DebugComponent : MonoBehaviour {
 
 	public	void TakeAllCoin() {
 		StoreInventory.TakeItem(StoreAssetInfo.COIN, StoreInventory.GetItemBalance(StoreAssetInfo.COIN));
+		foreach (ThemeInfo theme in ThemeInfo.dictionaryId.Values) {
+			if (theme.coin>0) {
+				StoreInventory.TakeItem(theme.id, 1);
+			} else {
+				StoreInventory.GiveItem(theme.id, 1);
+			}
+		}
 	}
 
 	public	void EnableTV() {

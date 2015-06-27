@@ -13,25 +13,25 @@ public class ThemeSelectorComponent : MonoBehaviour {
 	private	int					_balItem;
 
 	void OnEnable() {
-		Observer ob = Observer.GetInstance();
-		ob.inventoryChange += OnUpdateInventory;
+//		Observer ob = Observer.GetInstance();
+//		ob.inventoryChange += OnUpdateInventory;
 	}
 
 	void OnDisable() {
-		Observer ob = Observer.GetInstance();
-		ob.inventoryChange -= OnUpdateInventory;
+//		Observer ob = Observer.GetInstance();
+//		ob.inventoryChange -= OnUpdateInventory;
 	}
 
-	public	void OnUpdateInventory(string id, int balance) {
-		if (id == theme.id) {
-			_balItem = balance;
-			if ((balance > 0) && (state == ThemeSelectorState.LOCKED)) {
-				Unlocked();
-				SendMessageUpwards("RefreshHead", this);
-				SendMessageUpwards("CheckNextUnlock");
-			}
-		}
-	}
+//	public	void OnUpdateInventory(string id, int balance) {
+//		if (id == theme.id) {
+//			_balItem = balance;
+//			if ((balance > 0) && (state == ThemeSelectorState.LOCKED)) {
+//				Unlocked();
+//				SendMessageUpwards("RefreshHead", this);
+//				SendMessageUpwards("CheckNextUnlock");
+//			}
+//		}
+//	}
 
 	public	AnimalType SetGetAnimalType() {
 		theme = ThemeInfo.Find((AnimalType)System.Enum.Parse(typeof(AnimalType), GetComponent<Image>().sprite.name, true));

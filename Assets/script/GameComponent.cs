@@ -64,7 +64,7 @@ public class GameComponent : UIComponent {
 			playerInfo.highLevel = level;
 			observer.highLevelChange(level);
 		}
-		score += (uint)Mathf.Pow(2, fever ? level+1:level);
+		score += (uint)playerInfo.buffInfoScore.Calculate(Mathf.Pow(2, fever ? level+1:level));
 		UpdateScore();
 	}
 
@@ -78,7 +78,7 @@ public class GameComponent : UIComponent {
 	}
 
 	public	void AppendCoin(int delta = 1) {
-		playerInfo.coinDelta += delta;
+		playerInfo.coinDelta += (int)playerInfo.buffInfoCoin.Calculate((float)delta);
 		StoreInventory.GiveItem(StoreAssetInfo.COIN, delta);
 	}
 

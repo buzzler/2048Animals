@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class ThemeInfo
 {
 	public	static Dictionary<AnimalType, ThemeInfo>	dictionary;
+	public	static Dictionary<string, ThemeInfo>		dictionaryId;
 
 	public	string				id 			{get{return _id;			}}
 	public	string				name		{get{return _name;			}}
@@ -18,6 +19,7 @@ public class ThemeInfo
 	public	int					coin		{get{return _coin;			}}
 	public	string				categoryName{get{return _categoryName;	}}
 	public	string				bgm			{get{return _bgm;			}}
+	public	BuffInfo			buffInfo	{get{return _buff;			}}
 
 	private	string				_id;
 	private	string				_name;
@@ -30,17 +32,28 @@ public class ThemeInfo
 	private	int					_coin;
 	private	string				_categoryName;
 	private	string				_bgm;
+	private	BuffInfo			_buff;
 
 	public	static void Resister(ThemeInfo theme) {
 		if (dictionary==null) {
 			dictionary = new Dictionary<AnimalType, ThemeInfo>();
+			dictionaryId = new Dictionary<string, ThemeInfo>();
 		}
 		dictionary.Add(theme.type, theme);
+		dictionaryId.Add(theme.id, theme);
 	}
 
 	public	static ThemeInfo Find(AnimalType type) {
 		if ((dictionary!=null)&&(dictionary.ContainsKey(type))) {
 			return dictionary[type];
+		} else {
+			return null;
+		}
+	}
+
+	public	static ThemeInfo Find(string id) {
+		if ((dictionaryId!=null)&&(dictionaryId.ContainsKey(id))) {
+			return dictionaryId[id];
 		} else {
 			return null;
 		}
@@ -59,6 +72,7 @@ public class ThemeInfo
 		theme._bgNormal		= (BackgroundStatus)System.Enum.Parse(typeof(BackgroundStatus), line[9], true);
 		theme._bgFever		= (BackgroundStatus)System.Enum.Parse(typeof(BackgroundStatus), line[10], true);
 		theme._bgm			= line[11];
+		theme._buff			= BuffInfo.Parse(line[12], line[13], line[14]);
 		return theme;
 	}
 }
