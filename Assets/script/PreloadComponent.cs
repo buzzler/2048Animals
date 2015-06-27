@@ -1,9 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Advertisements;
 using System.Collections;
 using SmartLocalization;
 
 public class PreloadComponent : UIComponent {
+	public	RawImage bi;
+
+	public override void OnUIChangeLanguage (LanguageManager lm) {
+		base.OnUIChangeLanguage (lm);
+		bi.texture = lm.GetTexture ("fnf.ui.bi");
+	}
+
 	public	override void OnUIStart() {
 		base.OnUIStart();
 

@@ -25,16 +25,16 @@ public class SettingComponent : UIComponent {
 
 	public	override void OnUIChangeLanguage(LanguageManager lm) {
 		base.OnUIChangeLanguage(lm);
-		labelOption.text	= lm.GetTextValue("TGM.Option");
-		labelLanguage.text	= lm.GetTextValue("TGM.Language");
-		labelEnglish.text	= lm.GetTextValue("TGM.English");
-		labelKorean.text	= lm.GetTextValue("TGM.Korean");
-		labelCredits.text	= lm.GetTextValue("TGM.Credits");
-		labelMute.text		= lm.GetTextValue("TGM.Mute");
-		labelUnmute.text	= lm.GetTextValue("TGM.Unmute");
-		labelPurchases.text	= lm.GetTextValue("TGM.Restore");
-		labelRank.text		= lm.GetTextValue("TGM.Rank");
-		labelTutorial.text	= lm.GetTextValue("TGM.Tutorial");
+		labelOption.text	= lm.GetTextValue("fnf.ui.option");
+		labelLanguage.text	= lm.GetTextValue("fnf.ui.language");
+		labelEnglish.text	= lm.GetTextValue("fnf.lang.english");
+		labelKorean.text	= lm.GetTextValue("fnf.lang.korean");
+		labelCredits.text	= lm.GetTextValue("fnf.ui.credits");
+		labelMute.text		= lm.GetTextValue("fnf.ui.mute");
+		labelUnmute.text	= lm.GetTextValue("fnf.ui.unmute");
+		labelPurchases.text	= lm.GetTextValue("fnf.ui.restore");
+		labelRank.text		= lm.GetTextValue("fnf.ui.rank");
+		labelTutorial.text	= lm.GetTextValue("fnf.ui.tutorial");
 	}
 
 	public	void OnClickLanguage() {

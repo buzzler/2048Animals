@@ -11,6 +11,11 @@ public class CoinpackComponent : UIComponent {
 	public	CoinpackItemComponent	item;
 	public	Sprite[]				icons;
 
+	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
+		base.OnUIChangeLanguage (lm);
+		labelBuy.text = lm.GetTextValue ("fnf.ui.buy");
+	}
+
 	public	override void OnUIStart() {
 		base.OnUIStart();
 		List<VirtualCurrencyPack> list = StoreAssetInfo.listCurrencyPack;

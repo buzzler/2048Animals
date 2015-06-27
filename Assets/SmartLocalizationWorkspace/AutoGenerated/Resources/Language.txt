@@ -116,73 +116,100 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-	<data name="TGM.Arabic" xml:space="preserve">
+	<data name="fnf.lang.arabic" xml:space="preserve">
 		<value>Language العربية</value>
 	</data>
-	<data name="TGM.Buy" xml:space="preserve">
-		<value>BUY</value>
-	</data>
-	<data name="TGM.ChineseSimple" xml:space="preserve">
+	<data name="fnf.lang.chinesesimple" xml:space="preserve">
 		<value>Language 正体字</value>
 	</data>
-	<data name="TGM.ChineseTranditional" xml:space="preserve">
+	<data name="fnf.lang.chinesetranditional" xml:space="preserve">
 		<value>Language 正體字</value>
 	</data>
-	<data name="TGM.Credits" xml:space="preserve">
-		<value>CREDITS</value>
-	</data>
-	<data name="TGM.Deutsch" xml:space="preserve">
+	<data name="fnf.lang.deutsch" xml:space="preserve">
 		<value>Language deutsch</value>
 	</data>
-	<data name="TGM.English" xml:space="preserve">
+	<data name="fnf.lang.english" xml:space="preserve">
 		<value>Language english</value>
 	</data>
-	<data name="TGM.Espanol" xml:space="preserve">
+	<data name="fnf.lang.espanol" xml:space="preserve">
 		<value>Language español</value>
 	</data>
-	<data name="TGM.francais" xml:space="preserve">
+	<data name="fnf.lang.francais" xml:space="preserve">
 		<value>Language français</value>
 	</data>
-	<data name="TGM.Italiano" xml:space="preserve">
+	<data name="fnf.lang.italiano" xml:space="preserve">
 		<value>Language italiano</value>
 	</data>
-	<data name="TGM.Japanese" xml:space="preserve">
+	<data name="fnf.lang.japanese" xml:space="preserve">
 		<value>Language 日本語</value>
 	</data>
-	<data name="TGM.Korean" xml:space="preserve">
+	<data name="fnf.lang.korean" xml:space="preserve">
 		<value>Language 한글</value>
 	</data>
-	<data name="TGM.Language" xml:space="preserve">
-		<value>Game System Language</value>
-	</data>
-	<data name="TGM.Mute" xml:space="preserve">
-		<value>Mute Sound</value>
-	</data>
-	<data name="TGM.Option" xml:space="preserve">
-		<value>OPTION</value>
-	</data>
-	<data name="TGM.Portugues" xml:space="preserve">
-		<value>Language português</value>
-	</data>
-	<data name="TGM.Rank" xml:space="preserve">
-		<value>RANK</value>
-	</data>
-	<data name="TGM.Restore" xml:space="preserve">
-		<value>RESTORE PURCHASES</value>
-	</data>
-	<data name="TGM.Russian" xml:space="preserve">
+	<data name="fnf.lang.russian" xml:space="preserve">
 		<value>Language русский язык</value>
 	</data>
-	<data name="TGM.Start" xml:space="preserve">
+	<data name="[type=TEXTURE]fnf.ui.bi" xml:space="preserve">
+		<value>Game's B.I.</value>
+	</data>
+	<data name="fnf.ui.buy" xml:space="preserve">
+		<value>BUY</value>
+	</data>
+	<data name="fnf.ui.credits" xml:space="preserve">
+		<value>CREDITS</value>
+	</data>
+	<data name="fnf.ui.home" xml:space="preserve">
+		<value>HOME</value>
+	</data>
+	<data name="fnf.ui.language" xml:space="preserve">
+		<value>Game System Language</value>
+	</data>
+	<data name="fnf.ui.mute" xml:space="preserve">
+		<value>Mute Sound</value>
+	</data>
+	<data name="fnf.ui.option" xml:space="preserve">
+		<value>OPTION</value>
+	</data>
+	<data name="fnf.ui.pause" xml:space="preserve">
+		<value>PAUSE</value>
+	</data>
+	<data name="fnf.ui.portugues" xml:space="preserve">
+		<value>Language português</value>
+	</data>
+	<data name="fnf.ui.rank" xml:space="preserve">
+		<value>RANK</value>
+	</data>
+	<data name="fnf.ui.restore" xml:space="preserve">
+		<value>RESTORE PURCHASES</value>
+	</data>
+	<data name="fnf.ui.retry" xml:space="preserve">
+		<value>RETRY</value>
+	</data>
+	<data name="fnf.ui.start" xml:space="preserve">
 		<value>Game Start Button</value>
 	</data>
-	<data name="TGM.Title" xml:space="preserve">
+	<data name="fnf.ui.title" xml:space="preserve">
 		<value>Game's Title</value>
 	</data>
-	<data name="TGM.Tutorial" xml:space="preserve">
+	<data name="fnf.ui.tutorial" xml:space="preserve">
 		<value>TUTORIAL</value>
 	</data>
-	<data name="TGM.Unmute" xml:space="preserve">
+	<data name="fnf.ui.unmute" xml:space="preserve">
 		<value>Unmute Sound</value>
+	</data>
+	<data name="fnf.ui.ok" xml:space="preserve">
+		<value>OK</value>
+	</data>
+	<data name="fnf.ui.tutorial.1" xml:space="preserve">
+		<value>Tutorial Page1 - 1</value>
+	</data>
+	<data name="fnf.ui.tutorial.2" xml:space="preserve">
+		<value>Tutorial Page2 - 1</value>
+	</data>
+	<data name="fnf.ui.tutorial.3" xml:space="preserve">
+		<value>Tutorial Page2 - 2</value>
+	</data>
+	<data name="fnf.ui.tutorial.4" xml:space="preserve">
+		<value>Tutorial Page3 - 1</value>
 	</data>
 </root>

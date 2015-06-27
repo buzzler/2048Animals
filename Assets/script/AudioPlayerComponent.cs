@@ -129,8 +129,13 @@ public class AudioPlayerComponent : MonoBehaviour {
 	}
 
 	private	void PlayBgm(string id) {
+		AudioInfoSource prevSource = bgm[prevBgmChannel];
+		currentBgm = dictionary[id];
+		if (prevSource.current==currentBgm) {
+			return;
+		}
+
 		if (prevBgmChannel!=nextBgmChannel) {
-			AudioInfoSource prevSource = bgm[prevBgmChannel];
 			if (prevSource.isPlaying) {
 				currentBgm = null;
 				CancelInvoke("InvokeBpm");
@@ -138,21 +143,15 @@ public class AudioPlayerComponent : MonoBehaviour {
 			}
 		}
 
-		if (dictionary.ContainsKey(id)) {
-			currentBgm = dictionary[id];
-			bgm[nextBgmChannel].Play(currentBgm, true, volumnMaster*volumnBgm, true);
-			InvokeRepeating("InvokeBpm", currentBgm.spb, currentBgm.spb);
-		}
+		bgm[nextBgmChannel].Play(currentBgm, true, volumnMaster*volumnBgm, true);
+		InvokeRepeating("InvokeBpm", currentBgm.spb, currentBgm.spb);
 
 		prevBgmChannel = nextBgmChannel;
 		nextBgmChannel = (nextBgmChannel + 1) % channelBgm;
 	}
 
 	private	void PlayFx(string id) {
-		if (dictionary.ContainsKey(id)) {
-			fx[nextFxChannel].Play(dictionary[id], false, volumnMaster*volumnFx, false);
-		}
-
+		fx[nextFxChannel].Play(dictionary[id], false, volumnMaster*volumnFx, false);
 		nextFxChannel = (nextFxChannel + 1) % channelFx;
 	}
 

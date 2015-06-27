@@ -63,7 +63,7 @@ public class AudioInfoSource : MonoBehaviour {
 		_source.Play ();
 
 		if (tween) {
-			iTween.AudioFrom(gameObject, 0, 1, 1f);
+			iTween.AudioFrom(gameObject, 0, 1, 2f);
 		}
 	}
 
