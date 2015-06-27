@@ -8,8 +8,13 @@ public class SlotComponent : MonoBehaviour {
 	public	SlotComponent	LEFT;
 	public	SlotComponent	RIGHT;
 
-	private	BoxComponent hold;
-	private BoxComponent merger;
+	private	CoreComponent	core;
+	private	BoxComponent	hold;
+	private BoxComponent	merger;
+
+	void Start() {
+		core = GetComponentInParent<CoreComponent> ();
+	}
 
 	public	void Clear() {
 		hold = null;
@@ -155,9 +160,11 @@ public class SlotComponent : MonoBehaviour {
 
 	public	void HandleMove(BoxComponent box) {
 		if (merger!=null) {
-			SendMessageUpwards("OnMerge", this);
+			if (merger==box) {
+				core.OnMerge(this);
+			}
 		} else if (hold!=null) {
-			SendMessageUpwards("OnMoved", this);
+			core.OnMoved(this);
 		} else {
 			// error !
 			DebugComponent.Error("????? (id:" + id+ ")");

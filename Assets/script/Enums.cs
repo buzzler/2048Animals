@@ -108,3 +108,15 @@ public	enum BuffType {
 	REWARD
 }
 
+public	enum EffectType {
+	NONE = 0,
+	FACE_DRAG_IN,
+	FACE_DRAG_OUT,
+	COIN,
+	COMBO_LV1,
+	COMBO_LV2,
+	COMBO_LV3,
+	BANG_LV1,
+	BANG_LV2,
+	BANG_LV3
+}

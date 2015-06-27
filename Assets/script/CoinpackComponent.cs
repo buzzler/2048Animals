@@ -34,13 +34,13 @@ public class CoinpackComponent : UIComponent {
 	}
 
 	public	void OnClickClose() {
-		SendMessageUpwards ("PlayFx", "fx_click");
+		AudioPlayerComponent.Play ("fx_click");
 		OnUIReserve(parent);
 		OnUIBackward ();
 	}
 
 	public	void OnClickCoinPack(VirtualCurrencyPack vcp) {
-		SendMessageUpwards ("PlayFx", "fx_click");
+		AudioPlayerComponent.Play ("fx_click");
 		StoreInventory.BuyItem (vcp.ItemId);
 	}
 }

@@ -60,12 +60,14 @@ public class GameComponent : UIComponent {
 	}
 
 	public	void AppendScore(int level) {
-		if ((level>playerInfo.highLevel) && (observer.highLevelChange!=null)) {
+		score += (uint)playerInfo.buffInfoScore.Calculate(Mathf.Pow(2, fever.activeSelf ? level+1:level));
+		UpdateScore();
+
+		level += 1;
+		if (((level)>playerInfo.highLevel) && (observer.highLevelChange!=null)) {
 			playerInfo.highLevel = level;
 			observer.highLevelChange(level);
 		}
-		score += (uint)playerInfo.buffInfoScore.Calculate(Mathf.Pow(2, fever ? level+1:level));
-		UpdateScore();
 	}
 
 	public	void UpdateScore() {

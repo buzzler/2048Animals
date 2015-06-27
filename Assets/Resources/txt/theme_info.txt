@@ -1,4 +1,4 @@
-item id(string),name(string),description(string),coin(int64),price(float),product id (string),category name(string),trigger(string),bg(alaska|antarctica),normal(A|B|C|D),fever(A|B|C|D),bgm,buff type(coin|score|reward),buff rate (a*value),buff add(a+value)
+item id(string),name(string),description(string),coin(int64),price(float),product id (string),category name(string),trigger(string),bg(alaska|antarctica|savanah|amazon),normal(A|B|C|D),fever(A|B|C|D),bgm,buff type(coin|score|reward),buff rate (a*value),buff add(a+value)
 item_boo,Boo,boo desc.,0,0,theme_boo,cat_boo,trigger_boo,1,3,4,bgm0,0,1,0
 item_bear,Bear,bear desc.,0,0,theme_bear,cat_bear,trigger_bear,1,1,4,bgm0,0,1,0
 item_furseal,Furseal,furseal desc.,10,0.99,theme_furseal,cat_furseal,trigger_furseal,2,1,4,bgm0,3,1,10

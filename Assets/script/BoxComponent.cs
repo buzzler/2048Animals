@@ -12,7 +12,6 @@ public class BoxComponent : MonoBehaviour {
 
 	void Start() {
 		animator = GetComponent(typeof(Animator)) as Animator;
-		// change image to selected animal's one
 		animator.SetTrigger("trigger_init");
 	}
 
@@ -50,7 +49,6 @@ public class BoxComponent : MonoBehaviour {
 	public bool Left() {
 		if (current) {
 			if (Move (current.MostLeft(this))) {
-//				animator.SetBool("left", true);
 				animator.SetTrigger("trigger_left");
 			} else {
 				return false;
@@ -64,7 +62,6 @@ public class BoxComponent : MonoBehaviour {
 	public bool Right() {
 		if (current) {
 			if (Move (current.MostRight(this))) {
-//				animator.SetBool("right", true);
 				animator.SetTrigger("trigger_right");
 			} else {
 				return false;
@@ -78,7 +75,6 @@ public class BoxComponent : MonoBehaviour {
 	public bool Up() {
 		if (current) {
 			if (Move (current.MostUp(this))) {
-//				animator.SetBool("up", true);
 				animator.SetTrigger("trigger_up");
 			} else {
 				return false;
@@ -92,7 +88,6 @@ public class BoxComponent : MonoBehaviour {
 	public bool Down() {
 		if (current) {
 			if (Move (current.MostDown(this))) {
-//				animator.SetBool("down", true);
 				animator.SetTrigger("trigger_down");
 			} else {
 				return false;
@@ -111,10 +106,6 @@ public class BoxComponent : MonoBehaviour {
 	}
 
 	public void HandleMove() {
-//		animator.SetBool("left", false);
-//		animator.SetBool("right", false);
-//		animator.SetBool("up", false);
-//		animator.SetBool("down", false);
 		animator.SetTrigger ("trigger_stop");
 		tween = false;
 		current.HandleMove(this);

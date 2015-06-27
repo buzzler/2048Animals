@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class AudioPlayerComponent : MonoBehaviour {
+	private	static AudioPlayerComponent _instance;
+	public	static AudioPlayerComponent GetInstance() {
+		return _instance;
+	}
+
 	public	Transform					objMain;
 	public	Transform					objBgm;
 	public	Transform					objFx;
@@ -39,6 +44,8 @@ public class AudioPlayerComponent : MonoBehaviour {
 	private	Observer					observer;
 
 	void Start() {
+		_instance = this;
+
 		// init channels
 		bgm = new AudioInfoSource[channelBgm];
 		for (int i = 0 ; i < channelBgm ; i++) {
@@ -77,7 +84,7 @@ public class AudioPlayerComponent : MonoBehaviour {
 
 	void Update() {
 		if (reserved!=null) {
-			PlayBgm(reserved);
+			Play(reserved);
 			reserved = null;
 		}
 	}
@@ -100,7 +107,7 @@ public class AudioPlayerComponent : MonoBehaviour {
 		if (bgm==null) {
 			reserved = info.bgm;
 		} else {
-			PlayBgm(info.bgm);
+			Play(info.bgm);
 		}
 	}
 
@@ -110,7 +117,18 @@ public class AudioPlayerComponent : MonoBehaviour {
 		}
 	}
 
-	public	void PlayBgm(string id) {
+	public	static void Play(string id) {
+		if (_instance.dictionary.ContainsKey (id)) {
+			AudioInfo info = _instance.dictionary[id];
+			if (info.type == AudioType.BGM) {
+				_instance.PlayBgm(id);
+			} else if (info.type == AudioType.FX) {
+				_instance.PlayFx(id);
+			}
+		}
+	}
+
+	private	void PlayBgm(string id) {
 		if (prevBgmChannel!=nextBgmChannel) {
 			AudioInfoSource prevSource = bgm[prevBgmChannel];
 			if (prevSource.isPlaying) {
@@ -130,7 +148,7 @@ public class AudioPlayerComponent : MonoBehaviour {
 		nextBgmChannel = (nextBgmChannel + 1) % channelBgm;
 	}
 
-	public	void PlayFx(string id) {
+	private	void PlayFx(string id) {
 		if (dictionary.ContainsKey(id)) {
 			fx[nextFxChannel].Play(dictionary[id], false, volumnMaster*volumnFx, false);
 		}

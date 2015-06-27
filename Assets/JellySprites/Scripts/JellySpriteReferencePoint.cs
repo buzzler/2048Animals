@@ -160,7 +160,8 @@ public class JellySpriteReferencePoint : MonoBehaviour
 		if ((!dragging) && (joint!=null)) {
 			oriPos = transform.position;
 			dragging = true;
-			GameObject.FindObjectOfType<AudioPlayerComponent>().PlayFx("fx_facein");
+			AudioPlayerComponent.Play("fx_facein");
+			EffectComponent.Show(EffectType.FACE_DRAG_IN, transform.position);
 		}
 	}
 
@@ -169,7 +170,8 @@ public class JellySpriteReferencePoint : MonoBehaviour
 		if (dragging && (joint!=null)) {
 			joint.anchor = Vector2.zero;
 			dragging = false;
-			GameObject.FindObjectOfType<AudioPlayerComponent>().PlayFx("fx_faceout");
+			AudioPlayerComponent.Play("fx_faceout");
+			EffectComponent.Show(EffectType.FACE_DRAG_OUT, transform.position);
 		}
 	}
 

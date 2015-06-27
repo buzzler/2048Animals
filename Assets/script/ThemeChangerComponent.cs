@@ -50,13 +50,12 @@ public class ThemeChangerComponent : MonoBehaviour
 	}
 
 	public	void SetTheme(AnimalType type, bool newBackground = true) {
+		info.type = type;
 		ThemeInfo selected = ThemeInfo.Find(type);
 		if (newBackground) {
 			background = GameObject.Instantiate(Resources.Load("bg/" + selected.bg.ToString().ToLower()), Vector3.zero, Quaternion.identity) as GameObject;
 			background.GetComponent<BackgroundComponent>().SetStatusNormal();
 		}
-
-		info.type = type;
 
 		PlayerInfoKeeper.GetInstance().Save();
 		if (observer.themeChange!=null) {

@@ -11,7 +11,8 @@ public class ResultComponent : UIComponent {
 	public	ScoreComponent	bestGroup;
 	public	ScoreComponent	currentGroup;
 	public	RawImage		rawImage;
-	public	Texture2D[]		boxes;
+	public	Transform		boxHolder;
+	public	Transform[]		boxes;
 	public	Color			colorUpdate;
 	public	Color			colorNormal;
 	private	PlayerInfo		info;
@@ -22,8 +23,6 @@ public class ResultComponent : UIComponent {
 		PlayerInfoKeeper keeper = PlayerInfoKeeper.GetInstance ();
 		info = keeper.playerInfo;
 
-		// change medium image to selected animal's one
-
 		SetDeltaCoin ();
 		SetBestScore();
 		SetCurrentScore ();
@@ -33,39 +32,41 @@ public class ResultComponent : UIComponent {
 	}
 
 	public	void OnClickRetry() {
-		SendMessageUpwards ("PlayFx", "fx_click");
+		AudioPlayerComponent.Play ("fx_click");
 		OnUIReserve (UIType.GAME);
 		OnUIChange ();
 	}
 
 	public	void OnClickTitle() {
-		SendMessageUpwards ("PlayFx", "fx_click");
+		AudioPlayerComponent.Play ("fx_click");
 		OnUIReserve (UIType.TITLE);
 		OnUIChange ();
 	}
 
 	public	void OnClickShare() {
-		SendMessageUpwards ("PlayFx", "fx_click");
+		AudioPlayerComponent.Play ("fx_click");
 	}
 
 	public	void OnClickRank() {
-		SendMessageUpwards ("PlayFx", "fx_click");
+		AudioPlayerComponent.Play ("fx_click");
 	}
 
 	public	void OnClickAd() {
-		SendMessageUpwards ("PlayFx", "fx_click");
+		AudioPlayerComponent.Play ("fx_click");
 	}
 	
 	public	void OnClickGift() {
-		SendMessageUpwards ("PlayFx", "fx_click");
+		AudioPlayerComponent.Play ("fx_click");
 	}
 	
 	public	void OnClickGacha() {
-		SendMessageUpwards ("PlayFx", "fx_click");
+		AudioPlayerComponent.Play ("fx_click");
 	}
 
 	public	void SetBox() {
-		rawImage.texture = boxes[info.highLevel-1];
+//		rawImage.texture = boxes[info.highLevel-1];
+		Transform box = Instantiate(boxes[info.highLevel-1], boxHolder.position, Quaternion.identity) as Transform;
+		box.SetParent (boxHolder);
 	}
 
 	public	void SetDeltaCoin() {

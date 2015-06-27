@@ -8,10 +8,10 @@ public class CoreComponent : MonoBehaviour {
 	public	const int COLUMN	= 4;
 	public	BoxComponent[]	prefabs;
 	public	SlotComponent[]	slots;
-	public	Transform[]		fx1;
-	public	Transform[]		fx_coin;
-	public	Transform[]		fx_combo;
-	public	int				combo_threshold;
+	public	EffectType[]	effectBang;
+	public	EffectType[]	effectCoin;
+	public	EffectType[]	effectCombo;
+	
 	private Dictionary<string, BoxComponent> boxes;
 	private int				count;
 	public	int				combo;
@@ -24,7 +24,7 @@ public class CoreComponent : MonoBehaviour {
 	public	Sprite			speakerNormal;
 	public	Sprite			speakerBoom;
 	private	Observer		observer;
-
+	private	GameComponent	game;
 	void Start() {
 		Init();
 	}
@@ -41,6 +41,7 @@ public class CoreComponent : MonoBehaviour {
 			observer = Observer.GetInstance();
 		}
 		observer.beat -= OnBeat;
+		CancelInvoke ();
 	}
 
 	public	void OnBeat(float time) {
@@ -59,6 +60,11 @@ public class CoreComponent : MonoBehaviour {
 		count = 0;
 		combo = 0;
 		fever = false;
+		game = GetComponentInParent<GameComponent> ();
+	}
+
+	public void RandomNew() {
+		New(Random.value<0.05 ? 1:0);
 	}
 
 	public BoxComponent New(int level = 0, SlotComponent slot = null) {
@@ -73,7 +79,7 @@ public class CoreComponent : MonoBehaviour {
 				}
 			}
 			if (list.Count==0) {
-				SendMessageUpwards("GameOver");
+				DebugComponent.Error("nowhere found to create box");
 				return null;
 			}
 			slot = list[(Random.Range(0, list.Count-1))] as SlotComponent;
@@ -198,9 +204,9 @@ public class CoreComponent : MonoBehaviour {
 		}
 
 		combo++;
-		if (combo >= combo_threshold) {
+		if (combo >= effectCombo.Length) {
 			fever = true;
-			SendMessageUpwards("FeverOn");
+			game.FeverOn();
 			Invoke("OnFeverComplete", timeFever);
 		}
 	}
@@ -208,60 +214,49 @@ public class CoreComponent : MonoBehaviour {
 	private	void OnFeverComplete() {
 		combo = 0;
 		fever = false;
-		SendMessageUpwards("FeverOff");
+		game.FeverOff ();
 	}
 
 	public void OnMerge(SlotComponent slot) {
 		BoxComponent box1 = slot.box;
 		BoxComponent box2 = slot.target;
 
-		try {
-			int level = box1.level+1;
-			if (level >= prefabs.Length) {
-				DebugComponent.Error("biggest box can't merge");
-				return;
-			}
-
-			slot.Clear();
-			boxes.Remove(box1.id);
-			boxes.Remove(box2.id);
-			GameObject.DestroyImmediate(box1.gameObject);
-			GameObject.DestroyImmediate(box2.gameObject);
-			New(level, slot);
-			// insert score increament
-			SendMessageUpwards("AppendScore", level+1);
-
-			Vector3 pos = slot.transform.position;
-
-			// insert effect 'bang'
-			if (fx1[level]!=null) {
-				Instantiate(fx1[level], pos, Quaternion.identity);
-			}
-
-			// insert coin increment
-			if (fx_coin[level]!=null) {
-				SendMessageUpwards ("PlayFx", "fx_coin");
-				SendMessageUpwards("AppendCoin", 1);
-				Instantiate(fx_coin[level], pos, Quaternion.identity);
-			}
-
-			// insert effect 'combo'
-			if (combo>0) {
-				SendMessageUpwards ("PlayFx", "fx_combo");
-				int fx = Mathf.Min(combo, fx_combo.Length-1);
-				if (fx_combo[fx]!=null) {
-					Instantiate(fx_combo[fx], pos, Quaternion.identity);
-				}
-			}
-
-			if (level==(prefabs.Length-1)) {
-				SendMessageUpwards("Win");
-			} 
-		} catch (UnityException error) {
-			DebugComponent.Error("something wrong on merging (slot id:" +slot.id+ ") " + error.Message);
-		} finally {
-			OnMoved(slot);
+		int level = box1.level+1;
+		if (level >= prefabs.Length) {
+			DebugComponent.Error("biggest box can't merge");
+			return;
 		}
+
+		slot.Clear();
+		boxes.Remove(box1.id);
+		boxes.Remove(box2.id);
+		GameObject.DestroyImmediate(box1.gameObject);
+		GameObject.DestroyImmediate(box2.gameObject);
+		New(level, slot);
+		// insert score increament
+		game.AppendScore (level);
+
+		Vector3 pos = slot.transform.position;
+
+		// insert effect 'bang'
+		EffectComponent.Show (effectBang [level], pos);
+
+		// insert coin increment
+		if (EffectComponent.Show (effectCoin [level], pos) != null) {
+			AudioPlayerComponent.Play ("fx_click");
+			game.AppendCoin(1);
+		}
+
+		// insert effect 'combo'
+		if (EffectComponent.Show (effectCombo [(Mathf.Min(combo, effectCombo.Length-1))], pos) != null) {
+			AudioPlayerComponent.Play ("fx_combo");
+		}
+
+		if (level==(prefabs.Length-1)) {
+			game.Win();
+		}
+
+		OnMoved(slot);
 	}
 
 	public void OnMoved(SlotComponent slot) {
@@ -277,7 +272,7 @@ public class CoreComponent : MonoBehaviour {
 			}
 
 			if (gameover) {
-				SendMessageUpwards("GameOver");
+				game.GameOver();
 			}
 		}
 	}
@@ -285,9 +280,6 @@ public class CoreComponent : MonoBehaviour {
 	/**
 	 * for debug
 	 */
-	public void RandomNew() {
-		New(Random.value<0.05 ? 1:0);
-	}
 
 	void Update() {
 		if (Input.GetKeyDown("left")) {
