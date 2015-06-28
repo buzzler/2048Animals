@@ -6,8 +6,8 @@ using Soomla.Store;
 
 [RequireComponent (typeof(Animator))]
 public class GameComponent : UIComponent {
-
 	public	CoreComponent		core;
+	public	Text				labelBest;
 	public	Text				textBest;
 	public	Text				textScore;
 	public	GameObject			fever;
@@ -16,6 +16,11 @@ public class GameComponent : UIComponent {
 	private	uint				score;
 	private	BackgroundComponent	bg;
 	private	Observer			observer;
+
+	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
+		base.OnUIChangeLanguage (lm);
+		labelBest.text = lm.GetTextValue ("fnf.ui.best");
+	}
 
 	public	override void OnUIStart() {
 		base.OnUIStart();

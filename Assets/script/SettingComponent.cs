@@ -109,8 +109,8 @@ public class SettingComponent : UIComponent {
 		ChangeLanguage("ja");
 	}
 
-	public	void OnClickChineseSimple() {
-
+	public	void OnClickChinese() {
+		ChangeLanguage("zh-CHS");
 	}
 
 	public	void OnClickRussian() {
@@ -131,10 +131,6 @@ public class SettingComponent : UIComponent {
 
 	public	void OnClickKorean() {
 		ChangeLanguage("ko");
-	}
-
-	public	void OnClickChineseTranditional() {
-
 	}
 
 	public	void OnClickArabic() {

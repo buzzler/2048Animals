@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using Soomla.Store;
 
 public class TitleComponent : UIComponent {
-
+	public	Text											labelStart;
+	public	Text											labelReward;
 	public	ThemeChangerComponent							themeChanger;
 	public	RectTransform									themeContent;
 	public	TitlePurchaseComponent							purchaser;					
@@ -18,6 +19,12 @@ public class TitleComponent : UIComponent {
 	void Start () {
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		themeContent.sizeDelta = new Vector2(160*themeContent.childCount+20*(themeContent.childCount-1), 160);
+	}
+
+	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) { 
+		base.OnUIChangeLanguage (lm);
+		labelStart.text = lm.GetTextValue ("fnf.ui.start");
+		labelReward.text = lm.GetTextValue ("fnf.ui.reward");
 	}
 
 	public	override void OnUIStart() {
@@ -61,15 +68,17 @@ public class TitleComponent : UIComponent {
 
 	public	override void OnUIPause() {
 		base.OnUIPause ();
-		if (head!=null) {
-			head.SetActive(false);
+		if (head != null) {
+			head.SetActive (false);
 		}
 	}
 
 	public	override void OnUIResume() {
 		base.OnUIResume ();
-		if (head!=null) {
-			head.SetActive(true);
+		if (head != null) {
+			head.SetActive (true);
+		} else {
+			purchaser.Refresh ();
 		}
 	}
 
@@ -85,7 +94,7 @@ public class TitleComponent : UIComponent {
 
 		ThemeSelectorComponent tsc = dictionary[info.type];
 		if (tsc.state == ThemeSelectorState.UNLOCKED) {
-			head = GameObject.Instantiate (Resources.Load("head/"+info.name.ToLower())) as GameObject;
+			head = GameObject.Instantiate (Resources.Load("head/"+info.code.ToLower())) as GameObject;
 			purchaser.ClearThemeInfo();
 			buttonStart.interactable = true;
 		} else if (tsc.state == ThemeSelectorState.BLINDED) {

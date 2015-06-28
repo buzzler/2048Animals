@@ -149,6 +149,231 @@
 	<data name="fnf.lang.russian" xml:space="preserve">
 		<value>Language русский язык</value>
 	</data>
+	<data name="fnf.theme.alpaca.desc" xml:space="preserve">
+		<value>Alpaca's description</value>
+	</data>
+	<data name="fnf.theme.alpaca.name" xml:space="preserve">
+		<value>Alpaca's name</value>
+	</data>
+	<data name="fnf.theme.bear.desc" xml:space="preserve">
+		<value>Bear's description</value>
+	</data>
+	<data name="fnf.theme.bear.name" xml:space="preserve">
+		<value>Bear's name</value>
+	</data>
+	<data name="fnf.theme.boo.desc" xml:space="preserve">
+		<value>Hawl's description</value>
+	</data>
+	<data name="fnf.theme.boo.name" xml:space="preserve">
+		<value>Hawl's name</value>
+	</data>
+	<data name="fnf.theme.cameleon.desc" xml:space="preserve">
+		<value>Cameleon's description</value>
+	</data>
+	<data name="fnf.theme.cameleon.name" xml:space="preserve">
+		<value>Cameleon's name</value>
+	</data>
+	<data name="fnf.theme.chick.desc" xml:space="preserve">
+		<value>Chick's description</value>
+	</data>
+	<data name="fnf.theme.chick.name" xml:space="preserve">
+		<value>Chick's name</value>
+	</data>
+	<data name="fnf.theme.chicken.desc" xml:space="preserve">
+		<value>Chicken's description</value>
+	</data>
+	<data name="fnf.theme.chicken.name" xml:space="preserve">
+		<value>Chicken's name</value>
+	</data>
+	<data name="fnf.theme.cow.desc" xml:space="preserve">
+		<value>Cow's description</value>
+	</data>
+	<data name="fnf.theme.cow.name" xml:space="preserve">
+		<value>Cow's name</value>
+	</data>
+	<data name="fnf.theme.crocodile.desc" xml:space="preserve">
+		<value>Crocodile's description</value>
+	</data>
+	<data name="fnf.theme.crocodile.name" xml:space="preserve">
+		<value>Crocodile's name</value>
+	</data>
+	<data name="fnf.theme.elephant.desc" xml:space="preserve">
+		<value>Elephant's description</value>
+	</data>
+	<data name="fnf.theme.elephant.name" xml:space="preserve">
+		<value>Elephant's name</value>
+	</data>
+	<data name="fnf.theme.frog.desc" xml:space="preserve">
+		<value>Frog's description</value>
+	</data>
+	<data name="fnf.theme.frog.name" xml:space="preserve">
+		<value>Frog's name</value>
+	</data>
+	<data name="fnf.theme.furseal.desc" xml:space="preserve">
+		<value>Furseal's description</value>
+	</data>
+	<data name="fnf.theme.furseal.name" xml:space="preserve">
+		<value>Furseal's name</value>
+	</data>
+	<data name="fnf.theme.gibbon.desc" xml:space="preserve">
+		<value>Gibbon's description</value>
+	</data>
+	<data name="fnf.theme.gibbon.name" xml:space="preserve">
+		<value>Gibbon's name</value>
+	</data>
+	<data name="fnf.theme.giraffe.desc" xml:space="preserve">
+		<value>Giraffe's description</value>
+	</data>
+	<data name="fnf.theme.giraffe.name" xml:space="preserve">
+		<value>Giraffe's name</value>
+	</data>
+	<data name="fnf.theme.greenturtle.desc" xml:space="preserve">
+		<value>Greenturtle's description</value>
+	</data>
+	<data name="fnf.theme.greenturtle.name" xml:space="preserve">
+		<value>Greenturtle's name</value>
+	</data>
+	<data name="fnf.theme.hippopotamus.desc" xml:space="preserve">
+		<value>Hippopotamus's description</value>
+	</data>
+	<data name="fnf.theme.hippopotamus.name" xml:space="preserve">
+		<value>Hippopotamus's name</value>
+	</data>
+	<data name="fnf.theme.horse.desc" xml:space="preserve">
+		<value>Horse's description</value>
+	</data>
+	<data name="fnf.theme.horse.name" xml:space="preserve">
+		<value>Horse's name</value>
+	</data>
+	<data name="fnf.theme.jindo.desc" xml:space="preserve">
+		<value>Jindo's description</value>
+	</data>
+	<data name="fnf.theme.jindo.name" xml:space="preserve">
+		<value>Jindo's name</value>
+	</data>
+	<data name="fnf.theme.lion.desc" xml:space="preserve">
+		<value>Lion's description</value>
+	</data>
+	<data name="fnf.theme.lion.name" xml:space="preserve">
+		<value>Lion's name</value>
+	</data>
+	<data name="fnf.theme.lioness.desc" xml:space="preserve">
+		<value>Lioness' description</value>
+	</data>
+	<data name="fnf.theme.lioness.name" xml:space="preserve">
+		<value>Lioness' name</value>
+	</data>
+	<data name="fnf.theme.loli.desc" xml:space="preserve">
+		<value>Loli's description</value>
+	</data>
+	<data name="fnf.theme.loli.name" xml:space="preserve">
+		<value>Loli's name</value>
+	</data>
+	<data name="fnf.theme.naru.desc" xml:space="preserve">
+		<value>Naru's description</value>
+	</data>
+	<data name="fnf.theme.naru.name" xml:space="preserve">
+		<value>Naru's name</value>
+	</data>
+	<data name="fnf.theme.otter.desc" xml:space="preserve">
+		<value>Otter's description</value>
+	</data>
+	<data name="fnf.theme.otter.name" xml:space="preserve">
+		<value>Otter's name</value>
+	</data>
+	<data name="fnf.theme.panda.desc" xml:space="preserve">
+		<value>Panda's description</value>
+	</data>
+	<data name="fnf.theme.panda.name" xml:space="preserve">
+		<value>Panda's name</value>
+	</data>
+	<data name="fnf.theme.penguin.desc" xml:space="preserve">
+		<value>Penguin's description</value>
+	</data>
+	<data name="fnf.theme.penguin.name" xml:space="preserve">
+		<value>Penguin's name</value>
+	</data>
+	<data name="fnf.theme.persian.desc" xml:space="preserve">
+		<value>Persian's description</value>
+	</data>
+	<data name="fnf.theme.persian.name" xml:space="preserve">
+		<value>Persian's name</value>
+	</data>
+	<data name="fnf.theme.pig.desc" xml:space="preserve">
+		<value>Pig's description</value>
+	</data>
+	<data name="fnf.theme.pig.name" xml:space="preserve">
+		<value>Pig's name</value>
+	</data>
+	<data name="fnf.theme.pigblack.desc" xml:space="preserve">
+		<value>Blackpig's description</value>
+	</data>
+	<data name="fnf.theme.pigblack.name" xml:space="preserve">
+		<value>Blackpig's name</value>
+	</data>
+	<data name="fnf.theme.polarbear.desc" xml:space="preserve">
+		<value>Polarbear's description</value>
+	</data>
+	<data name="fnf.theme.polarbear.name" xml:space="preserve">
+		<value>Polarbear's name</value>
+	</data>
+	<data name="fnf.theme.pomeranian.desc" xml:space="preserve">
+		<value>Pomeranian's description</value>
+	</data>
+	<data name="fnf.theme.pomeranian.name" xml:space="preserve">
+		<value>Pomeranian's name</value>
+	</data>
+	<data name="fnf.theme.pomewhite.desc" xml:space="preserve">
+		<value>Whitepomeranian's description</value>
+	</data>
+	<data name="fnf.theme.pomewhite.name" xml:space="preserve">
+		<value>Whitepomeranian's name</value>
+	</data>
+	<data name="fnf.theme.rabbit.desc" xml:space="preserve">
+		<value>Rabbit's description</value>
+	</data>
+	<data name="fnf.theme.rabbit.name" xml:space="preserve">
+		<value>Rabbit's name</value>
+	</data>
+	<data name="fnf.theme.raccoon.desc" xml:space="preserve">
+		<value>Raccoon's description</value>
+	</data>
+	<data name="fnf.theme.raccoon.name" xml:space="preserve">
+		<value>Raccoon's name</value>
+	</data>
+	<data name="fnf.theme.santa.desc" xml:space="preserve">
+		<value>Santa's description</value>
+	</data>
+	<data name="fnf.theme.santa.name" xml:space="preserve">
+		<value>Santa's name</value>
+	</data>
+	<data name="fnf.theme.sealion.desc" xml:space="preserve">
+		<value>Sealion's description</value>
+	</data>
+	<data name="fnf.theme.sealion.name" xml:space="preserve">
+		<value>Sealion's name</value>
+	</data>
+	<data name="fnf.theme.sheep.desc" xml:space="preserve">
+		<value>Sheep's description</value>
+	</data>
+	<data name="fnf.theme.sheep.name" xml:space="preserve">
+		<value>Sheep's name</value>
+	</data>
+	<data name="fnf.theme.soan.desc" xml:space="preserve">
+		<value>Soan's description</value>
+	</data>
+	<data name="fnf.theme.soan.name" xml:space="preserve">
+		<value>Soan's name</value>
+	</data>
+	<data name="fnf.theme.welshcorgi.desc" xml:space="preserve">
+		<value>Welshcorgi's description</value>
+	</data>
+	<data name="fnf.theme.welshcorgi.name" xml:space="preserve">
+		<value>Welshcorgi's name</value>
+	</data>
+	<data name="fnf.ui.best" xml:space="preserve">
+		<value>BEST SCORE</value>
+	</data>
 	<data name="[type=TEXTURE]fnf.ui.bi" xml:space="preserve">
 		<value>Game's B.I.</value>
 	</data>
@@ -166,6 +391,9 @@
 	</data>
 	<data name="fnf.ui.mute" xml:space="preserve">
 		<value>Mute Sound</value>
+	</data>
+	<data name="fnf.ui.ok" xml:space="preserve">
+		<value>OK</value>
 	</data>
 	<data name="fnf.ui.option" xml:space="preserve">
 		<value>OPTION</value>
@@ -185,6 +413,12 @@
 	<data name="fnf.ui.retry" xml:space="preserve">
 		<value>RETRY</value>
 	</data>
+	<data name="fnf.ui.reward" xml:space="preserve">
+		<value>Ad Reward</value>
+	</data>
+	<data name="fnf.ui.share" xml:space="preserve">
+		<value>Share Player's Score</value>
+	</data>
 	<data name="fnf.ui.start" xml:space="preserve">
 		<value>Game Start Button</value>
 	</data>
@@ -193,12 +427,6 @@
 	</data>
 	<data name="fnf.ui.tutorial" xml:space="preserve">
 		<value>TUTORIAL</value>
-	</data>
-	<data name="fnf.ui.unmute" xml:space="preserve">
-		<value>Unmute Sound</value>
-	</data>
-	<data name="fnf.ui.ok" xml:space="preserve">
-		<value>OK</value>
 	</data>
 	<data name="fnf.ui.tutorial.1" xml:space="preserve">
 		<value>Tutorial Page1 - 1</value>
@@ -211,5 +439,8 @@
 	</data>
 	<data name="fnf.ui.tutorial.4" xml:space="preserve">
 		<value>Tutorial Page3 - 1</value>
+	</data>
+	<data name="fnf.ui.unmute" xml:space="preserve">
+		<value>Unmute Sound</value>
 	</data>
 </root>

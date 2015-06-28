@@ -9,16 +9,16 @@ public class TitlePurchaseComponent : UIComponent {
 	public	Button		buttonCoin;
 	public	Text		textCoin;
 	private	ThemeInfo	info;
-
+	
 	void OnEnable() {
-		Observer.GetInstance ().currencyChange += OnCurrentChange;
+		Observer.GetInstance ().currencyChange += OnCurrencyChange;
 	}
 
 	void OnDisable() {
-		Observer.GetInstance ().currencyChange -= OnCurrentChange;
+		Observer.GetInstance ().currencyChange -= OnCurrencyChange;
 	}
 
-	public	void OnCurrentChange(int balance, int delta) {
+	public	void OnCurrencyChange(int balance, int delta) {
 		CheckAvailability ();
 	}
 
@@ -39,17 +39,24 @@ public class TitlePurchaseComponent : UIComponent {
 		this.info = null;
 	}
 
+	public	void Refresh() {
+		SetThemeInfo (this.info, buttonCoin.interactable);
+	}
+
 	public	void SetThemeInfo(ThemeInfo info, bool interactable = true) {
 		this.info = info;
-		textName.text = info.name;
-		textDescription.text = info.description;
-		textCoin.text = info.coin.ToString();
 
-		textName.gameObject.SetActive(true);
-		textDescription.gameObject.SetActive(true);
-		buttonCoin.gameObject.SetActive(true);
-		buttonCoin.interactable = interactable;
+		if (this.info != null) {
+			SmartLocalization.LanguageManager lm = SmartLocalization.LanguageManager.Instance;
+			textName.text = lm.GetTextValue (info.name);
+			textDescription.text = lm.GetTextValue (info.description);
+			textCoin.text = info.coin.ToString ();
 
+			textName.gameObject.SetActive (true);
+			textDescription.gameObject.SetActive (true);
+			buttonCoin.gameObject.SetActive (true);
+			buttonCoin.interactable = interactable;
+		}
 		CheckAvailability ();
 	}
 

@@ -6,8 +6,14 @@ using Soomla.Store;
 
 public class ResultComponent : UIComponent {
 
-	public	Text			labelCoin;
-	public	Text			labelCoinDelta;
+	public	Text			labelTitle;
+	public	Text			labelBest;
+	public	Text			labelHome;
+	public	Text			labelRank;
+	public	Text			labelShare;
+	public	Text			labelRetry;
+	public	Text			textCoin;
+	public	Text			textCoinDelta;
 	public	ScoreComponent	bestGroup;
 	public	ScoreComponent	currentGroup;
 	public	RawImage		rawImage;
@@ -16,6 +22,16 @@ public class ResultComponent : UIComponent {
 	public	Color			colorUpdate;
 	public	Color			colorNormal;
 	private	PlayerInfo		info;
+
+	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
+		base.OnUIChangeLanguage (lm);
+		labelTitle.text = lm.GetTextValue ("fnf.ui.result");
+		labelBest.text = lm.GetTextValue ("fnf.ui.best");
+		labelHome.text = lm.GetTextValue ("fnf.ui.home");
+		labelRank.text = lm.GetTextValue ("fnf.ui.rank");
+		labelShare.text = lm.GetTextValue ("fnf.ui.share");
+		labelRetry.text = lm.GetTextValue ("fnf.ui.retry");
+	}
 
 	public	override void OnUIStart () {
 		base.OnUIStart();
@@ -70,8 +86,8 @@ public class ResultComponent : UIComponent {
 	}
 
 	public	void SetDeltaCoin() {
-		labelCoin.text = StoreInventory.GetItemBalance(StoreAssetInfo.COIN).ToString();
-		labelCoinDelta.text = info.coinDelta.ToString();
+		textCoin.text = StoreInventory.GetItemBalance(StoreAssetInfo.COIN).ToString();
+		textCoinDelta.text = info.coinDelta.ToString();
 	}
 
 	public	void SetBestScore() {

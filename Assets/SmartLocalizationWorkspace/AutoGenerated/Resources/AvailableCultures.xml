@@ -9,6 +9,12 @@
       <isRightToLeft>true</isRightToLeft>
     </CultureInfo>
     <CultureInfo>
+      <languageCode>zh-CHS</languageCode>
+      <englishName>Chinese</englishName>
+      <nativeName>中文</nativeName>
+      <isRightToLeft>false</isRightToLeft>
+    </CultureInfo>
+    <CultureInfo>
       <languageCode>de</languageCode>
       <englishName>German</englishName>
       <nativeName>Deutsch</nativeName>
