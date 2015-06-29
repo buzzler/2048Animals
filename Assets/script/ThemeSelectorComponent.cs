@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using Soomla;
@@ -10,46 +10,43 @@ public class ThemeSelectorComponent : MonoBehaviour {
 	public	Animator			animator;
 	public	ThemeSelectorState	state {get{return _state;}}
 	private	ThemeSelectorState	_state;
-	private	int					_balItem;
+//	private	int					_balItem;
 
-	void OnEnable() {
-//		Observer ob = Observer.GetInstance();
-//		ob.inventoryChange += OnUpdateInventory;
-	}
-
-	void OnDisable() {
-//		Observer ob = Observer.GetInstance();
-//		ob.inventoryChange -= OnUpdateInventory;
-	}
-
-//	public	void OnUpdateInventory(string id, int balance) {
-//		if (id == theme.id) {
-//			_balItem = balance;
-//			if ((balance > 0) && (state == ThemeSelectorState.LOCKED)) {
-//				Unlocked();
-//				SendMessageUpwards("RefreshHead", this);
-//				SendMessageUpwards("CheckNextUnlock");
-//			}
-//		}
-//	}
-
-	public	AnimalType SetGetAnimalType() {
+	public	bool SetGetAnimalType(PlayerInfo info) {
 		theme = ThemeInfo.Find((AnimalType)System.Enum.Parse(typeof(AnimalType), GetComponent<Image>().sprite.name, true));
-		_balItem		= StoreInventory.GetItemBalance(theme.id);
+//		_balItem		= StoreInventory.GetItemBalance(theme.id);
 
-		if ((double)theme.coin==0.0f) {
-			if (_balItem==0) {
-				StoreInventory.GiveItem(theme.id, 1);
+//		if ((double)theme.costAmount==0.0f) {
+//			if (_balItem==0) {
+//				StoreInventory.GiveItem(theme.id, 1);
+//			}
+//			Unlocked();
+//		}
+//		else if (_balItem>0) {
+//			Unlocked();
+//		} else {
+//			Blinded();
+//		}
+
+		int balance = StoreInventory.GetItemBalance(theme.id);
+		if ((theme.costType==CostType.FREE) || (balance>0)) {
+			switch (theme.buffInfo.type) {
+			case BuffType.COIN:
+				info.buffInfoCoin = BuffInfo.Max(info.buffInfoCoin, theme.buffInfo);
+				break;
+			case BuffType.REWARD:
+				info.buffInfoReward = BuffInfo.Max(info.buffInfoReward, theme.buffInfo);
+				break;
+			case BuffType.SCORE:
+				info.buffInfoScore = BuffInfo.Max(info.buffInfoScore, theme.buffInfo);
+				break;
 			}
-			Unlocked();
-		}
-		else if (_balItem>0) {
+
 			Unlocked();
 		} else {
 			Blinded();
 		}
-
-		return theme.type;
+		return (theme.type==info.type);
 	}
 
 	public	void OnClickButton() {
@@ -63,17 +60,23 @@ public class ThemeSelectorComponent : MonoBehaviour {
 	}
 
 	public	void Unlocked() {
-		_state = ThemeSelectorState.UNLOCKED;
-		animator.SetTrigger("trigger_unlocked");
+		if (_state != ThemeSelectorState.UNLOCKED) {
+			_state = ThemeSelectorState.UNLOCKED;
+			animator.SetTrigger("trigger_unlocked");
+		}
 	}
 
 	public	void Blinded() {
-		_state = ThemeSelectorState.BLINDED;
-		animator.SetTrigger("trigger_blinded");
+		if (_state != ThemeSelectorState.BLINDED) {
+			_state = ThemeSelectorState.BLINDED;
+			animator.SetTrigger("trigger_blinded");
+		}
 	}
 
 	public	void Locked() {
-		_state = ThemeSelectorState.LOCKED;
-		animator.SetTrigger("trigger_locked");
+		if (_state != ThemeSelectorState.LOCKED) {
+			_state = ThemeSelectorState.LOCKED;
+			animator.SetTrigger("trigger_locked");
+		}
 	}
 }

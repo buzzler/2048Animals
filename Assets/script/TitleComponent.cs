@@ -34,25 +34,21 @@ public class TitleComponent : UIComponent {
 
 		int index = 0;
 		int counter = 0;
-		bool locked = false;
 		ThemeSelectorComponent[] selectors = themeContent.GetComponentsInChildren<ThemeSelectorComponent>();
 		PlayerInfo info = PlayerInfoKeeper.GetInstance().playerInfo;
 		foreach (ThemeSelectorComponent tsc in selectors) {
-			if (tsc.SetGetAnimalType()==info.type) {
+			if (tsc.SetGetAnimalType(info)) {
 				index = counter;
 			}
-			if ((locked!=true) && (tsc.state==ThemeSelectorState.BLINDED)) {
-				tsc.Locked();
-				locked = true;
-			}
-
 			dictionary.Add(tsc.theme.type, tsc);
-
 			counter++;
 		}
 
+		CheckNextUnlock();
+		// center aglign themeContent
 		themeContent.anchoredPosition = new Vector3(index * -180 + 300, 0);
 		MakeHead (selectors[index].theme);
+
 		observer.themeChange += OnThemeChange;
 		observer.networkStatusChange += OnChangeNetwork;
 		observer.inventoryChange += OnUpdateInventory;

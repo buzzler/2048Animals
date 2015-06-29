@@ -1,6 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public	enum CostType {
+	NONE = 0,
+	FREE,
+	CONNECT,
+	COIN
+}
+
 public	enum AnimalType {
 	NONE = 0,
 	BEAR,

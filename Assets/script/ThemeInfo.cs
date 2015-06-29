@@ -8,6 +8,7 @@ public class ThemeInfo
 	public	static Dictionary<AnimalType, ThemeInfo>	dictionary;
 	public	static Dictionary<string, ThemeInfo>		dictionaryId;
 
+	public	int					order		{get{return _order;			}}
 	public	string				id 			{get{return _id;			}}
 	public	string				code		{get{return _code;			}}
 	public	string				name		{get{return _name;			}}
@@ -17,10 +18,12 @@ public class ThemeInfo
 	public	BackgroundType		bg			{get{return _bg;			}}
 	public	BackgroundStatus	bgNormal	{get{return _bgNormal;		}}
 	public	BackgroundStatus	bgFever		{get{return _bgFever;		}}
-	public	int					coin		{get{return _coin;			}}
+	public	CostType			costType	{get{return _costType;		}}
+	public	int					costAmount	{get{return _costAmount;	}}
 	public	string				bgm			{get{return _bgm;			}}
 	public	BuffInfo			buffInfo	{get{return _buff;			}}
 
+	private	int					_order;
 	private	string				_id;
 	private	string				_code;
 	private	string				_name;
@@ -30,7 +33,8 @@ public class ThemeInfo
 	private	BackgroundType		_bg;
 	private	BackgroundStatus	_bgNormal;
 	private	BackgroundStatus	_bgFever;
-	private	int					_coin;
+	private	CostType			_costType;
+	private	int					_costAmount;
 	private	string				_bgm;
 	private	BuffInfo			_buff;
 
@@ -61,18 +65,20 @@ public class ThemeInfo
 
 	public	static ThemeInfo Parse(string[] line) {
 		ThemeInfo theme	 = new ThemeInfo();
-		theme._id 			= line[0];
-		theme._code			= line[1];
-		theme._name			= line[2];
-		theme._description	= line[3];
-		theme._coin			= int.Parse(line[4]);
+		theme._order		= int.Parse(line[0]);
+		theme._id 			= line[1];
+		theme._code			= line[2];
+		theme._name			= line[3];
+		theme._description	= line[4];
+		theme._costType		= (CostType)System.Enum.Parse(typeof(CostType), line[5], true);
+		theme._costAmount	= int.Parse(line[6]);
 		theme._type			= (AnimalType)System.Enum.Parse(typeof(AnimalType), theme.code, true);
-		theme._trigger		= line[5];
-		theme._bg			= (BackgroundType)System.Enum.Parse(typeof(BackgroundType), line[6], true);
-		theme._bgNormal		= (BackgroundStatus)System.Enum.Parse(typeof(BackgroundStatus), line[7], true);
-		theme._bgFever		= (BackgroundStatus)System.Enum.Parse(typeof(BackgroundStatus), line[8], true);
-		theme._bgm			= line[9];
-		theme._buff			= BuffInfo.Parse(line[10], line[11], line[12]);
+		theme._trigger		= line[7];
+		theme._bg			= (BackgroundType)System.Enum.Parse(typeof(BackgroundType), line[8], true);
+		theme._bgNormal		= (BackgroundStatus)System.Enum.Parse(typeof(BackgroundStatus), line[9], true);
+		theme._bgFever		= (BackgroundStatus)System.Enum.Parse(typeof(BackgroundStatus), line[10], true);
+		theme._bgm			= line[11];
+		theme._buff			= BuffInfo.Parse(line[12], line[13], line[14]);
 		return theme;
 	}
 }

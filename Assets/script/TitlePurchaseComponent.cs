@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using Soomla.Store;
@@ -50,7 +50,7 @@ public class TitlePurchaseComponent : UIComponent {
 			SmartLocalization.LanguageManager lm = SmartLocalization.LanguageManager.Instance;
 			textName.text = lm.GetTextValue (info.name);
 			textDescription.text = lm.GetTextValue (info.description);
-			textCoin.text = info.coin.ToString ();
+			textCoin.text = info.costAmount.ToString ();
 
 			textName.gameObject.SetActive (true);
 			textDescription.gameObject.SetActive (true);

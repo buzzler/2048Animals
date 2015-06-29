@@ -62,6 +62,7 @@ public class GameComponent : UIComponent {
 		playerInfo.highLevel = 0;
 		score = 0;
 		UpdateScore();
+		observer.highLevelChange(0);
 	}
 
 	public	void AppendScore(int level) {

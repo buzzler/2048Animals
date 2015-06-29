@@ -29,7 +29,7 @@ public class ThemeChangerComponent : MonoBehaviour
 			ThemeInfo t = ThemeInfo.Parse(grid[y+1]);
 			themes[y] = t;
 			ThemeInfo.Resister(t);
-			StoreAssetInfo.Register(new EquippableVG(EquippableVG.EquippingModel.GLOBAL, t.name, t.description, t.id, new PurchaseWithVirtualItem(StoreAssetInfo.COIN, t.coin)));
+			StoreAssetInfo.Register(new EquippableVG(EquippableVG.EquippingModel.GLOBAL, t.name, t.description, t.id, new PurchaseWithVirtualItem(StoreAssetInfo.COIN, t.costAmount)));
 			category.Add(t.id);
 		}
 		StoreAssetInfo.Register(new VirtualCategory("cat_theme", category));

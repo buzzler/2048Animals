@@ -18,6 +18,14 @@ public class BuffInfo {
 		_add = 0;
 	}
 
+	public	static BuffInfo Max(BuffInfo a, BuffInfo b) {
+		if (a._rate==b._rate) {
+			return (a._add>b._add) ? a:b;
+		} else {
+			return (a._rate>b._rate) ? a:b;
+		}
+	}
+
 	public	static BuffInfo Parse(string type, string rate, string add) {
 		BuffInfo info = new BuffInfo();
 		info._type = (BuffType)System.Enum.Parse(typeof(BuffType), type, true);
