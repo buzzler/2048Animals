@@ -46,6 +46,7 @@ public class SettingComponent : UIComponent {
 	}
 
 	public	override void OnUIStop() {
+		base.OnUIStop();
 		Observer observer = Observer.GetInstance ();
 		observer.fbConnet -= OnFBConnect;
 		observer.fbLogin -= OnFBLogin;
@@ -62,19 +63,22 @@ public class SettingComponent : UIComponent {
 	}
 
 	private void InitFB() {
-		if (!SystemCheckComponent.IsNotBusy()) {
+		if (SystemCheckComponent.busy) {
 			buttonLogin.interactable = false;
 			buttonLogout.interactable = false;
+			Debug.Log("busy");
 		} else if (SystemCheckComponent.IsLoggedIn ()) {
 			buttonLogin.interactable = false;
 			buttonLogout.interactable = true;
 			buttonLogout.gameObject.SetActive (true);
 			buttonLogin.gameObject.SetActive (false);
+			Debug.Log("logged in");
 		} else {
 			buttonLogin.interactable = true;
 			buttonLogout.interactable = false;
 			buttonLogout.gameObject.SetActive (false);
 			buttonLogin.gameObject.SetActive (true);
+			Debug.Log("logged out");
 		}
 	}
 

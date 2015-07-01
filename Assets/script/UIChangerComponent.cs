@@ -31,13 +31,10 @@ public class UIChangerComponent : MonoBehaviour {
 		dictionary.Add(UIType.TUTORIAL,	ui_tutorial);
 		dictionary.Add(UIType.PAUSE,	ui_pause);
 		dictionary.Add(UIType.CONNECT, ui_connect);
-//		current = UIType.PRELOAD;
-//		reserved = UIType.NONE;
 		current = UIType.NONE;
 		reserved = UIType.PRELOAD;
 		changeNow = true;
 		backwardNow = false;
-//		ForcePreload();
 	}
 
 	void Update() {

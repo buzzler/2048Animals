@@ -10,7 +10,7 @@ public class ThemeSelectorComponent : MonoBehaviour {
 	public	Animator			animator;
 	public	ThemeSelectorState	state {get{return _state;}}
 	private	ThemeSelectorState	_state;
-
+	
 	public	bool SetGetAnimalType(PlayerInfo info) {
 		theme = ThemeInfo.Find((AnimalType)System.Enum.Parse(typeof(AnimalType), GetComponent<Image>().sprite.name, true));
 
@@ -55,29 +55,46 @@ public class ThemeSelectorComponent : MonoBehaviour {
 		}
 	}
 
-	public	void Unlocked() {
-		if (_state != ThemeSelectorState.UNLOCKED) {
+	public	void CheckState() {
+		switch (_state) {
+		case ThemeSelectorState.BLINDED:
+			Blinded(true);
+			break;
+		case ThemeSelectorState.LOCKED:
+			Locked(true);
+			break;
+		case ThemeSelectorState.PERSONAL:
+			Personal(true);
+			break;
+		case ThemeSelectorState.UNLOCKED:
+			Unlocked(true);
+			break;
+		}
+	}
+
+	public	void Unlocked(bool forced = false) {
+		if (_state != ThemeSelectorState.UNLOCKED || forced) {
 			_state = ThemeSelectorState.UNLOCKED;
 			animator.SetTrigger("trigger_unlocked");
 		}
 	}
 
-	public	void Blinded() {
-		if (_state != ThemeSelectorState.BLINDED) {
+	public	void Blinded(bool forced = false) {
+		if (_state != ThemeSelectorState.BLINDED || forced) {
 			_state = ThemeSelectorState.BLINDED;
 			animator.SetTrigger("trigger_blinded");
 		}
 	}
 
-	public	void Locked() {
-		if (_state != ThemeSelectorState.LOCKED) {
+	public	void Locked(bool forced = false) {
+		if (_state != ThemeSelectorState.LOCKED || forced) {
 			_state = ThemeSelectorState.LOCKED;
 			animator.SetTrigger("trigger_locked");
 		}
 	}
 
-	public	void Personal() {
-		if (_state != ThemeSelectorState.PERSONAL) {
+	public	void Personal(bool forced = false) {
+		if (_state != ThemeSelectorState.PERSONAL || forced) {
 			_state = ThemeSelectorState.PERSONAL;
 			animator.SetTrigger("trigger_personal");
 		}

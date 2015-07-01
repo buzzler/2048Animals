@@ -44,7 +44,7 @@ public class TitleComponent : UIComponent {
 			counter++;
 		}
 
-		CheckUnlock();
+		CheckLock();
 
 		// center aglign themeContent
 		themeContent.anchoredPosition = new Vector3(index * -180 + 300, 0);
@@ -76,6 +76,9 @@ public class TitleComponent : UIComponent {
 			head.SetActive (true);
 		} else {
 			purchaser.Refresh ();
+		}
+		foreach (ThemeSelectorComponent tsc in dictionary.Values) {
+			tsc.CheckState();
 		}
 	}
 	
@@ -118,7 +121,7 @@ public class TitleComponent : UIComponent {
 			ThemeSelectorComponent tsc = dictionary[theme.type];
 			tsc.SetGetAnimalType(PlayerInfoKeeper.GetInstance().playerInfo);
 			RefreshHead(tsc);
-			CheckUnlock();
+			CheckLock();
 		}
 	}
 
@@ -139,10 +142,14 @@ public class TitleComponent : UIComponent {
 		StoreInventory.BuyItem(info.id);
 	}
 
-	public	void CheckUnlock() {
+	public	void CheckLock() {
 		ThemeSelectorComponent min = null;
 		foreach (ThemeSelectorComponent tsc in dictionary.Values) {
-			if (tsc.state != ThemeSelectorState.BLINDED) {
+			if (tsc.theme.costType != CostType.COIN) {
+				continue;
+			}
+
+			if (tsc.state == ThemeSelectorState.UNLOCKED) {
 				continue;
 			}
 
