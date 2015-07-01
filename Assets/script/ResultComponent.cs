@@ -61,6 +61,7 @@ public class ResultComponent : UIComponent {
 
 	public	void OnClickShare() {
 		AudioPlayerComponent.Play ("fx_click");
+		GetComponentInParent<SystemCheckComponent>().UploadFacebook();
 	}
 
 	public	void OnClickRank() {
@@ -80,7 +81,6 @@ public class ResultComponent : UIComponent {
 	}
 
 	public	void SetBox() {
-//		rawImage.texture = boxes[info.highLevel-1];
 		Transform box = Instantiate(boxes[info.highLevel-1], boxHolder.position, Quaternion.identity) as Transform;
 		box.SetParent (boxHolder);
 	}

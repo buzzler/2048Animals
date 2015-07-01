@@ -34,6 +34,14 @@ public class SystemCheckComponent : MonoBehaviour {
 		}
 	}
 
+	void OnApplicationPause(bool pauseStatus) {
+		if (pauseStatus) {
+			CancelInvoke();
+		} else {
+			InvokeRepeating("Check", 0, duration);
+		}
+	}
+
 	void Update() {
 		if (ping != null) {
 			if (ping.isDone) {
@@ -56,7 +64,7 @@ public class SystemCheckComponent : MonoBehaviour {
 			if (observer.networkStatusChange!=null) {
 				observer.networkStatusChange(_network);
 			}
-			if (_network && (!FB.IsInitialized)) {
+			if (_network) {
 				ConnectFacebook();
 			}
 		}
@@ -164,7 +172,7 @@ public class SystemCheckComponent : MonoBehaviour {
 	public	bool LoginFacebook() {
 		if (_network && FB.IsInitialized && (!FB.IsLoggedIn) && (!_busy)) {
 			_busy = true;
-			FB.Login ("public_profile, user_friends", onlogincomplete);
+			FB.Login ("public_profile, user_friends, publish_actions", onlogincomplete);
 		}
 		return false;
 	}
@@ -212,11 +220,19 @@ public class SystemCheckComponent : MonoBehaviour {
 		}
 		return false;
 	}
+
+	/**
+	 * upload snapshot to facebook
+	 */
+	public	void UploadFacebook() {
+		StartCoroutine(TakeScreenshot());
+	}
 	
 	private	void oninitcomplete() {
 		_busy = false;
 		Observer observer = Observer.GetInstance ();
 		if (FB.IsInitialized) {
+			FB.ActivateApp();
 			if (observer.fbConnet!=null) {observer.fbConnet(true);}
 			if (FB.IsLoggedIn) {
 				if (observer.fbLogin!=null) {observer.fbLogin(true);}
@@ -254,5 +270,27 @@ public class SystemCheckComponent : MonoBehaviour {
 		} else {
 			if (observer.fbRequest!=null) {observer.fbRequest(false);}
 		}
+	}
+
+	private IEnumerator TakeScreenshot()
+	{
+		yield return new WaitForEndOfFrame();
+		
+		var width = Screen.width;
+		var height = Screen.height;
+		var tex = new Texture2D(width, height, TextureFormat.RGB24, false);
+		tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+		tex.Apply();
+		byte[] screenshot = tex.EncodeToPNG();
+		
+		var wwwForm = new WWWForm();
+		wwwForm.AddBinaryData("image", screenshot, DateTime.Now.ToUniversalTime()+".png");
+		wwwForm.AddField("caption", "herp derp.  I did a thing!  Did I do this right?");
+		
+		FB.API("/me/photos", Facebook.HttpMethod.POST, onsnapshotcomplete, wwwForm);
+	}
+
+	private void onsnapshotcomplete(FBResult result) {
+		Debug.Log(result.Error);
 	}
 }
