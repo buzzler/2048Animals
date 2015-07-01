@@ -476,8 +476,6 @@ namespace Facebook
         {
             var parameters = (Dictionary<string, object>)MiniJSON.Json.Deserialize(message);
             ParseLoginDict (parameters);
-			// make sure that login callback gets called
-            OnAuthResponse(new FBResult(message));
         }
 
         //TODO: move into AbstractFacebook

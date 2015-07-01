@@ -30,7 +30,7 @@ public class PlayerInfo {
 		type = AnimalType.BEAR;
 		first = DateTime.Now;
 		last = DateTime.Now;
-		ads = DateTime.Now;
+		ads = DateTime.MinValue;
 		buffInfoCoin = new BuffInfo();
 		buffInfoScore = new BuffInfo();
 		buffInfoReward = new BuffInfo();

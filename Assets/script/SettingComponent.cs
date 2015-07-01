@@ -63,22 +63,16 @@ public class SettingComponent : UIComponent {
 	}
 
 	private void InitFB() {
-		if (SystemCheckComponent.busy) {
-			buttonLogin.interactable = false;
-			buttonLogout.interactable = false;
-			Debug.Log("busy");
-		} else if (SystemCheckComponent.IsLoggedIn ()) {
+		if (SystemCheckComponent.network && FB.IsInitialized && FB.IsLoggedIn) {
 			buttonLogin.interactable = false;
 			buttonLogout.interactable = true;
 			buttonLogout.gameObject.SetActive (true);
 			buttonLogin.gameObject.SetActive (false);
-			Debug.Log("logged in");
 		} else {
 			buttonLogin.interactable = true;
 			buttonLogout.interactable = false;
 			buttonLogout.gameObject.SetActive (false);
 			buttonLogin.gameObject.SetActive (true);
-			Debug.Log("logged out");
 		}
 	}
 
@@ -123,7 +117,9 @@ public class SettingComponent : UIComponent {
 
 	public	void OnClickLogout() {
 		AudioPlayerComponent.Play ("fx_click");
-		GetComponentInParent<SystemCheckComponent> ().LogoutFacebook ();
+		if (GetComponentInParent<SystemCheckComponent> ().LogoutFacebook ()) {
+			InitFB();
+		}
 	}
 
 	public	void OnClickClose() {

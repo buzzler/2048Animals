@@ -53,18 +53,22 @@ public class ConnectComponent : UIComponent {
 	}
 
 	private	void Step0() {
+		labelMessage.text += ".";
 		OnNetwork();
-		labelRetry.text += ".";
 	}
 
 	private void Step1() {
-		checker.ConnectFacebook();
-		labelRetry.text += ".";
+		labelMessage.text += ".";
+		if (!checker.ConnectFacebook ()) {
+			OnFBConnect(false);
+		}
 	}
 
 	private void Step2() {
-		checker.LoginFacebook ();
-		labelRetry.text += ".";
+		labelMessage.text += ".";
+		if (!checker.LoginFacebook ()) {
+			OnFBLogin(false);
+		}
 	}
 
 	private void OnNetwork() {

@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -18,8 +17,10 @@ namespace UnityEditor.FacebookEditor
             {
                 Debug.LogWarning("You didn't specify a Facebook app ID.  Please add one using the Facebook menu in the main Unity editor.");
             }
-			// Unity renamed build target from iPhone to iOS in Unity 5, this keeps both versions happy
-			if (target.ToString() == "iOS" || target.ToString() == "iPhone")
+
+
+
+            if (target == BuildTarget.iOS)
             {
                 UnityEditor.XCodeEditor.XCProject project = new UnityEditor.XCodeEditor.XCProject(path);
 
@@ -33,7 +34,7 @@ namespace UnityEditor.FacebookEditor
                 }
                 project.Save();
 
-                UpdatePlist(path);
+                PlistMod.UpdatePlist(path, FBSettings.AppId, FBSettings.AllAppIds);
                 FixupFiles.FixSimulator(path);
                 FixupFiles.AddVersionDefine(path);
                 FixupFiles.FixColdStart(path);
@@ -57,23 +58,6 @@ namespace UnityEditor.FacebookEditor
                     ManifestMod.GenerateManifest();
                 }
             }
-        }
-
-        public static void UpdatePlist(string path)
-        {
-            const string fileName = "Info.plist";
-            string appId = FBSettings.AppId; 
-            string fullPath = Path.Combine(path, fileName);
-            
-            if (string.IsNullOrEmpty(appId) || appId.Equals("0"))
-            {
-                Debug.LogError("You didn't specify a Facebook app ID.  Please add one using the Facebook menu in the main Unity editor.");
-                return;
-            }
-            
-            var fbParser = new FBPListParser(fullPath);
-            fbParser.UpdateFBSettings(appId, FBSettings.AllAppIds);
-            fbParser.WriteToFile();
         }
     }
 }

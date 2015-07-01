@@ -9,12 +9,12 @@ public class SystemCheckComponent : MonoBehaviour {
 	public	static bool data	{ get { return _data; } }
 	public	static bool wifi	{ get { return _wifi; } }
 	public	static int	pingTime{ get { return _pingTime; } }
-	public	static bool busy	{ get { return _busy; } }
+//	public	static bool busy	{ get { return _busy; } }
 	private	static bool _network;
 	private	static bool _data;
 	private	static bool	_wifi;
 	private	static int	_pingTime;
-	private	static bool	_busy;
+//	private	static bool	_busy;
 
 	public	float	duration;
 	public	float	pingTimeout;
@@ -140,11 +140,12 @@ public class SystemCheckComponent : MonoBehaviour {
 	 * connect facebook account
 	 */
 	public bool ConnectFacebook() {
-		if (_network && (!_busy)) {
+//		if (_network && (!_busy)) {
+		if (_network) {
 			if (FB.IsInitialized) {
 				oninitcomplete ();
 			} else {
-				_busy = true;
+//				_busy = true;
 				FB.Init (oninitcomplete);
 			}
 			return true;
@@ -162,16 +163,17 @@ public class SystemCheckComponent : MonoBehaviour {
 	/**
 	 * check this component working
 	 */
-	public	static bool IsNotBusy() {
-		return IsLoggedIn () && (!_busy);
-	}
+//	public	static bool IsNotBusy() {
+//		return IsLoggedIn () && (!_busy);
+//	}
 
 	/**
 	 * Login facebook account
 	 */
 	public	bool LoginFacebook() {
-		if (_network && FB.IsInitialized && (!FB.IsLoggedIn) && (!_busy)) {
-			_busy = true;
+//		if (_network && FB.IsInitialized && (!FB.IsLoggedIn) && (!_busy)) {
+		if (_network && FB.IsInitialized && (!FB.IsLoggedIn)) {
+//			_busy = true;
 			FB.Login ("public_profile, user_friends, publish_actions", onlogincomplete);
 		}
 		return false;
@@ -181,8 +183,9 @@ public class SystemCheckComponent : MonoBehaviour {
 	 * Logout facebook account
 	 */
 	public bool LogoutFacebook() {
-		if (IsNotBusy()) {
+		if (_network && FB.IsInitialized && FB.IsLoggedIn) {
 			FB.Logout();
+			PlayerPrefs.SetInt("login", 0);
 			Observer observer = Observer.GetInstance();
 			if (observer.fbLogin!=null) {observer.fbLogin(false);}
 			return true;
@@ -194,8 +197,8 @@ public class SystemCheckComponent : MonoBehaviour {
 	 * feed on facebook
 	 */
 	public bool FeedFacebook(string title, string url, string description, string caption, string thumbnail) {
-		if (IsNotBusy()) {
-			_busy = true;
+		if (_network && FB.IsInitialized && FB.IsLoggedIn) {
+//			_busy = true;
 			FB.Feed(
 				link: url,
 				linkName: title,
@@ -213,8 +216,8 @@ public class SystemCheckComponent : MonoBehaviour {
 	 * invite friend from facebook
 	 */
 	public bool RequestFacebook(string message, string title) {
-		if (IsNotBusy()) {
-			_busy = true;
+		if (_network && FB.IsInitialized && FB.IsLoggedIn) {
+//			_busy = true;
 			FB.AppRequest(message, null, null, null, 1, "", title, onrequestcomplete);
 			return true;
 		}
@@ -229,13 +232,15 @@ public class SystemCheckComponent : MonoBehaviour {
 	}
 	
 	private	void oninitcomplete() {
-		_busy = false;
+//		_busy = false;
 		Observer observer = Observer.GetInstance ();
 		if (FB.IsInitialized) {
 			FB.ActivateApp();
 			if (observer.fbConnet!=null) {observer.fbConnet(true);}
 			if (FB.IsLoggedIn) {
 				if (observer.fbLogin!=null) {observer.fbLogin(true);}
+			} else if (PlayerPrefs.GetInt("login", 0)==1) {
+				LoginFacebook();
 			}
 		} else {
 			if (observer.fbConnet!=null) {observer.fbConnet(false);}
@@ -243,9 +248,10 @@ public class SystemCheckComponent : MonoBehaviour {
 	}
 	
 	private void onlogincomplete(FBResult result) {
-		_busy = false;
+//		_busy = false;
 		Observer observer = Observer.GetInstance ();
 		if (FB.IsLoggedIn) {
+			PlayerPrefs.SetInt("login", 1);
 			if (observer.fbLogin!=null) {observer.fbLogin(true);}
 		} else {
 			if (observer.fbLogin!=null) {observer.fbLogin(false);}
@@ -253,7 +259,7 @@ public class SystemCheckComponent : MonoBehaviour {
 	}
 	
 	private void onfeedcomplete(FBResult result) {
-		_busy = false;
+//		_busy = false;
 		Observer observer = Observer.GetInstance ();
 		if (String.IsNullOrEmpty(result.Error)) {
 			if (observer.fbFeed!=null) {observer.fbFeed(true);}
@@ -263,7 +269,7 @@ public class SystemCheckComponent : MonoBehaviour {
 	}
 	
 	private void onrequestcomplete(FBResult result) {
-		_busy = false;
+//		_busy = false;
 		Observer observer = Observer.GetInstance ();
 		if (String.IsNullOrEmpty(result.Error)) {
 			if (observer.fbRequest!=null) {observer.fbRequest(true);}
@@ -291,6 +297,7 @@ public class SystemCheckComponent : MonoBehaviour {
 	}
 
 	private void onsnapshotcomplete(FBResult result) {
-		Debug.Log(result.Error);
+		DebugComponent.Log (result.Text);
+		DebugComponent.Error (result.Error);
 	}
 }

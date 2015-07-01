@@ -11,9 +11,7 @@ public class FacebookSettingsEditor : Editor
 {
     bool showFacebookInitSettings = false;
     bool showAndroidUtils = (EditorUserBuildSettings.activeBuildTarget == BuildTarget.Android);
-	// Unity renamed build target from iPhone to iOS in Unity 5, this keeps both versions happy
-    bool showIOSSettings = (EditorUserBuildSettings.activeBuildTarget.ToString() == "iPhone"
-	                        || EditorUserBuildSettings.activeBuildTarget.ToString() == "iOS");
+    bool showIOSSettings = (EditorUserBuildSettings.activeBuildTarget == BuildTarget.iOS);
 
     GUIContent appNameLabel = new GUIContent("App Name [?]:", "For your own use and organization.\n(ex. 'dev', 'qa', 'prod')");
     GUIContent appIdLabel = new GUIContent("App Id [?]:", "Facebook App Ids can be found at https://developers.facebook.com/apps");

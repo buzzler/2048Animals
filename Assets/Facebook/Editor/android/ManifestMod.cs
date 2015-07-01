@@ -15,8 +15,6 @@ namespace UnityEditor.FacebookEditor
 
         public const string UnityLoginActivityName = "com.facebook.unity.FBUnityLoginActivity";
 
-        public const string UnityDialogsActivityName = "com.facebook.unity.FBUnityDialogsActivity";
-
         public const string ApplicationIdMetaDataName = "com.facebook.sdk.ApplicationId";
 
         public static void GenerateManifest()
@@ -141,17 +139,10 @@ namespace UnityEditor.FacebookEditor
             XmlElement unityLoginElement = FindElementWithAndroidName("activity", "name", ns, UnityLoginActivityName, dict);
             if (unityLoginElement == null)
             {
-                unityLoginElement = CreateUnityOverlayElement(doc, ns, UnityLoginActivityName);
+                unityLoginElement = CreateUnityLoginElement(doc, ns);
                 dict.AppendChild(unityLoginElement);
             }
 
-            //add the unity dialogs activity
-            XmlElement unityDialogsElement = FindElementWithAndroidName("activity", "name", ns, UnityDialogsActivityName, dict);
-            if (unityDialogsElement == null)
-            {
-                unityDialogsElement = CreateUnityOverlayElement(doc, ns, UnityDialogsActivityName);
-                dict.AppendChild(unityDialogsElement);
-            }
 
             //add the login activity
             XmlElement loginElement = FindElementWithAndroidName("activity", "name", ns, LoginActivityName, dict);
@@ -206,12 +197,12 @@ namespace UnityEditor.FacebookEditor
             return activityElement;
         }
 
-        private static XmlElement CreateUnityOverlayElement(XmlDocument doc, string ns, string activityName)
+        private static XmlElement CreateUnityLoginElement(XmlDocument doc, string ns)
         {
-            //<activity android:name="activityName" android:configChanges="all|of|them" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
+            //<activity android:name="com.facebook.unity.FBUnityLoginActivity" android:configChanges="all|of|them" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
             //</activity>
             XmlElement activityElement = doc.CreateElement("activity");
-            activityElement.SetAttribute("name", ns, activityName);
+            activityElement.SetAttribute("name", ns, UnityLoginActivityName);
             activityElement.SetAttribute("configChanges", ns, "fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen");
             activityElement.SetAttribute("theme", ns, "@android:style/Theme.Translucent.NoTitleBar.Fullscreen");
             activityElement.InnerText = "\n    ";  //be extremely anal to make diff tools happy
