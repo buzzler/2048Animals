@@ -78,6 +78,7 @@ public	enum UIType {
 	GAME,
 	RESULT,
 	SETTING,
+	CONNECT,
 	COINPACK,
 	TUTORIAL,
 	PAUSE,
@@ -105,6 +106,7 @@ public	enum ThemeSelectorState {
 	NONE = 0,
 	BLINDED,
 	LOCKED,
+	PERSONAL,
 	UNLOCKED
 }
 
@@ -126,4 +128,11 @@ public	enum EffectType {
 	BANG_LV1,
 	BANG_LV2,
 	BANG_LV3
+}
+
+public enum SocialResult {
+	BUSY = 0,
+	COMPLETE = 1,
+	ERROR_NETWORK,
+	ERROR_FACEBOOK
 }

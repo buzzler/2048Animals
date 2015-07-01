@@ -44,7 +44,8 @@ public class TitleComponent : UIComponent {
 			counter++;
 		}
 
-		CheckNextUnlock();
+		CheckUnlock();
+
 		// center aglign themeContent
 		themeContent.anchoredPosition = new Vector3(index * -180 + 300, 0);
 		MakeHead (selectors[index].theme);
@@ -77,7 +78,7 @@ public class TitleComponent : UIComponent {
 			purchaser.Refresh ();
 		}
 	}
-
+	
 	public void ClearHead() {
 		if (head != null) {
 			GameObject.Destroy(head);
@@ -115,23 +116,9 @@ public class TitleComponent : UIComponent {
 		ThemeInfo theme = ThemeInfo.Find(id);
 		if ((theme!=null) && (balance>0)) {
 			ThemeSelectorComponent tsc = dictionary[theme.type];
-			tsc.Unlocked();
+			tsc.SetGetAnimalType(PlayerInfoKeeper.GetInstance().playerInfo);
 			RefreshHead(tsc);
-			CheckNextUnlock();
-
-			PlayerInfoKeeper keeper = PlayerInfoKeeper.GetInstance();
-			switch (theme.buffInfo.type) {
-			case BuffType.COIN:
-				keeper.playerInfo.buffInfoCoin = theme.buffInfo;
-				break;
-			case BuffType.SCORE:
-				keeper.playerInfo.buffInfoScore = theme.buffInfo;
-				break;
-			case BuffType.REWARD:
-				keeper.playerInfo.buffInfoReward = theme.buffInfo;
-				break;
-			}
-			keeper.Save();
+			CheckUnlock();
 		}
 	}
 
@@ -147,43 +134,31 @@ public class TitleComponent : UIComponent {
 		OnUIChange ();
 	}
 
-	public	void OnClickSelector(ThemeSelectorComponent tsc) {
-		AudioPlayerComponent.Play ("fx_click");
-		SendMessageUpwards("ReserveTheme", tsc.theme);
-	}
-
 	public	void OnClickBuy(ThemeInfo info) {
 		AudioPlayerComponent.Play ("fx_click");
 		StoreInventory.BuyItem(info.id);
 	}
 
-	public	ThemeSelectorComponent[] CheckNextUnlock() {
-		bool locked = false;
-		ThemeSelectorComponent[] selectors = themeContent.GetComponentsInChildren<ThemeSelectorComponent>();
-		foreach (ThemeSelectorComponent tsc in selectors) {
-			switch (tsc.state) {
-			case ThemeSelectorState.UNLOCKED:
-				break;
-			case ThemeSelectorState.LOCKED:
-				locked = true;
-				break;
-			case ThemeSelectorState.BLINDED:
-				if (!locked) {
-					tsc.Locked();
-					locked = true;
-				}
-				break;
+	public	void CheckUnlock() {
+		ThemeSelectorComponent min = null;
+		foreach (ThemeSelectorComponent tsc in dictionary.Values) {
+			if (tsc.state != ThemeSelectorState.BLINDED) {
+				continue;
+			}
+
+			if (min==null) {
+				min = tsc;
+				continue;
+			}
+
+			if (tsc.theme.order < min.theme.order) {
+				min = tsc;
+				continue;
 			}
 		}
-		return selectors;
-	}
 
-	public	ThemeSelectorComponent[] LostCurrentTheme() {
-		ThemeSelectorComponent[] selectors = themeContent.GetComponentsInChildren<ThemeSelectorComponent>();
-		foreach (ThemeSelectorComponent tsc in selectors) {
-			SendMessageUpwards("ReserveTheme", tsc.theme);
-			break;
+		if (min != null) {
+			min.Locked();
 		}
-		return selectors;
 	}
 }

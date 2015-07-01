@@ -4,16 +4,7 @@ using System;
 using System.Net;
 using System.Collections;
 using System.Collections.Generic;
-using Boomlagoon.JSON;
-
-public enum SocialResult {
-	BUSY = 0,
-	COMPLETE = 1,
-	ERROR_NETWORK,
-	ERROR_FACEBOOK
-}
-
-public delegate void SocialDelegate(SocialResult result);
+//using Boomlagoon.JSON;
 
 public class SocialComponent : MonoBehaviour {
 	private SocialDelegate	oncomplete;

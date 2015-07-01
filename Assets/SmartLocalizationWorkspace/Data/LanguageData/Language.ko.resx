@@ -380,6 +380,24 @@
 	<data name="fnf.ui.buy" xml:space="preserve">
 		<value>구매</value>
 	</data>
+	<data name="fnf.ui.connect" xml:space="preserve">
+		<value>연결하기</value>
+	</data>
+	<data name="fnf.ui.connect.error.fail" xml:space="preserve">
+		<value>취소되었습니다</value>
+	</data>
+	<data name="fnf.ui.connect.error.net" xml:space="preserve">
+		<value>네크워크에 연결 할 수 없습니다</value>
+	</data>
+	<data name="fnf.ui.connect.login" xml:space="preserve">
+		<value>로그인</value>
+	</data>
+	<data name="fnf.ui.connect.logout" xml:space="preserve">
+		<value>로그아웃</value>
+	</data>
+	<data name="fnf.ui.connect.wait" xml:space="preserve">
+		<value>기다리세요</value>
+	</data>
 	<data name="fnf.ui.credits" xml:space="preserve">
 		<value>만든사람</value>
 	</data>

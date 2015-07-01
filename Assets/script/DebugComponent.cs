@@ -98,6 +98,7 @@ public class DebugComponent : MonoBehaviour {
 				StoreInventory.GiveItem(theme.id, 1);
 			}
 		}
+		Application.Quit ();
 	}
 
 	public	void EnableTV() {

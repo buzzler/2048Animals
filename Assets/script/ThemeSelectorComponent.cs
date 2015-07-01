@@ -10,26 +10,20 @@ public class ThemeSelectorComponent : MonoBehaviour {
 	public	Animator			animator;
 	public	ThemeSelectorState	state {get{return _state;}}
 	private	ThemeSelectorState	_state;
-//	private	int					_balItem;
 
 	public	bool SetGetAnimalType(PlayerInfo info) {
 		theme = ThemeInfo.Find((AnimalType)System.Enum.Parse(typeof(AnimalType), GetComponent<Image>().sprite.name, true));
-//		_balItem		= StoreInventory.GetItemBalance(theme.id);
-
-//		if ((double)theme.costAmount==0.0f) {
-//			if (_balItem==0) {
-//				StoreInventory.GiveItem(theme.id, 1);
-//			}
-//			Unlocked();
-//		}
-//		else if (_balItem>0) {
-//			Unlocked();
-//		} else {
-//			Blinded();
-//		}
 
 		int balance = StoreInventory.GetItemBalance(theme.id);
-		if ((theme.costType==CostType.FREE) || (balance>0)) {
+		if (theme.costType==CostType.FREE) {
+			Unlocked();
+		} else if (theme.costType==CostType.CONNECT) {
+			if (balance>0) {
+				Unlocked();
+			} else {
+				Personal();
+			}
+		} else if ((theme.costType==CostType.COIN) && (balance>0)) {
 			switch (theme.buffInfo.type) {
 			case BuffType.COIN:
 				info.buffInfoCoin = BuffInfo.Max(info.buffInfoCoin, theme.buffInfo);
@@ -54,7 +48,9 @@ public class ThemeSelectorComponent : MonoBehaviour {
 		case ThemeSelectorState.UNLOCKED:
 		case ThemeSelectorState.LOCKED:
 		case ThemeSelectorState.BLINDED:
-			SendMessageUpwards("OnClickSelector", this);
+		case ThemeSelectorState.PERSONAL:
+			AudioPlayerComponent.Play ("fx_click");
+			SendMessageUpwards("ReserveTheme", theme);
 			break;
 		}
 	}
@@ -77,6 +73,13 @@ public class ThemeSelectorComponent : MonoBehaviour {
 		if (_state != ThemeSelectorState.LOCKED) {
 			_state = ThemeSelectorState.LOCKED;
 			animator.SetTrigger("trigger_locked");
+		}
+	}
+
+	public	void Personal() {
+		if (_state != ThemeSelectorState.PERSONAL) {
+			_state = ThemeSelectorState.PERSONAL;
+			animator.SetTrigger("trigger_personal");
 		}
 	}
 }

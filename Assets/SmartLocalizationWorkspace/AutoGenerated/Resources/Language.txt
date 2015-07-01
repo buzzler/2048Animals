@@ -380,6 +380,24 @@
 	<data name="fnf.ui.buy" xml:space="preserve">
 		<value>BUY</value>
 	</data>
+	<data name="fnf.ui.connect" xml:space="preserve">
+		<value>CONNECT</value>
+	</data>
+	<data name="fnf.ui.connect.error.fail" xml:space="preserve">
+		<value>Facebook Error or Login denied</value>
+	</data>
+	<data name="fnf.ui.connect.error.net" xml:space="preserve">
+		<value>Network unavailable</value>
+	</data>
+	<data name="fnf.ui.connect.login" xml:space="preserve">
+		<value>Login with facebook</value>
+	</data>
+	<data name="fnf.ui.connect.logout" xml:space="preserve">
+		<value>Logout</value>
+	</data>
+	<data name="fnf.ui.connect.wait" xml:space="preserve">
+		<value>waiting on login</value>
+	</data>
 	<data name="fnf.ui.credits" xml:space="preserve">
 		<value>CREDITS</value>
 	</data>

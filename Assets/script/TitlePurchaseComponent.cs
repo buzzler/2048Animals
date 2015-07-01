@@ -7,6 +7,7 @@ public class TitlePurchaseComponent : UIComponent {
 	public	Text		textName;
 	public	Text		textDescription;
 	public	Button		buttonCoin;
+	public	Button		buttonConnect;
 	public	Text		textCoin;
 	private	ThemeInfo	info;
 	
@@ -36,6 +37,7 @@ public class TitlePurchaseComponent : UIComponent {
 		textName.gameObject.SetActive(false);
 		textDescription.gameObject.SetActive(false);
 		buttonCoin.gameObject.SetActive(false);
+		buttonConnect.gameObject.SetActive (false);
 		this.info = null;
 	}
 
@@ -49,13 +51,19 @@ public class TitlePurchaseComponent : UIComponent {
 		if (this.info != null) {
 			SmartLocalization.LanguageManager lm = SmartLocalization.LanguageManager.Instance;
 			textName.text = lm.GetTextValue (info.name);
-			textDescription.text = lm.GetTextValue (info.description);
-			textCoin.text = info.costAmount.ToString ();
-
 			textName.gameObject.SetActive (true);
+			textDescription.text = lm.GetTextValue (info.description);
 			textDescription.gameObject.SetActive (true);
-			buttonCoin.gameObject.SetActive (true);
-			buttonCoin.interactable = interactable;
+
+			if (info.costType==CostType.COIN) {
+				textCoin.text = info.costAmount.ToString ();
+				buttonCoin.interactable = interactable;
+				buttonCoin.gameObject.SetActive (true);
+				buttonConnect.gameObject.SetActive(false);
+			} else if (info.costType==CostType.CONNECT) {
+				buttonConnect.gameObject.SetActive(true);
+				buttonCoin.gameObject.SetActive (false);
+			}
 		}
 		CheckAvailability ();
 	}
@@ -67,5 +75,10 @@ public class TitlePurchaseComponent : UIComponent {
 			OnUIReserve(UIType.COINPACK);
 			OnUIChange();
 		}
+	}
+
+	public	void OnClickConnect() {
+		OnUIReserve(UIType.CONNECT);
+		OnUIChange();
 	}
 }

@@ -380,6 +380,24 @@
 	<data name="fnf.ui.buy" xml:space="preserve">
 		<value>BUY</value>
 	</data>
+	<data name="fnf.ui.connect" xml:space="preserve">
+		<value>CONNECT</value>
+	</data>
+	<data name="fnf.ui.connect.error.fail" xml:space="preserve">
+		<value>login failed</value>
+	</data>
+	<data name="fnf.ui.connect.error.net" xml:space="preserve">
+		<value>no network connection error</value>
+	</data>
+	<data name="fnf.ui.connect.login" xml:space="preserve">
+		<value>LOGIN</value>
+	</data>
+	<data name="fnf.ui.connect.logout" xml:space="preserve">
+		<value>LOGOUT</value>
+	</data>
+	<data name="fnf.ui.connect.wait" xml:space="preserve">
+		<value>wait please</value>
+	</data>
 	<data name="fnf.ui.credits" xml:space="preserve">
 		<value>CREDITS</value>
 	</data>

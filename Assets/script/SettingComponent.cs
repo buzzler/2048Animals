@@ -9,19 +9,16 @@ public class SettingComponent : UIComponent {
 	public	Text labelLanguage;
 	public	Text labelMute;
 	public	Text labelUnmute;
-	public	Text labelPurchases;
 	public	Text labelRank;
 	public	Text labelTutorial;
-	public	Text labelCredits;
 	public	Text labelEnglish;
 	public	Text labelKorean;
+	public	Text labelLogin;
+	public	Text labelLogout;
+	public	Button	buttonLogin;
+	public	Button	buttonLogout;
 
 	private Animator animator;
-
-	public	override void OnUIStart() {
-		base.OnUIStart();
-		animator = GetComponent<Animator>();
-	}
 
 	public	override void OnUIChangeLanguage(LanguageManager lm) {
 		base.OnUIChangeLanguage(lm);
@@ -29,12 +26,64 @@ public class SettingComponent : UIComponent {
 		labelLanguage.text	= lm.GetTextValue("fnf.ui.language");
 		labelEnglish.text	= lm.GetTextValue("fnf.lang.english");
 		labelKorean.text	= lm.GetTextValue("fnf.lang.korean");
-		labelCredits.text	= lm.GetTextValue("fnf.ui.credits");
 		labelMute.text		= lm.GetTextValue("fnf.ui.mute");
 		labelUnmute.text	= lm.GetTextValue("fnf.ui.unmute");
-		labelPurchases.text	= lm.GetTextValue("fnf.ui.restore");
 		labelRank.text		= lm.GetTextValue("fnf.ui.rank");
 		labelTutorial.text	= lm.GetTextValue("fnf.ui.tutorial");
+		labelLogin.text		= lm.GetTextValue ("fnf.ui.connect.login");
+		labelLogout.text	= lm.GetTextValue ("fnf.ui.connect.logout");
+	}
+
+	public	override void OnUIStart() {
+		base.OnUIStart();
+		animator = GetComponent<Animator>();
+		Observer observer = Observer.GetInstance ();
+		observer.fbConnet += OnFBConnect;
+		observer.fbLogin += OnFBLogin;
+
+		InitMute ();
+		InitFB ();
+	}
+
+	public	override void OnUIStop() {
+		Observer observer = Observer.GetInstance ();
+		observer.fbConnet -= OnFBConnect;
+		observer.fbLogin -= OnFBLogin;
+	}
+
+	private void InitMute() {
+		if (AudioListener.volume == 0) {
+			labelMute.transform.parent.gameObject.SetActive (false);
+			labelUnmute.transform.parent.gameObject.SetActive (true);
+		} else {
+			labelMute.transform.parent.gameObject.SetActive (true);
+			labelUnmute.transform.parent.gameObject.SetActive (false);
+		}
+	}
+
+	private void InitFB() {
+		if (!SystemCheckComponent.IsNotBusy()) {
+			buttonLogin.interactable = false;
+			buttonLogout.interactable = false;
+		} else if (SystemCheckComponent.IsLoggedIn ()) {
+			buttonLogin.interactable = false;
+			buttonLogout.interactable = true;
+			buttonLogout.gameObject.SetActive (true);
+			buttonLogin.gameObject.SetActive (false);
+		} else {
+			buttonLogin.interactable = true;
+			buttonLogout.interactable = false;
+			buttonLogout.gameObject.SetActive (false);
+			buttonLogin.gameObject.SetActive (true);
+		}
+	}
+
+	private	void OnFBConnect(bool connectivity) {
+		InitFB ();
+	}
+
+	private	void OnFBLogin(bool login) {
+		InitFB ();
 	}
 
 	public	void OnClickLanguage() {
@@ -44,22 +93,12 @@ public class SettingComponent : UIComponent {
 
 	public	void OnClickMute() {
 		AudioListener.volume = 0f;
-		labelMute.transform.parent.gameObject.SetActive (false);
-		labelUnmute.transform.parent.gameObject.SetActive (true);
+		InitMute ();
 	}
 
 	public	void OnClickUnmute() {
 		AudioListener.volume = 1f;
-		labelMute.transform.parent.gameObject.SetActive (true);
-		labelUnmute.transform.parent.gameObject.SetActive (false);
-	}
-
-	public	void OnClickRestore() {
-		AudioPlayerComponent.Play ("fx_click");
-	}
-
-	public	void OnClickCredits() {
-		AudioPlayerComponent.Play ("fx_click");
+		InitMute ();
 	}
 
 	public	void OnClickRank() {
@@ -71,7 +110,18 @@ public class SettingComponent : UIComponent {
 		OnUIReserve(UIType.TUTORIAL);
 		OnUIChange();
 	}
-	
+
+	public	void OnClickLogin() {
+		AudioPlayerComponent.Play ("fx_click");
+		OnUIReserve(UIType.CONNECT);
+		OnUIChange();
+	}
+
+	public	void OnClickLogout() {
+		AudioPlayerComponent.Play ("fx_click");
+		GetComponentInParent<SystemCheckComponent> ().LogoutFacebook ();
+	}
+
 	public	void OnClickClose() {
 		AudioPlayerComponent.Play ("fx_click");
 		AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
