@@ -375,7 +375,7 @@
 		<value>BEST</value>
 	</data>
 	<data name="[type=TEXTURE]fnf.ui.bi" xml:space="preserve">
-		<value>01ad431869b5f4af08a632a055d7a27a</value>
+		<value>4e2f56b4ab22d4c048fc5519195b8497</value>
 	</data>
 	<data name="fnf.ui.buy" xml:space="preserve">
 		<value>BUY</value>
