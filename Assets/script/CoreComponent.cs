@@ -30,6 +30,11 @@ public class CoreComponent : MonoBehaviour {
 	}
 
 	void OnEnable() {
+		ThemeInfo info = PlayerInfoKeeper.GetInstance().playerInfo.GetThemeInfo();
+		speakerNormal = Resources.Load<Sprite>("bg/" + info.bg.ToString().ToLower()+"_1");
+		speakerBoom = Resources.Load<Sprite>("bg/" + info.bg.ToString().ToLower()+"_2");
+		speaker.sprite = speakerNormal;
+
 		if (observer==null) {
 			observer = Observer.GetInstance();
 		}
@@ -41,6 +46,8 @@ public class CoreComponent : MonoBehaviour {
 			observer = Observer.GetInstance();
 		}
 		observer.beat -= OnBeat;
+		speakerNormal = null;
+		speakerBoom = null;
 		CancelInvoke ();
 	}
 

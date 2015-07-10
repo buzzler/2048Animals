@@ -16,7 +16,6 @@ public class ResultComponent : UIComponent {
 	public	Text			textCoinDelta;
 	public	ScoreComponent	bestGroup;
 	public	ScoreComponent	currentGroup;
-	public	RawImage		rawImage;
 	public	Transform		boxHolder;
 	public	Transform[]		boxes;
 	public	Color			colorUpdate;
@@ -45,6 +44,13 @@ public class ResultComponent : UIComponent {
 		SetBox();
 
 		keeper.Save();
+	}
+
+	public override void OnUIStop () {
+		base.OnUIStop ();
+		for (int i = boxHolder.childCount-1 ; i >= 0 ; i--) {
+			DestroyImmediate(boxHolder.GetChild(i).gameObject);
+		}
 	}
 
 	public	void OnClickRetry() {
