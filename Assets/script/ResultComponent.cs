@@ -21,6 +21,7 @@ public class ResultComponent : UIComponent {
 	public	Color			colorUpdate;
 	public	Color			colorNormal;
 	private	PlayerInfo		info;
+	private	int				flash;
 
 	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
 		base.OnUIChangeLanguage (lm);
@@ -37,6 +38,7 @@ public class ResultComponent : UIComponent {
 
 		PlayerInfoKeeper keeper = PlayerInfoKeeper.GetInstance ();
 		info = keeper.playerInfo;
+		flash = 0;
 
 		SetDeltaCoin ();
 		SetBestScore();
@@ -119,6 +121,30 @@ public class ResultComponent : UIComponent {
 		currentGroup.SetScore(value);
 		if (value>=info.bestScore) {
 			currentGroup.SetColor(colorUpdate);
+		}
+	}
+
+	public	void OnScoreComplete() {
+		uint delta = currentGroup.GetScore () - bestGroup.GetScore ();
+		if (delta > 5000) {
+			flash = 21;
+		} else if (delta > 1000) {
+			flash = 11;
+		} else if (delta > 100) {
+			flash = 6;
+		}
+		Invoke("Flash", 0.5f);
+	}
+
+	public	void Flash() {
+		flash--;
+		if (flash > 0) {
+			float rndX = Random.Range(-0.1f, 0.1f);
+			float rndY = Random.Range(-0.1f, 0.1f);
+			rndX += (rndX>0) ? 0.1f:-0.1f;
+			rndY += (rndY>0) ? 0.1f:-0.1f;
+			EffectComponent.Show(EffectType.FACE_DRAG_OUT, boxHolder.position + new Vector3(rndX, rndY,0f));
+			Invoke("Flash", 0.5f);
 		}
 	}
 }

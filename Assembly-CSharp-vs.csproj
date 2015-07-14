@@ -104,6 +104,7 @@
      <Compile Include="Assets\script\PauseComponent.cs" />
      <Compile Include="Assets\script\PlayerInfo.cs" />
      <Compile Include="Assets\script\PreloadComponent.cs" />
+     <Compile Include="Assets\script\PsedoGIF.cs" />
      <Compile Include="Assets\script\ResultComponent.cs" />
      <Compile Include="Assets\script\RewardComponent.cs" />
      <Compile Include="Assets\script\ScoreComponent.cs" />

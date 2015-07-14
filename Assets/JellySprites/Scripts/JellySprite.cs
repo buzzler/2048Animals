@@ -3,7 +3,7 @@ using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
-#endif 
+#endif
 
 using System.Collections;
 using System.Collections.Generic;
@@ -815,7 +815,8 @@ public abstract class JellySprite : MonoBehaviour
 			if(m_2DMode)
 			{
 				Rigidbody2D centreRigidBody = m_CentralPoint.Body2D;
-				centreRigidBody.fixedAngle = m_LockRotation;
+//				centreRigidBody.fixedAngle = m_LockRotation;
+				centreRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;		// modified by buzzler
 				centreRigidBody.isKinematic = m_CentralBodyKinematic;
 			}
 			else
@@ -867,7 +868,8 @@ public abstract class JellySprite : MonoBehaviour
 			circleCollider.sharedMaterial = m_PhysicsMaterial2D;
 
 			Rigidbody2D newRigidBody = referencePointObject.AddComponent<Rigidbody2D>();
-			newRigidBody.fixedAngle = lockRotation;
+//			newRigidBody.fixedAngle = lockRotation;
+			newRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;		// modified by buzzler
 
 			referencePoint = new ReferencePoint(newRigidBody);
 		}

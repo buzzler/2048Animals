@@ -22,4 +22,8 @@ public class ScoreComponent : MonoBehaviour {
 	public	void SetColor(Color color) {
 		score.color = color;
 	}
+
+	public	uint GetScore() {
+		return uint.Parse(score.text);
+	}
 }
