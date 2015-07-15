@@ -19,6 +19,8 @@ public class SettingComponent : UIComponent {
 	public	Button	buttonLogout;
 
 	private Animator animator;
+	private	bool		lastMute;
+	private	bool		lastFB;
 
 	public	override void OnUIChangeLanguage(LanguageManager lm) {
 		base.OnUIChangeLanguage(lm);
@@ -37,23 +39,33 @@ public class SettingComponent : UIComponent {
 	public	override void OnUIStart() {
 		base.OnUIStart();
 		animator = GetComponent<Animator>();
-		Observer observer = Observer.GetInstance ();
-		observer.fbConnet += OnFBConnect;
-		observer.fbLogin += OnFBLogin;
+		lastMute = false;
+		lastFB = false;
 
-		InitMute ();
-		InitFB ();
+		WhichMute (AudioListener.volume == 0);
+		WhichInOut (SystemCheckComponent.network && FB.IsInitialized && FB.IsLoggedIn);
+	}
+
+	void Update() {
+		bool curMute = (AudioListener.volume == 0);
+		bool curFB = (SystemCheckComponent.network && FB.IsInitialized && FB.IsLoggedIn);
+
+		if (curMute != lastMute) {
+			WhichMute(curMute);
+			lastMute = curMute;
+		}
+		if (curFB != lastFB) {
+			WhichInOut(curFB);
+			lastFB = curFB;
+		}
 	}
 
 	public	override void OnUIStop() {
 		base.OnUIStop();
-		Observer observer = Observer.GetInstance ();
-		observer.fbConnet -= OnFBConnect;
-		observer.fbLogin -= OnFBLogin;
 	}
 
-	private void InitMute() {
-		if (AudioListener.volume == 0) {
+	private void WhichMute(bool mute) {
+		if (mute) {
 			labelMute.transform.parent.gameObject.SetActive (false);
 			labelUnmute.transform.parent.gameObject.SetActive (true);
 		} else {
@@ -62,26 +74,18 @@ public class SettingComponent : UIComponent {
 		}
 	}
 
-	private void InitFB() {
-		if (SystemCheckComponent.network && FB.IsInitialized && FB.IsLoggedIn) {
-			buttonLogin.interactable = false;
+	private	void WhichInOut(bool login) {
+		if (login) {
 			buttonLogout.interactable = true;
 			buttonLogout.gameObject.SetActive (true);
+			buttonLogin.interactable = false;
 			buttonLogin.gameObject.SetActive (false);
 		} else {
 			buttonLogin.interactable = true;
+			buttonLogin.gameObject.SetActive (true);
 			buttonLogout.interactable = false;
 			buttonLogout.gameObject.SetActive (false);
-			buttonLogin.gameObject.SetActive (true);
 		}
-	}
-
-	private	void OnFBConnect(bool connectivity) {
-		InitFB ();
-	}
-
-	private	void OnFBLogin(bool login) {
-		InitFB ();
 	}
 
 	public	void OnClickLanguage() {
@@ -91,12 +95,10 @@ public class SettingComponent : UIComponent {
 
 	public	void OnClickMute() {
 		AudioListener.volume = 0f;
-		InitMute ();
 	}
 
 	public	void OnClickUnmute() {
 		AudioListener.volume = 1f;
-		InitMute ();
 	}
 
 	public	void OnClickRank() {
@@ -111,29 +113,23 @@ public class SettingComponent : UIComponent {
 
 	public	void OnClickLogin() {
 		AudioPlayerComponent.Play ("fx_click");
-#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 		OnUIReserve(UIType.CONNECT);
 		OnUIChange();
-#endif
 	}
 
 	public	void OnClickLogout() {
 		AudioPlayerComponent.Play ("fx_click");
-#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
-		if (GetComponentInParent<SystemCheckComponent> ().LogoutFacebook ()) {
-			InitFB();
-		}
-#endif
+		GetComponentInParent<SystemCheckComponent> ().LogoutFacebook ();
 	}
 
 	public	void OnClickClose() {
 		AudioPlayerComponent.Play ("fx_click");
 		AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+		animator.SetTrigger("trigger_exit");
 		if (info.IsName("Base Layer.language")!=true) {
 			OnUIReserve(parent);
 			OnUIBackward();
 		}
-		animator.SetTrigger("trigger_exit");
 	}
 
 	private	void ChangeLanguage(string code) {
