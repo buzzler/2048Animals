@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root><!-- 
     Microsoft ResX Schema 
     
@@ -117,7 +117,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 	<data name="fnf.lang.arabic" xml:space="preserve">
-		<value>العربية</value>
+		<value>لعربية</value>
 	</data>
 	<data name="fnf.lang.chinesesimple" xml:space="preserve">
 		<value>正体字</value>
@@ -153,338 +153,338 @@
 		<value>русский язык</value>
 	</data>
 	<data name="fnf.theme.alpaca.desc" xml:space="preserve">
-		<value>Alpaca</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.alpaca.name" xml:space="preserve">
-		<value>Alpaca</value>
+		<value>驼羊</value>
 	</data>
 	<data name="fnf.theme.bear.desc" xml:space="preserve">
-		<value>Bear</value>
+		<value />
 	</data>
 	<data name="fnf.theme.bear.name" xml:space="preserve">
-		<value>Bear</value>
+		<value>驼羊</value>
 	</data>
 	<data name="fnf.theme.boo.desc" xml:space="preserve">
-		<value>Boo</value>
+		<value>必须以Facebook账号来登入</value>
 	</data>
 	<data name="fnf.theme.boo.name" xml:space="preserve">
-		<value>Boo</value>
+		<value>眼镜</value>
 	</data>
 	<data name="fnf.theme.cameleon.desc" xml:space="preserve">
-		<value>Cameleon</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.cameleon.name" xml:space="preserve">
-		<value>Cameleon</value>
+		<value>马卡龙</value>
 	</data>
 	<data name="fnf.theme.chick.desc" xml:space="preserve">
-		<value>Chick</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.chick.name" xml:space="preserve">
-		<value>Chick</value>
+		<value>吱吱</value>
 	</data>
 	<data name="fnf.theme.chicken.desc" xml:space="preserve">
-		<value>Chicken</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.chicken.name" xml:space="preserve">
-		<value>Chicken</value>
+		<value>鸡神</value>
 	</data>
 	<data name="fnf.theme.cow.desc" xml:space="preserve">
-		<value>Cow</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.cow.name" xml:space="preserve">
-		<value>Cow</value>
+		<value>牛奶</value>
 	</data>
 	<data name="fnf.theme.crocodile.desc" xml:space="preserve">
-		<value>Crocodile</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.crocodile.name" xml:space="preserve">
-		<value>Crocodile</value>
+		<value>小呆</value>
 	</data>
 	<data name="fnf.theme.elephant.desc" xml:space="preserve">
-		<value>Elephant</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.elephant.name" xml:space="preserve">
-		<value>Elephant</value>
+		<value>拳霸</value>
 	</data>
 	<data name="fnf.theme.frog.desc" xml:space="preserve">
-		<value>Frog</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.frog.name" xml:space="preserve">
-		<value>Frog</value>
+		<value>杰利鼠</value>
 	</data>
 	<data name="fnf.theme.furseal.desc" xml:space="preserve">
-		<value>Furseal</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.furseal.name" xml:space="preserve">
-		<value>Furseal</value>
+		<value>快乐</value>
 	</data>
 	<data name="fnf.theme.gibbon.desc" xml:space="preserve">
-		<value>Gibbon</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.gibbon.name" xml:space="preserve">
-		<value>Gibbon</value>
+		<value>巴斯</value>
 	</data>
 	<data name="fnf.theme.giraffe.desc" xml:space="preserve">
-		<value>Giraffe</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.giraffe.name" xml:space="preserve">
-		<value>Giraffe</value>
+		<value>袜子</value>
 	</data>
 	<data name="fnf.theme.greenturtle.desc" xml:space="preserve">
-		<value>Greenturtle</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.greenturtle.name" xml:space="preserve">
-		<value>Greenturtle</value>
+		<value>小豆</value>
 	</data>
 	<data name="fnf.theme.hippopotamus.desc" xml:space="preserve">
-		<value>Hippopotamus</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.hippopotamus.name" xml:space="preserve">
-		<value>Hippopotamus</value>
+		<value>土豆</value>
 	</data>
 	<data name="fnf.theme.horse.desc" xml:space="preserve">
-		<value>Horse</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.horse.name" xml:space="preserve">
-		<value>Horse</value>
+		<value>小马哥</value>
 	</data>
 	<data name="fnf.theme.jindo.desc" xml:space="preserve">
-		<value>Jindo</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.jindo.name" xml:space="preserve">
-		<value>Jindo</value>
+		<value>珍珍</value>
 	</data>
 	<data name="fnf.theme.lion.desc" xml:space="preserve">
-		<value>Lion</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.lion.name" xml:space="preserve">
-		<value>Lion</value>
+		<value>雄狮</value>
 	</data>
 	<data name="fnf.theme.lioness.desc" xml:space="preserve">
-		<value>Lioness</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.lioness.name" xml:space="preserve">
-		<value>Lioness</value>
+		<value>狮母</value>
 	</data>
 	<data name="fnf.theme.loli.desc" xml:space="preserve">
-		<value>Loli</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.loli.name" xml:space="preserve">
-		<value>Loli</value>
+		<value>萝莉</value>
 	</data>
 	<data name="fnf.theme.naru.desc" xml:space="preserve">
-		<value>Naru</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.naru.name" xml:space="preserve">
-		<value>Naru</value>
+		<value>纳鲁</value>
 	</data>
 	<data name="fnf.theme.otter.desc" xml:space="preserve">
-		<value>Otter</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.otter.name" xml:space="preserve">
-		<value>Otter</value>
+		<value>小饼</value>
 	</data>
 	<data name="fnf.theme.panda.desc" xml:space="preserve">
-		<value>Panda</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.panda.name" xml:space="preserve">
-		<value>Panda</value>
+		<value>黑眼圈</value>
 	</data>
 	<data name="fnf.theme.penguin.desc" xml:space="preserve">
-		<value>Penguin</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.penguin.name" xml:space="preserve">
-		<value>Penguin</value>
+		<value>企鹅</value>
 	</data>
 	<data name="fnf.theme.persian.desc" xml:space="preserve">
-		<value>Persian</value>
+		<value>企鹅取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.persian.name" xml:space="preserve">
-		<value>Persian</value>
+		<value>馒头</value>
 	</data>
 	<data name="fnf.theme.pig.desc" xml:space="preserve">
-		<value>Pig</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.pig.name" xml:space="preserve">
-		<value>Pig</value>
+		<value>存钱筒</value>
 	</data>
 	<data name="fnf.theme.pigblack.desc" xml:space="preserve">
-		<value>Pigblack</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.pigblack.name" xml:space="preserve">
-		<value>Pigblack</value>
+		<value>黑猪</value>
 	</data>
 	<data name="fnf.theme.polarbear.desc" xml:space="preserve">
-		<value>Polarbear</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.polarbear.name" xml:space="preserve">
-		<value>Polarbear</value>
+		<value>可乐</value>
 	</data>
 	<data name="fnf.theme.pomeranian.desc" xml:space="preserve">
-		<value>Pomeranian</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.pomeranian.name" xml:space="preserve">
-		<value>Pomeranian</value>
+		<value>博美</value>
 	</data>
 	<data name="fnf.theme.pomewhite.desc" xml:space="preserve">
-		<value>Pomewhite</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.pomewhite.name" xml:space="preserve">
-		<value>Pomewhite</value>
+		<value>小白狗</value>
 	</data>
 	<data name="fnf.theme.rabbit.desc" xml:space="preserve">
-		<value>Rabbit</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.rabbit.name" xml:space="preserve">
-		<value>Rabbit</value>
+		<value>糯米团</value>
 	</data>
 	<data name="fnf.theme.raccoon.desc" xml:space="preserve">
-		<value>Raccoon</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.raccoon.name" xml:space="preserve">
-		<value>Raccoon</value>
+		<value>乌龙面</value>
 	</data>
 	<data name="fnf.theme.santa.desc" xml:space="preserve">
-		<value>Santa</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.santa.name" xml:space="preserve">
-		<value>Santa</value>
+		<value>圣诞</value>
 	</data>
 	<data name="fnf.theme.sealion.desc" xml:space="preserve">
-		<value>Sealion</value>
+		<value>奖励式广告硬币会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.sealion.name" xml:space="preserve">
-		<value>Sealion</value>
+		<value>酷酷</value>
 	</data>
 	<data name="fnf.theme.sheep.desc" xml:space="preserve">
-		<value>Sheep</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.sheep.name" xml:space="preserve">
-		<value>Sheep</value>
+		<value>棉花糖</value>
 	</data>
 	<data name="fnf.theme.soan.desc" xml:space="preserve">
-		<value>Soan</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.soan.name" xml:space="preserve">
-		<value>Soan</value>
+		<value>小安</value>
 	</data>
 	<data name="fnf.theme.welshcorgi.desc" xml:space="preserve">
-		<value>Welshcorgi</value>
+		<value>取得的硬币数会持续微幅增加</value>
 	</data>
 	<data name="fnf.theme.welshcorgi.name" xml:space="preserve">
-		<value>Welshcorgi</value>
+		<value>柯基</value>
 	</data>
 	<data name="fnf.ui.best" xml:space="preserve">
-		<value>BEST</value>
+		<value>最高分数</value>
 	</data>
 	<data name="[type=TEXTURE]fnf.ui.bi" xml:space="preserve">
-		<value>4e2f56b4ab22d4c048fc5519195b8497</value>
+		<value>override=en</value>
 	</data>
 	<data name="fnf.ui.buy" xml:space="preserve">
-		<value>BUY</value>
-	</data>
-	<data name="fnf.ui.connect" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.connect.error.fail" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.connect.error.net" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.connect.login" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.connect.logout" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.connect.wait" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.credits" xml:space="preserve">
-		<value>CREDITS</value>
-	</data>
-	<data name="fnf.ui.home" xml:space="preserve">
-		<value>HOME</value>
-	</data>
-	<data name="fnf.ui.language" xml:space="preserve">
-		<value>LANGUAGE</value>
-	</data>
-	<data name="fnf.ui.mute" xml:space="preserve">
-		<value>MUTE</value>
-	</data>
-	<data name="fnf.ui.ok" xml:space="preserve">
-		<value>OK</value>
-	</data>
-	<data name="fnf.ui.option" xml:space="preserve">
-		<value>OPTION</value>
-	</data>
-	<data name="fnf.ui.pause" xml:space="preserve">
-		<value>PAUSE</value>
-	</data>
-	<data name="fnf.ui.rank" xml:space="preserve">
-		<value>RANK</value>
-	</data>
-	<data name="fnf.ui.restore" xml:space="preserve">
-		<value>RESTORE PURCHASES</value>
-	</data>
-	<data name="fnf.ui.retry" xml:space="preserve">
-		<value>RETRY</value>
-	</data>
-	<data name="fnf.ui.reward" xml:space="preserve">
-		<value>Ad BONUS</value>
-	</data>
-	<data name="fnf.ui.share" xml:space="preserve">
-		<value>SHARE</value>
-	</data>
-	<data name="fnf.ui.start" xml:space="preserve">
-		<value>START</value>
-	</data>
-	<data name="fnf.ui.title" xml:space="preserve">
-		<value>Animal Bang</value>
-	</data>
-	<data name="fnf.ui.tutorial" xml:space="preserve">
-		<value>TUTORIAL</value>
-	</data>
-	<data name="fnf.ui.tutorial.1" xml:space="preserve">
-		<value>swipe to move all boxes</value>
-	</data>
-	<data name="fnf.ui.tutorial.2" xml:space="preserve">
-		<value>when two boxes with the same
-box touch, they merge into one!</value>
-	</data>
-	<data name="fnf.ui.tutorial.3" xml:space="preserve">
-		<value>It's over when the board fills up</value>
-	</data>
-	<data name="fnf.ui.tutorial.4" xml:space="preserve">
-		<value>join the boxes and
-get to the biggest box!</value>
-	</data>
-	<data name="fnf.ui.unmute" xml:space="preserve">
-		<value>UNMUTE</value>
-	</data>
-	<data name="fnf.ui.victory" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.gameover" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.nomoremove" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.paw" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.yes" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.erase" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.oops" xml:space="preserve">
-		<value />
+		<value>购买</value>
 	</data>
 	<data name="fnf.ui.clear" xml:space="preserve">
-		<value />
+		<value>您已经完成了所有阶段！恭喜~</value>
+	</data>
+	<data name="fnf.ui.connect" xml:space="preserve">
+		<value>接</value>
+	</data>
+	<data name="fnf.ui.connect.error.fail" xml:space="preserve">
+		<value>登录失败</value>
+	</data>
+	<data name="fnf.ui.connect.error.net" xml:space="preserve">
+		<value>没有网络连接错误</value>
+	</data>
+	<data name="fnf.ui.connect.login" xml:space="preserve">
+		<value>登录</value>
+	</data>
+	<data name="fnf.ui.connect.logout" xml:space="preserve">
+		<value>登出</value>
+	</data>
+	<data name="fnf.ui.connect.wait" xml:space="preserve">
+		<value>请等一下</value>
+	</data>
+	<data name="fnf.ui.credits" xml:space="preserve">
+		<value>制作者</value>
+	</data>
+	<data name="fnf.ui.erase" xml:space="preserve">
+		<value>请点选删除妨碍的箱子</value>
+	</data>
+	<data name="fnf.ui.gameover" xml:space="preserve">
+		<value>GAMEOVER</value>
+	</data>
+	<data name="fnf.ui.home" xml:space="preserve">
+		<value>回首页</value>
+	</data>
+	<data name="fnf.ui.language" xml:space="preserve">
+		<value>语言</value>
+	</data>
+	<data name="fnf.ui.mute" xml:space="preserve">
+		<value>静音</value>
+	</data>
+	<data name="fnf.ui.nomoremove" xml:space="preserve">
+		<value>无法再移动</value>
+	</data>
+	<data name="fnf.ui.ok" xml:space="preserve">
+		<value>确定</value>
+	</data>
+	<data name="fnf.ui.oops" xml:space="preserve">
+		<value>真可惜~请再挑战看看~</value>
+	</data>
+	<data name="fnf.ui.option" xml:space="preserve">
+		<value>选项</value>
+	</data>
+	<data name="fnf.ui.pause" xml:space="preserve">
+		<value>暂停</value>
+	</data>
+	<data name="fnf.ui.paw" xml:space="preserve">
+		<value>可以使用猫咪手来移除箱子吗？</value>
+	</data>
+	<data name="fnf.ui.rank" xml:space="preserve">
+		<value>排名</value>
+	</data>
+	<data name="fnf.ui.restore" xml:space="preserve">
+		<value>购买复原</value>
+	</data>
+	<data name="fnf.ui.retry" xml:space="preserve">
+		<value>重新开始</value>
+	</data>
+	<data name="fnf.ui.reward" xml:space="preserve">
+		<value>奖励</value>
+	</data>
+	<data name="fnf.ui.share" xml:space="preserve">
+		<value>分享</value>
+	</data>
+	<data name="fnf.ui.start" xml:space="preserve">
+		<value>开始</value>
+	</data>
+	<data name="fnf.ui.title" xml:space="preserve">
+		<value>2048 动物风暴</value>
+	</data>
+	<data name="fnf.ui.tutorial" xml:space="preserve">
+		<value>教程</value>
+	</data>
+	<data name="fnf.ui.tutorial.1" xml:space="preserve">
+		<value>可以用手在屏幕上移动箱子</value>
+	</data>
+	<data name="fnf.ui.tutorial.2" xml:space="preserve">
+		<value>"碰到两个相同箱子时
+会合成一个！"</value>
+	</data>
+	<data name="fnf.ui.tutorial.3" xml:space="preserve">
+		<value>无法移动时就代表结束</value>
+	</data>
+	<data name="fnf.ui.tutorial.4" xml:space="preserve">
+		<value>"试着以新的主题
+制作更大的箱子吧！"</value>
+	</data>
+	<data name="fnf.ui.unmute" xml:space="preserve">
+		<value>声音开启</value>
+	</data>
+	<data name="fnf.ui.victory" xml:space="preserve">
+		<value>VICTORY</value>
+	</data>
+	<data name="fnf.ui.yes" xml:space="preserve">
+		<value>我要使用!!</value>
 	</data>
 </root>

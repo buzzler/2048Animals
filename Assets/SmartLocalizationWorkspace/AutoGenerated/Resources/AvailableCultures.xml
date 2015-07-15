@@ -9,12 +9,6 @@
       <isRightToLeft>true</isRightToLeft>
     </CultureInfo>
     <CultureInfo>
-      <languageCode>zh-CHS</languageCode>
-      <englishName>Chinese</englishName>
-      <nativeName>中文</nativeName>
-      <isRightToLeft>false</isRightToLeft>
-    </CultureInfo>
-    <CultureInfo>
       <languageCode>de</languageCode>
       <englishName>German</englishName>
       <nativeName>Deutsch</nativeName>
@@ -66,6 +60,18 @@
       <languageCode>ru</languageCode>
       <englishName>Russian</englishName>
       <nativeName>Русский</nativeName>
+      <isRightToLeft>false</isRightToLeft>
+    </CultureInfo>
+    <CultureInfo>
+      <languageCode>zh-TW</languageCode>
+      <englishName>Chinese (Taiwan)</englishName>
+      <nativeName>中文 (台湾)</nativeName>
+      <isRightToLeft>false</isRightToLeft>
+    </CultureInfo>
+    <CultureInfo>
+      <languageCode>zh-CN</languageCode>
+      <englishName>Chinese (China)</englishName>
+      <nativeName>中文 (中国)</nativeName>
       <isRightToLeft>false</isRightToLeft>
     </CultureInfo>
   </CultureInfos>
