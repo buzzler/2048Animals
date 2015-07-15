@@ -9,12 +9,10 @@ public class SystemCheckComponent : MonoBehaviour {
 	public	static bool data	{ get { return _data; } }
 	public	static bool wifi	{ get { return _wifi; } }
 	public	static int	pingTime{ get { return _pingTime; } }
-//	public	static bool busy	{ get { return _busy; } }
 	private	static bool _network;
 	private	static bool _data;
 	private	static bool	_wifi;
 	private	static int	_pingTime;
-//	private	static bool	_busy;
 
 	public	float	duration;
 	public	float	pingTimeout;
@@ -64,19 +62,21 @@ public class SystemCheckComponent : MonoBehaviour {
 			if (observer.networkStatusChange!=null) {
 				observer.networkStatusChange(_network);
 			}
+#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 			if (_network) {
 				ConnectFacebook();
 			}
+#endif
 		}
 	}
 
-	/**
-	 * network check start
-	 */
-
 	private	void Check() {
-//		StartCoroutine("CheckWWW");
-		CheckPing ();
+		if (CheckNetwork ()) {
+			ping = new Ping ("8.8.8.8");
+			pingStart = Time.time;
+		} else {
+			OnFail();
+		}
 	}
 
 	private	void OnFail(string error = "") {
@@ -105,33 +105,11 @@ public class SystemCheckComponent : MonoBehaviour {
 		return _data || _wifi;
 	}
 
-	IEnumerator CheckWWW() {
-		if (CheckNetwork ()) {
-			WWW w = new WWW ("http://www.facebook.com");
-			yield return w;
-			if (!string.IsNullOrEmpty (w.error)) {
-				OnFail (w.error);
-			} else {
-				OnSuccess ();
-			}
-		} else {
-			OnFail();
-		}
-	}
-
-	private	void CheckPing() {
-		if (CheckNetwork ()) {
-			ping = new Ping ("8.8.8.8");
-			pingStart = Time.time;
-		} else {
-			OnFail();
-		}
-	}
-
 	/**
 	 * network check end
 	 */
 
+#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 	/**
 	 * social check start
 	 */
@@ -140,12 +118,10 @@ public class SystemCheckComponent : MonoBehaviour {
 	 * connect facebook account
 	 */
 	public bool ConnectFacebook() {
-//		if (_network && (!_busy)) {
 		if (_network) {
 			if (FB.IsInitialized) {
 				oninitcomplete ();
 			} else {
-//				_busy = true;
 				FB.Init (oninitcomplete);
 			}
 			return true;
@@ -161,19 +137,10 @@ public class SystemCheckComponent : MonoBehaviour {
 	}
 
 	/**
-	 * check this component working
-	 */
-//	public	static bool IsNotBusy() {
-//		return IsLoggedIn () && (!_busy);
-//	}
-
-	/**
 	 * Login facebook account
 	 */
 	public	bool LoginFacebook() {
-//		if (_network && FB.IsInitialized && (!FB.IsLoggedIn) && (!_busy)) {
 		if (_network && FB.IsInitialized && (!FB.IsLoggedIn)) {
-//			_busy = true;
 			FB.Login ("public_profile, user_friends, publish_actions", onlogincomplete);
 		}
 		return false;
@@ -198,7 +165,6 @@ public class SystemCheckComponent : MonoBehaviour {
 	 */
 	public bool FeedFacebook(string title, string url, string description, string caption, string thumbnail) {
 		if (_network && FB.IsInitialized && FB.IsLoggedIn) {
-//			_busy = true;
 			FB.Feed(
 				link: url,
 				linkName: title,
@@ -217,7 +183,6 @@ public class SystemCheckComponent : MonoBehaviour {
 	 */
 	public bool RequestFacebook(string message, string title) {
 		if (_network && FB.IsInitialized && FB.IsLoggedIn) {
-//			_busy = true;
 			FB.AppRequest(message, null, null, null, 1, "", title, onrequestcomplete);
 			return true;
 		}
@@ -232,7 +197,6 @@ public class SystemCheckComponent : MonoBehaviour {
 	}
 	
 	private	void oninitcomplete() {
-//		_busy = false;
 		Observer observer = Observer.GetInstance ();
 		if (FB.IsInitialized) {
 			FB.ActivateApp();
@@ -248,7 +212,6 @@ public class SystemCheckComponent : MonoBehaviour {
 	}
 	
 	private void onlogincomplete(FBResult result) {
-//		_busy = false;
 		Observer observer = Observer.GetInstance ();
 		if (FB.IsLoggedIn) {
 			PlayerPrefs.SetInt("login", 1);
@@ -259,7 +222,6 @@ public class SystemCheckComponent : MonoBehaviour {
 	}
 	
 	private void onfeedcomplete(FBResult result) {
-//		_busy = false;
 		Observer observer = Observer.GetInstance ();
 		if (String.IsNullOrEmpty(result.Error)) {
 			if (observer.fbFeed!=null) {observer.fbFeed(true);}
@@ -269,7 +231,6 @@ public class SystemCheckComponent : MonoBehaviour {
 	}
 	
 	private void onrequestcomplete(FBResult result) {
-//		_busy = false;
 		Observer observer = Observer.GetInstance ();
 		if (String.IsNullOrEmpty(result.Error)) {
 			if (observer.fbRequest!=null) {observer.fbRequest(true);}
@@ -297,7 +258,7 @@ public class SystemCheckComponent : MonoBehaviour {
 	}
 
 	private void onsnapshotcomplete(FBResult result) {
-		DebugComponent.Log (result.Text);
-		DebugComponent.Error (result.Error);
+		//do something
 	}
+#endif
 }

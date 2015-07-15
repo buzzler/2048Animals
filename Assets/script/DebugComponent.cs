@@ -80,9 +80,11 @@ public class DebugComponent : MonoBehaviour {
 	}
 
 	public	void ShowAds() {
+#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 		if (Advertisement.isReady()) {
 			Advertisement.Show();
 		}
+#endif
 	}
 
 	public	void GetCoin() {
@@ -99,16 +101,6 @@ public class DebugComponent : MonoBehaviour {
 			}
 		}
 		Application.Quit ();
-	}
-
-	public	void EnableTV() {
-		Camera.main.GetComponent<OLDTVScreen> ().enabled = true;
-		Camera.main.GetComponent<OLDTVTube> ().enabled = true;
-	}
-
-	public	void DisableTV() {
-		Camera.main.GetComponent<OLDTVScreen> ().enabled = false;
-		Camera.main.GetComponent<OLDTVTube> ().enabled = false;
 	}
 
 	public void TurnOn () {

@@ -111,15 +111,19 @@ public class SettingComponent : UIComponent {
 
 	public	void OnClickLogin() {
 		AudioPlayerComponent.Play ("fx_click");
+#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 		OnUIReserve(UIType.CONNECT);
 		OnUIChange();
+#endif
 	}
 
 	public	void OnClickLogout() {
 		AudioPlayerComponent.Play ("fx_click");
+#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 		if (GetComponentInParent<SystemCheckComponent> ().LogoutFacebook ()) {
 			InitFB();
 		}
+#endif
 	}
 
 	public	void OnClickClose() {

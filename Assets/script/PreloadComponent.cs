@@ -29,8 +29,9 @@ public class PreloadComponent : UIComponent {
 		}
 		lm.ChangeLanguage(pk.playerInfo.language);
 
-		// for Unity Ads
+#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 		Advertisement.Initialize("44690", false);
+#endif
 
 		Invoke ("OnDelay", 2);
 	}

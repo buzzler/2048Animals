@@ -10,7 +10,7 @@ public class ConnectComponent : UIComponent {
 	private	int						step;
 	private	string					keyMessage = "fnf.ui.connect.wait";
 	private	SystemCheckComponent	checker;
-
+#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 	public	override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
 		base.OnUIChangeLanguage (lm);
 		labelTitle.text		= lm.GetTextValue ("fnf.ui.connect.login");
@@ -111,4 +111,5 @@ public class ConnectComponent : UIComponent {
 			buttonRetry.gameObject.SetActive(true);
 		}
 	}
+#endif
 }

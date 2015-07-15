@@ -69,7 +69,9 @@ public class ResultComponent : UIComponent {
 
 	public	void OnClickShare() {
 		AudioPlayerComponent.Play ("fx_click");
+#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 		GetComponentInParent<SystemCheckComponent>().UploadFacebook();
+#endif
 	}
 
 	public	void OnClickRank() {

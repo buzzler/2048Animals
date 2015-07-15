@@ -78,7 +78,9 @@ public class TitlePurchaseComponent : UIComponent {
 	}
 
 	public	void OnClickConnect() {
+#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 		OnUIReserve(UIType.CONNECT);
 		OnUIChange();
+#endif
 	}
 }
