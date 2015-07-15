@@ -146,6 +146,9 @@
 	<data name="fnf.lang.korean" xml:space="preserve">
 		<value>한글</value>
 	</data>
+	<data name="fnf.lang.portugues" xml:space="preserve">
+		<value>português</value>
+	</data>
 	<data name="fnf.lang.russian" xml:space="preserve">
 		<value>русский язык</value>
 	</data>
@@ -380,6 +383,9 @@
 	<data name="fnf.ui.buy" xml:space="preserve">
 		<value>구매</value>
 	</data>
+	<data name="fnf.ui.clear" xml:space="preserve">
+		<value>모든 등급을 완성하셨군요! 축하해요</value>
+	</data>
 	<data name="fnf.ui.connect" xml:space="preserve">
 		<value>연결하기</value>
 	</data>
@@ -401,6 +407,12 @@
 	<data name="fnf.ui.credits" xml:space="preserve">
 		<value>만든사람</value>
 	</data>
+	<data name="fnf.ui.erase" xml:space="preserve">
+		<value>방해되는 박스를 클릭해서 없애세요</value>
+	</data>
+	<data name="fnf.ui.gameover" xml:space="preserve">
+		<value>Gameover</value>
+	</data>
 	<data name="fnf.ui.home" xml:space="preserve">
 		<value>처음으로</value>
 	</data>
@@ -410,8 +422,14 @@
 	<data name="fnf.ui.mute" xml:space="preserve">
 		<value>음소거</value>
 	</data>
+	<data name="fnf.ui.nomoremove" xml:space="preserve">
+		<value>더 이상 움직일 수 없습니다</value>
+	</data>
 	<data name="fnf.ui.ok" xml:space="preserve">
 		<value>확인</value>
+	</data>
+	<data name="fnf.ui.oops" xml:space="preserve">
+		<value>아까워요~ 재도전해보세요</value>
 	</data>
 	<data name="fnf.ui.option" xml:space="preserve">
 		<value>옵션</value>
@@ -419,8 +437,8 @@
 	<data name="fnf.ui.pause" xml:space="preserve">
 		<value>멈춤</value>
 	</data>
-	<data name="fnf.ui.portugues" xml:space="preserve">
-		<value>português</value>
+	<data name="fnf.ui.paw" xml:space="preserve">
+		<value>고양이손을 사용해서 박스를 지우시겠습니까?</value>
 	</data>
 	<data name="fnf.ui.rank" xml:space="preserve">
 		<value>순위</value>
@@ -462,5 +480,11 @@
 	</data>
 	<data name="fnf.ui.unmute" xml:space="preserve">
 		<value>소리재생</value>
+	</data>
+	<data name="fnf.ui.victory" xml:space="preserve">
+		<value>Victory</value>
+	</data>
+	<data name="fnf.ui.yes" xml:space="preserve">
+		<value>사용할래요!!</value>
 	</data>
 </root>

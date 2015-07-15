@@ -146,6 +146,9 @@
 	<data name="fnf.lang.korean" xml:space="preserve">
 		<value>한글</value>
 	</data>
+	<data name="fnf.lang.portugues" xml:space="preserve">
+		<value>português</value>
+	</data>
 	<data name="fnf.lang.russian" xml:space="preserve">
 		<value>русский язык</value>
 	</data>
@@ -419,9 +422,6 @@
 	<data name="fnf.ui.pause" xml:space="preserve">
 		<value>PAUSE</value>
 	</data>
-	<data name="fnf.ui.portugues" xml:space="preserve">
-		<value>português</value>
-	</data>
 	<data name="fnf.ui.rank" xml:space="preserve">
 		<value>RANK</value>
 	</data>
@@ -462,5 +462,29 @@ get to the biggest box!</value>
 	</data>
 	<data name="fnf.ui.unmute" xml:space="preserve">
 		<value>UNMUTE</value>
+	</data>
+	<data name="fnf.ui.victory" xml:space="preserve">
+		<value />
+	</data>
+	<data name="fnf.ui.gameover" xml:space="preserve">
+		<value />
+	</data>
+	<data name="fnf.ui.nomoremove" xml:space="preserve">
+		<value />
+	</data>
+	<data name="fnf.ui.paw" xml:space="preserve">
+		<value />
+	</data>
+	<data name="fnf.ui.yes" xml:space="preserve">
+		<value />
+	</data>
+	<data name="fnf.ui.erase" xml:space="preserve">
+		<value />
+	</data>
+	<data name="fnf.ui.oops" xml:space="preserve">
+		<value />
+	</data>
+	<data name="fnf.ui.clear" xml:space="preserve">
+		<value />
 	</data>
 </root>

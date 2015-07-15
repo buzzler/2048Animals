@@ -125,7 +125,7 @@ public class ResultComponent : UIComponent {
 	}
 
 	public	void OnScoreComplete() {
-		uint delta = currentGroup.GetScore () - bestGroup.GetScore ();
+		int delta = (int)currentGroup.GetScore () - (int)bestGroup.GetScore ();
 		if (delta > 5000) {
 			flash = 21;
 		} else if (delta > 1000) {
@@ -133,7 +133,7 @@ public class ResultComponent : UIComponent {
 		} else if (delta > 100) {
 			flash = 6;
 		}
-		Invoke("Flash", 0.5f);
+		Invoke("Flash", 0.3f);
 	}
 
 	public	void Flash() {
