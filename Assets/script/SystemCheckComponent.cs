@@ -19,7 +19,8 @@ public class SystemCheckComponent : MonoBehaviour {
 	private	float	pingStart;
 	private	Ping	ping;
 	private	bool	_last;
-	
+    private byte[]  _screenshot;
+
 	void Start() {
 		_network = false;
 		_data = false;
@@ -62,11 +63,10 @@ public class SystemCheckComponent : MonoBehaviour {
 			if (observer.networkStatusChange!=null) {
 				observer.networkStatusChange(_network);
 			}
-#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
-			if (_network) {
+
+            if (_network) {
 				ConnectFacebook();
 			}
-#endif
 		}
 	}
 
@@ -109,7 +109,6 @@ public class SystemCheckComponent : MonoBehaviour {
 	 * network check end
 	 */
 
-#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 	/**
 	 * social check start
 	 */
@@ -189,11 +188,23 @@ public class SystemCheckComponent : MonoBehaviour {
 		return false;
 	}
 
+    public  bool HasScreenshot() {
+        return (_screenshot!=null);
+    }
+
+    public  void TakeScreenshot() {
+        StartCoroutine(EStoreScreenshot());
+    }
+
 	/**
 	 * upload snapshot to facebook
 	 */
 	public	void UploadFacebook() {
-		StartCoroutine(TakeScreenshot());
+        var wwwForm = new WWWForm();
+        wwwForm.AddBinaryData("image", _screenshot, DateTime.Now.ToUniversalTime()+".png");
+        wwwForm.AddField("caption", "I did it!");
+        
+        FB.API("/me/photos", Facebook.HttpMethod.POST, onsnapshotcomplete, wwwForm);
 	}
 	
 	private	void oninitcomplete() {
@@ -239,26 +250,20 @@ public class SystemCheckComponent : MonoBehaviour {
 		}
 	}
 
-	private IEnumerator TakeScreenshot()
-	{
-		yield return new WaitForEndOfFrame();
-		
-		var width = Screen.width;
-		var height = Screen.height;
-		var tex = new Texture2D(width, height, TextureFormat.RGB24, false);
-		tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
-		tex.Apply();
-		byte[] screenshot = tex.EncodeToPNG();
-		
-		var wwwForm = new WWWForm();
-		wwwForm.AddBinaryData("image", screenshot, DateTime.Now.ToUniversalTime()+".png");
-		wwwForm.AddField("caption", "herp derp.  I did a thing!  Did I do this right?");
-		
-		FB.API("/me/photos", Facebook.HttpMethod.POST, onsnapshotcomplete, wwwForm);
-	}
+    private IEnumerator EStoreScreenshot() {
+        yield return new WaitForEndOfFrame();
+
+        var width = Screen.width;
+        var height = Screen.height;
+        var tex = new Texture2D(width, height, TextureFormat.RGB24, false);
+        tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+        tex.Apply();
+        _screenshot = tex.EncodeToPNG();
+    }
 
 	private void onsnapshotcomplete(FBResult result) {
-		//do something
+        if (string.IsNullOrEmpty(result.Error)) {
+            _screenshot = null;
+        }
 	}
-#endif
 }

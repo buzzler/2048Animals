@@ -69,24 +69,13 @@ public class ResultComponent : UIComponent {
 
 	public	void OnClickShare() {
 		AudioPlayerComponent.Play ("fx_click");
-#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
-		GetComponentInParent<SystemCheckComponent>().UploadFacebook();
-#endif
+        SystemCheckComponent scc = GetComponentInParent<SystemCheckComponent>();
+        if (scc.HasScreenshot()) {
+            scc.UploadFacebook();
+        }
 	}
 
 	public	void OnClickRank() {
-		AudioPlayerComponent.Play ("fx_click");
-	}
-
-	public	void OnClickAd() {
-		AudioPlayerComponent.Play ("fx_click");
-	}
-	
-	public	void OnClickGift() {
-		AudioPlayerComponent.Play ("fx_click");
-	}
-	
-	public	void OnClickGacha() {
 		AudioPlayerComponent.Play ("fx_click");
 	}
 

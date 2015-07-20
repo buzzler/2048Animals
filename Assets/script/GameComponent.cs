@@ -91,6 +91,7 @@ public class GameComponent : UIComponent {
 	}
 
 	public	void GameOver() {
+        GetComponentInParent<SystemCheckComponent>().TakeScreenshot();
 		SaveScore();
 		FeverOff();
 		SendMessageUpwards("ReserveNextUI", UIType.RESULT);
@@ -98,6 +99,7 @@ public class GameComponent : UIComponent {
 	}
 
 	public	void Win() {
+        GetComponentInParent<SystemCheckComponent>().TakeScreenshot();
 		SaveScore();
 		FeverOff();
 		SendMessageUpwards("ReserveNextUI", UIType.RESULT);
