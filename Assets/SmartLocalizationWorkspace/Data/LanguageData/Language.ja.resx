@@ -153,338 +153,336 @@
 		<value>русский язык</value>
 	</data>
 	<data name="fnf.theme.alpaca.desc" xml:space="preserve">
-		<value>Alpaca</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.alpaca.name" xml:space="preserve">
-		<value>Alpaca</value>
+		<value>アルピー</value>
 	</data>
 	<data name="fnf.theme.bear.desc" xml:space="preserve">
-		<value>Bear</value>
+		<value />
 	</data>
 	<data name="fnf.theme.bear.name" xml:space="preserve">
-		<value>Bear</value>
+		<value>ボス</value>
 	</data>
 	<data name="fnf.theme.boo.desc" xml:space="preserve">
-		<value>Boo</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.boo.name" xml:space="preserve">
-		<value>Boo</value>
+		<value>フクちゃん</value>
 	</data>
 	<data name="fnf.theme.cameleon.desc" xml:space="preserve">
-		<value>Cameleon</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.cameleon.name" xml:space="preserve">
-		<value>Cameleon</value>
+		<value>レオン</value>
 	</data>
 	<data name="fnf.theme.chick.desc" xml:space="preserve">
-		<value>Chick</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.chick.name" xml:space="preserve">
-		<value>Chick</value>
+		<value>ピョ</value>
 	</data>
 	<data name="fnf.theme.chicken.desc" xml:space="preserve">
-		<value>Chicken</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.chicken.name" xml:space="preserve">
-		<value>Chicken</value>
+		<value>ココ</value>
 	</data>
 	<data name="fnf.theme.cow.desc" xml:space="preserve">
-		<value>Cow</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.cow.name" xml:space="preserve">
-		<value>Cow</value>
+		<value>ミルク</value>
 	</data>
 	<data name="fnf.theme.crocodile.desc" xml:space="preserve">
-		<value>Crocodile</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.crocodile.name" xml:space="preserve">
-		<value>Crocodile</value>
+		<value>ダイル</value>
 	</data>
 	<data name="fnf.theme.elephant.desc" xml:space="preserve">
-		<value>Elephant</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.elephant.name" xml:space="preserve">
-		<value>Elephant</value>
+		<value>ゾウさん</value>
 	</data>
 	<data name="fnf.theme.frog.desc" xml:space="preserve">
-		<value>Frog</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.frog.name" xml:space="preserve">
-		<value>Frog</value>
+		<value>ヶロ</value>
 	</data>
 	<data name="fnf.theme.furseal.desc" xml:space="preserve">
-		<value>Furseal</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.furseal.name" xml:space="preserve">
-		<value>Furseal</value>
+		<value>ハッピー</value>
 	</data>
 	<data name="fnf.theme.gibbon.desc" xml:space="preserve">
-		<value>Gibbon</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.gibbon.name" xml:space="preserve">
-		<value>Gibbon</value>
+		<value>バーズ</value>
 	</data>
 	<data name="fnf.theme.giraffe.desc" xml:space="preserve">
-		<value>Giraffe</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.giraffe.name" xml:space="preserve">
-		<value>Giraffe</value>
+		<value>クツシタさん</value>
 	</data>
 	<data name="fnf.theme.greenturtle.desc" xml:space="preserve">
-		<value>Greenturtle</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.greenturtle.name" xml:space="preserve">
-		<value>Greenturtle</value>
+		<value>カメちゃん</value>
 	</data>
 	<data name="fnf.theme.hippopotamus.desc" xml:space="preserve">
-		<value>Hippopotamus</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.hippopotamus.name" xml:space="preserve">
-		<value>Hippopotamus</value>
+		<value>カポポ</value>
 	</data>
 	<data name="fnf.theme.horse.desc" xml:space="preserve">
-		<value>Horse</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.horse.name" xml:space="preserve">
-		<value>Horse</value>
+		<value>アホリン</value>
 	</data>
 	<data name="fnf.theme.jindo.desc" xml:space="preserve">
-		<value>Jindo</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.jindo.name" xml:space="preserve">
-		<value>Jindo</value>
+		<value>JD</value>
 	</data>
 	<data name="fnf.theme.lion.desc" xml:space="preserve">
-		<value>Lion</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.lion.name" xml:space="preserve">
-		<value>Lion</value>
+		<value>王子さん</value>
 	</data>
 	<data name="fnf.theme.lioness.desc" xml:space="preserve">
-		<value>Lioness</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.lioness.name" xml:space="preserve">
-		<value>Lioness</value>
+		<value>お姫さん</value>
 	</data>
 	<data name="fnf.theme.loli.desc" xml:space="preserve">
-		<value>Loli</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.loli.name" xml:space="preserve">
-		<value>Loli</value>
+		<value>ロリ</value>
 	</data>
 	<data name="fnf.theme.naru.desc" xml:space="preserve">
-		<value>Naru</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.naru.name" xml:space="preserve">
-		<value>Naru</value>
+		<value>ナル</value>
 	</data>
 	<data name="fnf.theme.otter.desc" xml:space="preserve">
-		<value>Otter</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.otter.name" xml:space="preserve">
-		<value>Otter</value>
+		<value>クッキー</value>
 	</data>
 	<data name="fnf.theme.panda.desc" xml:space="preserve">
-		<value>Panda</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.panda.name" xml:space="preserve">
-		<value>Panda</value>
+		<value>マオピン</value>
 	</data>
 	<data name="fnf.theme.penguin.desc" xml:space="preserve">
-		<value>Penguin</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.penguin.name" xml:space="preserve">
-		<value>Penguin</value>
+		<value>ペン</value>
 	</data>
 	<data name="fnf.theme.persian.desc" xml:space="preserve">
-		<value>Persian</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.persian.name" xml:space="preserve">
-		<value>Persian</value>
+		<value>スパイS.</value>
 	</data>
 	<data name="fnf.theme.pig.desc" xml:space="preserve">
-		<value>Pig</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.pig.name" xml:space="preserve">
-		<value>Pig</value>
+		<value>プチ</value>
 	</data>
 	<data name="fnf.theme.pigblack.desc" xml:space="preserve">
-		<value>Pigblack</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.pigblack.name" xml:space="preserve">
-		<value>Pigblack</value>
+		<value>デカちゃん</value>
 	</data>
 	<data name="fnf.theme.polarbear.desc" xml:space="preserve">
-		<value>Polarbear</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.polarbear.name" xml:space="preserve">
-		<value>Polarbear</value>
+		<value>コーラ</value>
 	</data>
 	<data name="fnf.theme.pomeranian.desc" xml:space="preserve">
-		<value>Pomeranian</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.pomeranian.name" xml:space="preserve">
-		<value>Pomeranian</value>
+		<value>シュン</value>
 	</data>
 	<data name="fnf.theme.pomewhite.desc" xml:space="preserve">
-		<value>Pomewhite</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.pomewhite.name" xml:space="preserve">
-		<value>Pomewhite</value>
+		<value>シロさん</value>
 	</data>
 	<data name="fnf.theme.rabbit.desc" xml:space="preserve">
-		<value>Rabbit</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.rabbit.name" xml:space="preserve">
-		<value>Rabbit</value>
+		<value>モチちゃん</value>
 	</data>
 	<data name="fnf.theme.raccoon.desc" xml:space="preserve">
-		<value>Raccoon</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.raccoon.name" xml:space="preserve">
-		<value>Raccoon</value>
+		<value>チョコ</value>
 	</data>
 	<data name="fnf.theme.santa.desc" xml:space="preserve">
-		<value>Santa</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.santa.name" xml:space="preserve">
-		<value>Santa</value>
+		<value>サンタ</value>
 	</data>
 	<data name="fnf.theme.sealion.desc" xml:space="preserve">
-		<value>Sealion</value>
+		<value>広告補償コインが永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.sealion.name" xml:space="preserve">
-		<value>Sealion</value>
+		<value>クク</value>
 	</data>
 	<data name="fnf.theme.sheep.desc" xml:space="preserve">
-		<value>Sheep</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.sheep.name" xml:space="preserve">
-		<value>Sheep</value>
+		<value>メロー</value>
 	</data>
 	<data name="fnf.theme.soan.desc" xml:space="preserve">
-		<value>Soan</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.soan.name" xml:space="preserve">
-		<value>Soan</value>
+		<value>チビ</value>
 	</data>
 	<data name="fnf.theme.welshcorgi.desc" xml:space="preserve">
-		<value>Welshcorgi</value>
+		<value>コインの獲得量が永久的に少し増えます。</value>
 	</data>
 	<data name="fnf.theme.welshcorgi.name" xml:space="preserve">
-		<value>Welshcorgi</value>
+		<value>ヘーゼル</value>
 	</data>
 	<data name="fnf.ui.best" xml:space="preserve">
-		<value>BEST</value>
+		<value>最高点</value>
 	</data>
 	<data name="[type=TEXTURE]fnf.ui.bi" xml:space="preserve">
 		<value>98b50e41ba2120b4aa2a56ced78d6336</value>
 	</data>
 	<data name="fnf.ui.buy" xml:space="preserve">
-		<value>BUY</value>
+		<value>購入</value>
+	</data>
+	<data name="fnf.ui.clear" xml:space="preserve">
+		<value>オメデトウ！全てのレベルを完成しましたね。</value>
 	</data>
 	<data name="fnf.ui.connect" xml:space="preserve">
-		<value />
+		<value>接続します</value>
 	</data>
 	<data name="fnf.ui.connect.error.fail" xml:space="preserve">
-		<value />
+		<value>ログインに失敗しました</value>
 	</data>
 	<data name="fnf.ui.connect.error.net" xml:space="preserve">
-		<value />
+		<value>ネットワーク接続エラーはありません</value>
 	</data>
 	<data name="fnf.ui.connect.login" xml:space="preserve">
-		<value />
+		<value>ログイン</value>
 	</data>
 	<data name="fnf.ui.connect.logout" xml:space="preserve">
-		<value />
+		<value>ログアウト</value>
 	</data>
 	<data name="fnf.ui.connect.wait" xml:space="preserve">
-		<value />
+		<value>待ちます</value>
 	</data>
 	<data name="fnf.ui.credits" xml:space="preserve">
-		<value>CREDITS</value>
+		<value>Credits</value>
+	</data>
+	<data name="fnf.ui.erase" xml:space="preserve">
+		<value>邪魔な箱をクリックして消してください。</value>
+	</data>
+	<data name="fnf.ui.gameover" xml:space="preserve">
+		<value>Gameover</value>
 	</data>
 	<data name="fnf.ui.home" xml:space="preserve">
-		<value>HOME</value>
+		<value>ホーム</value>
 	</data>
 	<data name="fnf.ui.language" xml:space="preserve">
 		<value>LANGUAGE</value>
 	</data>
 	<data name="fnf.ui.mute" xml:space="preserve">
-		<value>MUTE</value>
-	</data>
-	<data name="fnf.ui.ok" xml:space="preserve">
-		<value>OK</value>
-	</data>
-	<data name="fnf.ui.option" xml:space="preserve">
-		<value>OPTION</value>
-	</data>
-	<data name="fnf.ui.pause" xml:space="preserve">
-		<value>PAUSE</value>
-	</data>
-	<data name="fnf.ui.rank" xml:space="preserve">
-		<value>RANK</value>
-	</data>
-	<data name="fnf.ui.restore" xml:space="preserve">
-		<value>RESTORE PURCHASES</value>
-	</data>
-	<data name="fnf.ui.retry" xml:space="preserve">
-		<value>RETRY</value>
-	</data>
-	<data name="fnf.ui.reward" xml:space="preserve">
-		<value>Ad BONUS</value>
-	</data>
-	<data name="fnf.ui.share" xml:space="preserve">
-		<value>SHARE</value>
-	</data>
-	<data name="fnf.ui.start" xml:space="preserve">
-		<value>START</value>
-	</data>
-	<data name="fnf.ui.title" xml:space="preserve">
-		<value>Animal Bang</value>
-	</data>
-	<data name="fnf.ui.tutorial" xml:space="preserve">
-		<value>TUTORIAL</value>
-	</data>
-	<data name="fnf.ui.tutorial.1" xml:space="preserve">
-		<value>swipe to move all boxes</value>
-	</data>
-	<data name="fnf.ui.tutorial.2" xml:space="preserve">
-		<value>when two boxes with the same
-box touch, they merge into one!</value>
-	</data>
-	<data name="fnf.ui.tutorial.3" xml:space="preserve">
-		<value>It's over when the board fills up</value>
-	</data>
-	<data name="fnf.ui.tutorial.4" xml:space="preserve">
-		<value>join the boxes and
-get to the biggest box!</value>
-	</data>
-	<data name="fnf.ui.unmute" xml:space="preserve">
-		<value>UNMUTE</value>
-	</data>
-	<data name="fnf.ui.victory" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.gameover" xml:space="preserve">
-		<value />
+		<value>Sound off</value>
 	</data>
 	<data name="fnf.ui.nomoremove" xml:space="preserve">
-		<value />
+		<value>これ以上動けません。</value>
 	</data>
-	<data name="fnf.ui.paw" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.yes" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.erase" xml:space="preserve">
-		<value />
+	<data name="fnf.ui.ok" xml:space="preserve">
+		<value>確認</value>
 	</data>
 	<data name="fnf.ui.oops" xml:space="preserve">
-		<value />
+		<value>残念！再挑戦してください。</value>
 	</data>
-	<data name="fnf.ui.clear" xml:space="preserve">
-		<value />
+	<data name="fnf.ui.option" xml:space="preserve">
+		<value>オプション</value>
+	</data>
+	<data name="fnf.ui.pause" xml:space="preserve">
+		<value>Pause</value>
+	</data>
+	<data name="fnf.ui.paw" xml:space="preserve">
+		<value>猫の手を使って箱を消しますか？</value>
+	</data>
+	<data name="fnf.ui.rank" xml:space="preserve">
+		<value>順位</value>
+	</data>
+	<data name="fnf.ui.restore" xml:space="preserve">
+		<value>購入復旧</value>
+	</data>
+	<data name="fnf.ui.retry" xml:space="preserve">
+		<value>リスタート</value>
+	</data>
+	<data name="fnf.ui.reward" xml:space="preserve">
+		<value>ボーナス</value>
+	</data>
+	<data name="fnf.ui.share" xml:space="preserve">
+		<value>共有する</value>
+	</data>
+	<data name="fnf.ui.start" xml:space="preserve">
+		<value>スタート</value>
+	</data>
+	<data name="fnf.ui.title" xml:space="preserve">
+		<value>プルプルペット</value>
+	</data>
+	<data name="fnf.ui.tutorial" xml:space="preserve">
+		<value>チュートリアル</value>
+	</data>
+	<data name="fnf.ui.tutorial.1" xml:space="preserve">
+		<value>画面をスライドすると箱が動けます。</value>
+	</data>
+	<data name="fnf.ui.tutorial.2" xml:space="preserve">
+		<value>2つの同じ箱を合わせると箱が進化します。</value>
+	</data>
+	<data name="fnf.ui.tutorial.3" xml:space="preserve">
+		<value>これ以上動けないとゲームオーバー。</value>
+	</data>
+	<data name="fnf.ui.tutorial.4" xml:space="preserve">
+		<value>各動物テーマの全レベルを完了して最高点を狙ってください。</value>
+	</data>
+	<data name="fnf.ui.unmute" xml:space="preserve">
+		<value>Sound on</value>
+	</data>
+	<data name="fnf.ui.victory" xml:space="preserve">
+		<value>Victory</value>
+	</data>
+	<data name="fnf.ui.yes" xml:space="preserve">
+		<value>使います。</value>
 	</data>
 </root>
