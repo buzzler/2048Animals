@@ -459,7 +459,7 @@
 		<value>시작</value>
 	</data>
 	<data name="fnf.ui.title" xml:space="preserve">
-		<value>쫀득쫀득</value>
+		<value>2048 동물대소동</value>
 	</data>
 	<data name="fnf.ui.tutorial" xml:space="preserve">
 		<value>튜토리얼</value>

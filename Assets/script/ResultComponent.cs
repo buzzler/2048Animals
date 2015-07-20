@@ -20,8 +20,21 @@ public class ResultComponent : UIComponent {
 	public	Transform[]		boxes;
 	public	Color			colorUpdate;
 	public	Color			colorNormal;
+	public	Button			buttonShare;
 	private	PlayerInfo		info;
 	private	int				flash;
+	private	bool			uploading;
+
+	void Update() {
+		SystemCheckComponent scc = GetComponentInParent<SystemCheckComponent> ();
+		buttonShare.interactable = SystemCheckComponent.network && FB.IsInitialized && FB.IsLoggedIn && scc.HasScreenshot ();
+		if (uploading) {
+			if (!scc.HasScreenshot ()) {
+				uploading = false;
+			}
+			OnUIChangeLanguage (SmartLocalization.LanguageManager.Instance);
+		}
+	}
 
 	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
 		base.OnUIChangeLanguage (lm);
@@ -29,7 +42,7 @@ public class ResultComponent : UIComponent {
 		labelBest.text = lm.GetTextValue ("fnf.ui.best");
 		labelHome.text = lm.GetTextValue ("fnf.ui.home");
 		labelRank.text = lm.GetTextValue ("fnf.ui.rank");
-		labelShare.text = lm.GetTextValue ("fnf.ui.share");
+		labelShare.text = uploading ? lm.GetTextValue("fnf.ui.connect.wait"):lm.GetTextValue ("fnf.ui.share");
 		labelRetry.text = lm.GetTextValue ("fnf.ui.retry");
 	}
 
@@ -68,11 +81,11 @@ public class ResultComponent : UIComponent {
 	}
 
 	public	void OnClickShare() {
-		AudioPlayerComponent.Play ("fx_click");
-        SystemCheckComponent scc = GetComponentInParent<SystemCheckComponent>();
-        if (scc.HasScreenshot()) {
-            scc.UploadFacebook();
-        }
+		if (!uploading) {
+			AudioPlayerComponent.Play ("fx_click");
+			GetComponentInParent<SystemCheckComponent> ().UploadFacebook ();
+			uploading = true;
+		}
 	}
 
 	public	void OnClickRank() {

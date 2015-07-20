@@ -107,7 +107,6 @@
      <Compile Include="Assets\script\ScoreComponent.cs" />
      <Compile Include="Assets\script\SettingComponent.cs" />
      <Compile Include="Assets\script\SlotComponent.cs" />
-     <Compile Include="Assets\script\SocialComponent.cs" />
      <Compile Include="Assets\script\SpectrumComponent.cs" />
      <Compile Include="Assets\script\StoreAssetInfo.cs" />
      <Compile Include="Assets\script\StoreComponent.cs" />

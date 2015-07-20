@@ -202,7 +202,7 @@ public class SystemCheckComponent : MonoBehaviour {
 	public	void UploadFacebook() {
         var wwwForm = new WWWForm();
         wwwForm.AddBinaryData("image", _screenshot, DateTime.Now.ToUniversalTime()+".png");
-        wwwForm.AddField("caption", "I did it!");
+        wwwForm.AddField("caption", SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.title"));
         
         FB.API("/me/photos", Facebook.HttpMethod.POST, onsnapshotcomplete, wwwForm);
 	}

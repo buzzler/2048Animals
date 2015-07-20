@@ -42,9 +42,6 @@ public class GameComponent : UIComponent {
 		SendMessageUpwards("TurnOnFilter");
 	}
 
-	void Update() {
-	}
-
 	public	void OnPop() {
 		Invoke("OnInvoke", 0.1f);
 	}
@@ -52,10 +49,6 @@ public class GameComponent : UIComponent {
 	public	void OnInvoke() {
 		core.RandomNew();
 		core.RandomNew();
-	}
-
-	public	void OnClickImage() {
-
 	}
 
 	public	void ClearScore() {
@@ -91,7 +84,6 @@ public class GameComponent : UIComponent {
 	}
 
 	public	void GameOver() {
-        GetComponentInParent<SystemCheckComponent>().TakeScreenshot();
 		SaveScore();
 		FeverOff();
 		SendMessageUpwards("ReserveNextUI", UIType.RESULT);
@@ -99,11 +91,15 @@ public class GameComponent : UIComponent {
 	}
 
 	public	void Win() {
-        GetComponentInParent<SystemCheckComponent>().TakeScreenshot();
 		SaveScore();
 		FeverOff();
 		SendMessageUpwards("ReserveNextUI", UIType.RESULT);
 		animator.SetTrigger("trigger_win");
+	}
+
+	public	void OnWinOverComplete() {
+		GetComponentInParent<SystemCheckComponent>().TakeScreenshot();
+		OnUIChange ();
 	}
 
 	public	void FeverOn() {
