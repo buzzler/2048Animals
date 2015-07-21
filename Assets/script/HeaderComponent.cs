@@ -40,9 +40,11 @@ public class HeaderComponent : UIComponent {
 		}
 	}
 
-	public	void OnClickRank() {
-		AudioPlayerComponent.Play ("fx_click");
-	}
+    public  void OnClickFoot() {
+        AudioPlayerComponent.Play ("fx_click");
+        OnUIReserve(UIType.FOOTPACK);
+        OnUIChange();
+    }
 
 	public	void OnClickCoin() {
 		AudioPlayerComponent.Play ("fx_click");

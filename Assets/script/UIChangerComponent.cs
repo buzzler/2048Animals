@@ -11,6 +11,7 @@ public class UIChangerComponent : MonoBehaviour {
 	public	UIComponent						ui_result;
 	public	UIComponent 					ui_setting;
 	public	UIComponent						ui_coinpack;
+    public  UIComponent                     ui_footpack;
 	public	UIComponent						ui_tutorial;
 	public	UIComponent						ui_pause;
 	public	UIComponent						ui_connect;
@@ -28,9 +29,10 @@ public class UIChangerComponent : MonoBehaviour {
 		dictionary.Add(UIType.RESULT,	ui_result);
 		dictionary.Add(UIType.SETTING,	ui_setting);
 		dictionary.Add(UIType.COINPACK,	ui_coinpack);
+        dictionary.Add(UIType.FOOTPACK, ui_footpack);
 		dictionary.Add(UIType.TUTORIAL,	ui_tutorial);
 		dictionary.Add(UIType.PAUSE,	ui_pause);
-		dictionary.Add(UIType.CONNECT, ui_connect);
+		dictionary.Add(UIType.CONNECT,  ui_connect);
 		current = UIType.NONE;
 		reserved = UIType.PRELOAD;
 		changeNow = true;
@@ -122,6 +124,7 @@ public class UIChangerComponent : MonoBehaviour {
 		ui_result.OnUIStop();
 		ui_setting.OnUIStop();
 		ui_coinpack.OnUIStop ();
+        ui_footpack.OnUIStop ();
 		ui_tutorial.OnUIStop();
 		ui_pause.OnUIStop();
 		ui_connect.OnUIStop();
@@ -148,6 +151,7 @@ public class UIChangerComponent : MonoBehaviour {
 		ui_result.OnUIStop();
 		ui_setting.OnUIStop();
 		ui_coinpack.OnUIStop();
+        ui_footpack.OnUIStop ();
 		ui_tutorial.OnUIStop();
 		ui_pause.OnUIStop();
 		ui_connect.OnUIStop();
@@ -161,6 +165,7 @@ public class UIChangerComponent : MonoBehaviour {
 		ui_result.OnUIStop();
 		ui_setting.OnUIStop();
 		ui_coinpack.OnUIStop();
+        ui_footpack.OnUIStop ();
 		ui_tutorial.OnUIStop();
 		ui_pause.OnUIStop();
 		ui_connect.OnUIStop();
@@ -174,6 +179,7 @@ public class UIChangerComponent : MonoBehaviour {
 		ui_result.OnUIStop();
 		ui_setting.OnUIStop();
 		ui_coinpack.OnUIStop();
+        ui_footpack.OnUIStop ();
 		ui_tutorial.OnUIStop();
 		ui_pause.OnUIStop();
 		ui_connect.OnUIStop();
@@ -187,6 +193,7 @@ public class UIChangerComponent : MonoBehaviour {
 		ui_game.OnUIStop();
 		ui_setting.OnUIStop();
 		ui_coinpack.OnUIStop();
+        ui_footpack.OnUIStop ();
 		ui_tutorial.OnUIStop();
 		ui_pause.OnUIStop();
 		ui_connect.OnUIStop();

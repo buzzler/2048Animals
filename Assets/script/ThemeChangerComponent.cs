@@ -15,6 +15,7 @@ public class ThemeChangerComponent : MonoBehaviour
 
 	public	TextAsset		assetTheme;
 	public	TextAsset		assetStore;
+    public  TextAsset       assetFoot;
 
 	void Start() {
 		info = PlayerInfoKeeper.GetInstance().playerInfo;
@@ -24,6 +25,7 @@ public class ThemeChangerComponent : MonoBehaviour
 		string[][] grid = CSVReader.SplitCsvJaggedGrid(assetTheme.text);
 		int count = grid.Length-1;		// without header
 
+        // initialize theme
 		themes = new ThemeInfo[count];
 		for (int y = 0 ; y < count ; y++) {
 			ThemeInfo t = ThemeInfo.Parse(grid[y+1]);
@@ -34,16 +36,30 @@ public class ThemeChangerComponent : MonoBehaviour
 		}
 		StoreAssetInfo.Register(new VirtualCategory("cat_theme", category));
 
+        // initialize coinpack
 		category = new List<string>();
 		grid = CSVReader.SplitCsvJaggedGrid(assetStore.text);
 		count = grid.Length-1;		// without header
 		for (int y = 0 ; y < count ; y++) {
-			StoreInfo sinfo = StoreInfo.Parse(grid[y+1]);
-			StoreInfo.Resister(sinfo);
+            PackInfo sinfo = PackInfo.Parse(grid[y+1]);
+            PackInfo.Resister(sinfo);
 			StoreAssetInfo.Register(new VirtualCurrencyPack(sinfo.name, sinfo.description, sinfo.id, sinfo.amount, StoreAssetInfo.COIN, new PurchaseWithMarket(sinfo.productId, sinfo.price)));
 			category.Add(sinfo.id);
 		}
 		StoreAssetInfo.Register(new VirtualCategory("cat_coin", category));
+
+        // initialize footpack
+        StoreAssetInfo.Register(new SingleUseVG("foot", "break a jelly", StoreAssetInfo.FOOT, new PurchaseWithVirtualItem(StoreAssetInfo.COIN, 50000)));
+        category = new List<string>();
+        grid = CSVReader.SplitCsvJaggedGrid(assetFoot.text);
+        count = grid.Length-1;      // without header
+        for (int y = 0 ; y < count ; y++) {
+            PackInfo sinfo = PackInfo.Parse(grid[y+1]);
+            PackInfo.Resister(sinfo);
+            StoreAssetInfo.Register(new SingleUsePackVG(StoreAssetInfo.FOOT, sinfo.amount, sinfo.name, sinfo.description, sinfo.id, new PurchaseWithMarket(sinfo.productId, sinfo.price)));
+            category.Add(sinfo.id);
+        }
+        StoreAssetInfo.Register(new VirtualCategory("cat_foot", category));
 
 		SoomlaStore.Initialize(new StoreAssetInfo());
 		SetTheme(info.type);

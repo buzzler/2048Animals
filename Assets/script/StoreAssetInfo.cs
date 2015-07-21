@@ -6,6 +6,7 @@ using Soomla.Store;
 
 public class StoreAssetInfo : IStoreAssets {
 	public	const string COIN = "coin";
+    public  const string FOOT = "foot";
 	public	static VirtualCurrency 							currencyCoin	= new VirtualCurrency("Coin", "Main Currency", COIN);
 	public	static List<VirtualCurrency>					listCurrency	= new List<VirtualCurrency>(new VirtualCurrency[] {currencyCoin});
 	public	static List<VirtualCurrencyPack>				listCurrencyPack= new List<VirtualCurrencyPack>();

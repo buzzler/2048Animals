@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class StoreInfo {
-	public	static Dictionary<string, StoreInfo>	dictionary;
+public class PackInfo {
+	public	static Dictionary<string, PackInfo>	allInfos;
+    public  static Dictionary<string, PackInfo> coinInfos;
+    public  static Dictionary<string, PackInfo> footInfos;
 
 	public	string	id { get { return _id; } }
 	public	string	description	{ get { return _description; } }
@@ -22,23 +24,30 @@ public class StoreInfo {
 	private	string	_productId;
 	private	double	_price;
 
-	public	static void Resister(StoreInfo info) {
-		if (dictionary==null) {
-			dictionary = new Dictionary<string, StoreInfo>();
+	public	static void Resister(PackInfo info) {
+		if (allInfos==null) {
+			allInfos = new Dictionary<string, PackInfo>();
+            coinInfos = new Dictionary<string, PackInfo>();
+            footInfos = new Dictionary<string, PackInfo>();
 		}
-		dictionary.Add(info.id, info);
+		allInfos.Add(info.id, info);
+        if (info.currency.ToLower()==StoreAssetInfo.COIN) {
+            coinInfos.Add(info.id, info);
+        } else if (info.currency.ToLower()==StoreAssetInfo.FOOT) {
+            footInfos.Add(info.id, info);
+        }
 	}
 	
-	public	static StoreInfo Find(string id) {
-		if ((dictionary!=null)&&(dictionary.ContainsKey(id))) {
-			return dictionary[id];
+	public	static PackInfo Find(string id) {
+		if ((allInfos!=null)&&(allInfos.ContainsKey(id))) {
+			return allInfos[id];
 		} else {
 			return null;
 		}
 	}
 
-	public	static StoreInfo Parse(string[] line) {
-		StoreInfo info = new StoreInfo ();
+	public	static PackInfo Parse(string[] line) {
+		PackInfo info = new PackInfo ();
 		info._id			= line [0];
 		info._name			= line [1];
 		info._description	= line [2];
