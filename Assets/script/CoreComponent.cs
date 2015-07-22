@@ -192,6 +192,15 @@ public class CoreComponent : MonoBehaviour {
 		game.FeverOff ();
 	}
 
+	public	void OnErase(SlotComponent slot) {
+		BoxComponent box = slot.box;
+		slot.Clear ();
+		boxes.Remove(box.id);
+		GameObject.DestroyImmediate (box.gameObject);
+		AudioPlayerComponent.Play ("fx_combo");
+		EffectComponent.Show (effectBang [0], slot.transform.position);
+	}
+
 	public void OnMerge(SlotComponent slot) {
 		BoxComponent box1 = slot.box;
 		BoxComponent box2 = slot.target;

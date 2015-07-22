@@ -110,4 +110,8 @@ public class BoxComponent : MonoBehaviour {
 		tween = false;
 		current.HandleMove(this);
 	}
+
+	public	void OnClick() {
+		SendMessageUpwards ("OnErase", current);
+	}
 }

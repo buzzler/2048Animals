@@ -10,6 +10,7 @@ public class GameComponent : UIComponent {
 	public	Text				labelBest;
 	public	Text				textBest;
 	public	Text				textScore;
+	public	Text				labelTap;
 	public	GameObject			fever;
     public  RawImage            rawShadow;
     public  RawImage            rawSpeaker;
@@ -24,6 +25,7 @@ public class GameComponent : UIComponent {
 	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
 		base.OnUIChangeLanguage (lm);
 		labelBest.text = lm.GetTextValue ("fnf.ui.best");
+		labelTap.text = lm.GetTextValue ("fnf.ui.erase");
 	}
 
 	public	override void OnUIStart() {
@@ -154,11 +156,18 @@ public class GameComponent : UIComponent {
 	}
 
     public  void OnClickClose() {
+		AudioPlayerComponent.Play ("fx_click");
         animator.SetTrigger("trigger_close");
     }
     
     public  void OnClickYes() {
-        animator.SetTrigger("trigger_yes");
+		AudioPlayerComponent.Play ("fx_click");
+		if (StoreInventory.GetItemBalance (StoreAssetInfo.FOOT) > 0) {
+			animator.SetTrigger ("trigger_yes");
+		} else {
+			OnUIReserve(UIType.FOOTPACK);
+			OnUIChange();
+		}
     }
     
     public  void OnCloseAnimationComplete() {
@@ -166,6 +175,22 @@ public class GameComponent : UIComponent {
     }
     
     public  void OnYesAnimationComplete() {
-        
+		Button[] buttons = core.GetComponentsInChildren<Button> ();
+		foreach (Button b in buttons) {
+			b.interactable = true;
+		}
     }
+
+	public	void OnErase(SlotComponent slot) {
+		Button[] buttons = core.GetComponentsInChildren<Button> ();
+		foreach (Button b in buttons) {
+			b.interactable = false;
+		}
+		StoreInventory.TakeItem (StoreAssetInfo.FOOT, 1);
+		animator.SetTrigger ("trigger_erase");
+	}
+
+	public	void OnEraseAnimationComplete() {
+
+	}
 }
