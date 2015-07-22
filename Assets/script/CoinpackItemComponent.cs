@@ -12,8 +12,8 @@ public class CoinpackItemComponent : MonoBehaviour {
 
 	public	void SetItem(VirtualCurrencyPack vcp) {
 		currencypack = vcp;
-		textAmount.text = vcp.CurrencyAmount.ToString ();
-		textPrice.text = "$" + (vcp.PurchaseType as PurchaseWithMarket).MarketItem.Price.ToString ();
+        textAmount.text = Utility.ToNumber(vcp.CurrencyAmount);
+        textPrice.text = Utility.ToCurrency((vcp.PurchaseType as PurchaseWithMarket).MarketItem.Price);
 	}
 
 	public	void SetIcon(Sprite sprite) {

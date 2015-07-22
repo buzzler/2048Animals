@@ -1,6 +1,6 @@
 item id,name,description,currency,amount,productId,price
-pack101,5,5 Pack,foot,5,fpack1,1
-pack102,30,30 Pack,foot,30,fpack2,5
-pack103,70,70 Pack,foot,70,fpack3,10
-pack104,150,150 Pack,foot,150,fpack4,20
-pack105,350,350 Pack,foot,350,fpack5,40
+pack101,A Breaker,Single Item,coin,1,fpack1,1000
+pack102,5 Breakers,5 Item Pack,coin,5,fpack2,4750
+pack103,10 Breakers,10 Item Pack,coin,10,fpack3,9000
+pack104,20 Breakers,20 Item Pack,coin,20,fpack4,17000
+pack105,40 Breakers,40 Item Pack,coin,40,fpack5,32000

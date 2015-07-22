@@ -19,10 +19,10 @@ public class HeaderComponent : UIComponent {
 
 	void OnEnable() {
 		int coin = StoreInventory.GetItemBalance(StoreAssetInfo.COIN);
-		labelCoin.text = coin.ToString();
+        labelCoin.text = Utility.ToNumber(coin);
 		lastCoin = coin;
 		int foot = StoreInventory.GetItemBalance (StoreAssetInfo.FOOT);
-		labelFoot.text = foot.ToString ();
+        labelFoot.text = Utility.ToNumber(foot);
 		Observer ob = Observer.GetInstance();
 		ob.currencyChange += OnCurrencyChange;
 		ob.inventoryChange += OnInventoryChange;
@@ -39,14 +39,14 @@ public class HeaderComponent : UIComponent {
 			if (balance>lastCoin) {
 				animatorCoin.SetTrigger("increase");
 			}
-			labelCoin.text = balance.ToString();
+            labelCoin.text = Utility.ToNumber(balance);
 			lastCoin = balance;
 		}
 	}
 
 	public	void OnInventoryChange(string id, int balance) {
 		if (id == StoreAssetInfo.FOOT) {
-			labelFoot.text = balance.ToString();
+            labelFoot.text = Utility.ToNumber(balance);
 		}
 	}
 

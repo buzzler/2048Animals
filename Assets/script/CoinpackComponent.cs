@@ -32,10 +32,17 @@ public class CoinpackComponent : UIComponent {
 		float rows = Mathf.Ceil((float)list.Count / (float)grid.constraintCount);
 		float h = grid.padding.top + grid.padding.bottom + grid.spacing.y * (rows-1) + grid.cellSize.y * rows;
 		(grid.transform as RectTransform).sizeDelta = new Vector2 (500, h);
+        Observer.GetInstance().currencyChange += OnUpdateCurrency;
 	}
 
 	public	override void OnUIStop() {
 		base.OnUIStop ();
+        for (int i = grid.transform.childCount ; i > 0 ; i--) {
+            Transform child = grid.transform.GetChild(0);
+            child.SetParent(null);
+            Destroy(child.gameObject);
+        }
+        Observer.GetInstance().currencyChange -= OnUpdateCurrency;
 	}
 
 	public	void OnClickClose() {
@@ -48,4 +55,11 @@ public class CoinpackComponent : UIComponent {
 		AudioPlayerComponent.Play ("fx_click");
 		StoreInventory.BuyItem (vcp.ItemId);
 	}
+
+    private void OnUpdateCurrency(int balance, int delta) {
+        if (delta > 0) {
+            OnUIReserve(parent);
+            OnUIBackward ();
+        }
+    }
 }

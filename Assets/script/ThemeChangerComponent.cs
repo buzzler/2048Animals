@@ -49,14 +49,15 @@ public class ThemeChangerComponent : MonoBehaviour
 		StoreAssetInfo.Register(new VirtualCategory("cat_coin", category));
 
         // initialize footpack
-        StoreAssetInfo.Register(new SingleUseVG("foot", "break a jelly", StoreAssetInfo.FOOT, new PurchaseWithVirtualItem(StoreAssetInfo.COIN, 50000)));
+        StoreAssetInfo.Register(new SingleUseVG("foot", "break a jelly", StoreAssetInfo.FOOT, new PurchaseWithVirtualItem(StoreAssetInfo.COIN, 1000)));
         category = new List<string>();
         grid = CSVReader.SplitCsvJaggedGrid(assetFoot.text);
         count = grid.Length-1;      // without header
         for (int y = 0 ; y < count ; y++) {
             PackInfo sinfo = PackInfo.Parse(grid[y+1]);
             PackInfo.Resister(sinfo);
-            StoreAssetInfo.Register(new SingleUsePackVG(StoreAssetInfo.FOOT, sinfo.amount, sinfo.name, sinfo.description, sinfo.id, new PurchaseWithMarket(sinfo.productId, sinfo.price)));
+            StoreAssetInfo.Register(new SingleUsePackVG(StoreAssetInfo.FOOT, sinfo.amount, sinfo.name, sinfo.description, sinfo.id, new PurchaseWithVirtualItem(StoreAssetInfo.COIN, (int)sinfo.price)));
+//            StoreAssetInfo.Register(new SingleUsePackVG(StoreAssetInfo.FOOT, sinfo.amount, sinfo.name, sinfo.description, sinfo.id, new PurchaseWithMarket(sinfo.productId, sinfo.price)));
             category.Add(sinfo.id);
         }
         StoreAssetInfo.Register(new VirtualCategory("cat_foot", category));

@@ -31,9 +31,9 @@ public class PackInfo {
             footInfos = new Dictionary<string, PackInfo>();
 		}
 		allInfos.Add(info.id, info);
-        if (info.currency.ToLower()==StoreAssetInfo.COIN) {
+        if (info.currency.ToLower()==StoreAssetInfo.DOLLAR) {
             coinInfos.Add(info.id, info);
-        } else if (info.currency.ToLower()==StoreAssetInfo.FOOT) {
+        } else if (info.currency.ToLower()==StoreAssetInfo.COIN) {
             footInfos.Add(info.id, info);
         }
 	}

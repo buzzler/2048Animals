@@ -33,12 +33,18 @@ public class StoreComponent : MonoBehaviour {
 
 	private void onCurrencyBalanceChanged(VirtualCurrency currency, int balance, int delta) {
 		DebugComponent.Log("CURRENCY ("+ currency.Name + ") : " + balance.ToString() + "(" + (delta>0?"+":"") + delta.ToString()+ ")");
-		Observer.GetInstance ().currencyChange (balance, delta);
+        Observer ob = Observer.GetInstance ();
+		if (ob.currencyChange != null) {
+            ob.currencyChange (balance, delta);
+        }
 	}
 
 	private	void onGoodBalanceChanged(VirtualGood good, int balance, int delta) {
 		DebugComponent.Log("GOOD ("+ good.Name + ") : " + balance.ToString() + "(" + (delta>0?"+":"") + delta.ToString()+ ")");
-		Observer.GetInstance().inventoryChange(good.ItemId, balance);
+        Observer ob = Observer.GetInstance ();
+        if (ob.inventoryChange != null) {
+		    ob.inventoryChange(good.ItemId, balance);
+        }
 	}
 
 	private	void onMarketPurchaseStarted(PurchasableVirtualItem pvi) {

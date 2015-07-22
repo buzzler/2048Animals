@@ -32,10 +32,17 @@ public class FootpackComponent : UIComponent {
         float rows = Mathf.Ceil((float)PackInfo.footInfos.Count / (float)grid.constraintCount);
 		float h = grid.padding.top + grid.padding.bottom + grid.spacing.y * (rows-1) + grid.cellSize.y * rows;
 		(grid.transform as RectTransform).sizeDelta = new Vector2 (500, h);
+        Observer.GetInstance().inventoryChange += OnUpdateInventory;
 	}
 
 	public	override void OnUIStop() {
 		base.OnUIStop ();
+        for (int i = grid.transform.childCount ; i > 0 ; i--) {
+            Transform child = grid.transform.GetChild(0);
+            child.SetParent(null);
+            Destroy(child.gameObject);
+        }
+        Observer.GetInstance().inventoryChange -= OnUpdateInventory;
 	}
 
 	public	void OnClickClose() {
@@ -48,4 +55,11 @@ public class FootpackComponent : UIComponent {
 		AudioPlayerComponent.Play ("fx_click");
 		StoreInventory.BuyItem (sup.ItemId);
 	}
+
+    private void OnUpdateInventory(string id, int balance) {
+        if ((id == StoreAssetInfo.FOOT) && (balance > 0)) {
+            OnUIReserve(parent);
+            OnUIBackward ();
+        }
+    }
 }
