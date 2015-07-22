@@ -22,7 +22,7 @@ public class GameFootComponent : MonoBehaviour {
     }
 
     private void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
-        textTitle.text = lm.GetTextValue("fnf.ui.gameover" + "?");
+        textTitle.text = lm.GetTextValue("fnf.ui.gameover") + "?";
         textFoot.text = StoreInventory.GetItemBalance(StoreAssetInfo.FOOT).ToString();
         textMessage.text = lm.GetTextValue("fnf.ui.nomoremove") + "\n" + lm.GetTextValue("fnf.ui.paw");
         textYes.text = lm.GetTextValue("fnf.ui.yes");
