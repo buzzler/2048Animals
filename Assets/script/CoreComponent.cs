@@ -20,46 +20,14 @@ public class CoreComponent : MonoBehaviour {
 	public	float			timeDuration;
 	public	float			timeFever;
 	
-	public	Image			speaker;
-	public	Sprite			speakerNormal;
-	public	Sprite			speakerBoom;
 	private	Observer		observer;
 	private	GameComponent	game;
 	void Start() {
 		Init();
 	}
 
-	void OnEnable() {
-		ThemeInfo info = PlayerInfoKeeper.GetInstance().playerInfo.GetThemeInfo();
-		speakerNormal = Resources.Load<Sprite>("bg/" + info.bg.ToString().ToLower()+"_1");
-		speakerBoom = Resources.Load<Sprite>("bg/" + info.bg.ToString().ToLower()+"_2");
-		speaker.sprite = speakerNormal;
-
-		if (observer==null) {
-			observer = Observer.GetInstance();
-		}
-		observer.beat += OnBeat;
-	}
-
 	void OnDisable() {
-		if (observer==null) {
-			observer = Observer.GetInstance();
-		}
-		observer.beat -= OnBeat;
-		speakerNormal = null;
-		speakerBoom = null;
 		CancelInvoke ();
-	}
-
-	public	void OnBeat(float time) {
-		if (isActiveAndEnabled) {
-			speaker.sprite = (speaker.sprite==speakerBoom) ? speakerNormal:speakerBoom;
-			if (fever && (observer.beatFever!=null)) {
-				observer.beatFever();
-			} else {
-				observer.beatNormal();
-			}
-		}
 	}
 
 	private void Init() {
@@ -279,8 +247,8 @@ public class CoreComponent : MonoBehaviour {
 			}
 
 			if (gameover) {
-				game.GameOver();
-			}
+                game.NoMoreMove();
+            }
 		}
 	}
 

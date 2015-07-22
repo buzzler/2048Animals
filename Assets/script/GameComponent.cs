@@ -11,6 +11,10 @@ public class GameComponent : UIComponent {
 	public	Text				textBest;
 	public	Text				textScore;
 	public	GameObject			fever;
+    public  RawImage            rawShadow;
+    public  RawImage            rawSpeaker;
+    private Texture2D           textureNormal;
+    private Texture2D           textureBoom;
 	private	Animator			animator;
 	private PlayerInfo			playerInfo;
 	private	uint				score;
@@ -28,6 +32,13 @@ public class GameComponent : UIComponent {
 		playerInfo = PlayerInfoKeeper.GetInstance().playerInfo;
 		bg = GameObject.FindObjectOfType<BackgroundComponent>();
 		observer = Observer.GetInstance();
+        observer.beat += OnBeat;
+
+        ThemeInfo info = playerInfo.GetThemeInfo();
+        textureNormal = Resources.Load<Texture2D>("bg/" + info.bg.ToString().ToLower()+"_1");
+        textureBoom = Resources.Load<Texture2D>("bg/" + info.bg.ToString().ToLower()+"_2");
+        rawSpeaker.texture = textureNormal;
+
 		// change medium image to selected animal's one
 		ClearScore();
 		ClearCoin();
@@ -38,9 +49,21 @@ public class GameComponent : UIComponent {
 
 	public	override void OnUIStop() {
 		base.OnUIStop();
+        observer.beat -= OnBeat;
 		FeverOff();
 		SendMessageUpwards("TurnOnFilter");
 	}
+
+    public  void OnBeat(float time) {
+        if (isActiveAndEnabled) {
+            rawSpeaker.texture = (rawSpeaker.texture == textureBoom) ? textureNormal:textureBoom;
+            if (fever && (observer.beatFever!=null)) {
+                observer.beatFever();
+            } else {
+                observer.beatNormal();
+            }
+        }
+    }
 
 	public	void OnPop() {
 		Invoke("OnInvoke", 0.1f);
@@ -55,7 +78,9 @@ public class GameComponent : UIComponent {
 		playerInfo.highLevel = 0;
 		score = 0;
 		UpdateScore();
-		observer.highLevelChange(0);
+        if (observer.highLevelChange != null) {
+            observer.highLevelChange(0);
+        }
 	}
 
 	public	void AppendScore(int level) {
@@ -82,6 +107,10 @@ public class GameComponent : UIComponent {
 		playerInfo.coinDelta += (int)playerInfo.buffInfoCoin.Calculate((float)delta);
 		StoreInventory.GiveItem(StoreAssetInfo.COIN, delta);
 	}
+
+    public  void NoMoreMove() {
+        animator.SetTrigger("trigger_foot");
+    }
 
 	public	void GameOver() {
 		SaveScore();
@@ -123,4 +152,20 @@ public class GameComponent : UIComponent {
 	private	void SaveScore() {
 		playerInfo.score = score;
 	}
+
+    public  void OnClickClose() {
+        animator.SetTrigger("trigger_close");
+    }
+    
+    public  void OnClickYes() {
+        animator.SetTrigger("trigger_yes");
+    }
+    
+    public  void OnCloseAnimationComplete() {
+        GameOver();
+    }
+    
+    public  void OnYesAnimationComplete() {
+        
+    }
 }
