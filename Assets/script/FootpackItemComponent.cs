@@ -12,7 +12,7 @@ public class FootpackItemComponent : MonoBehaviour {
 
 	public	void SetItem(SingleUsePackVG sup) {
 		pack = sup;
-		textAmount.text = sup.GoodAmount.ToString ();
+		textAmount.text = sup.GoodAmount.ToString () + " Pack";
 		textPrice.text = "$" + (sup.PurchaseType as PurchaseWithMarket).MarketItem.Price.ToString ();
 	}
 

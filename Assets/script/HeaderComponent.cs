@@ -8,6 +8,7 @@ public class HeaderComponent : UIComponent {
 
 	public	PlayerInfo	info;
 	public	Text		labelCoin;
+	public	Text		labelFoot;
 	public	Animator	animatorCoin;
 
 	private	int			lastCoin;
@@ -20,14 +21,17 @@ public class HeaderComponent : UIComponent {
 		int coin = StoreInventory.GetItemBalance(StoreAssetInfo.COIN);
 		labelCoin.text = coin.ToString();
 		lastCoin = coin;
-
+		int foot = StoreInventory.GetItemBalance (StoreAssetInfo.FOOT);
+		labelFoot.text = foot.ToString ();
 		Observer ob = Observer.GetInstance();
 		ob.currencyChange += OnCurrencyChange;
+		ob.inventoryChange += OnInventoryChange;
 	}
 
 	void OnDisable() {
 		Observer ob = Observer.GetInstance();
 		ob.currencyChange -= OnCurrencyChange;
+		ob.inventoryChange -= OnInventoryChange;
 	}
 
 	public	void OnCurrencyChange(int balance, int delta) {
@@ -37,6 +41,12 @@ public class HeaderComponent : UIComponent {
 			}
 			labelCoin.text = balance.ToString();
 			lastCoin = balance;
+		}
+	}
+
+	public	void OnInventoryChange(string id, int balance) {
+		if (id == StoreAssetInfo.FOOT) {
+			labelFoot.text = balance.ToString();
 		}
 	}
 
