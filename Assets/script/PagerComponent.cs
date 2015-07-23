@@ -71,6 +71,7 @@ public class PagerComponent : ScrollRect {
 	}
 
 	public	void JumpPage(int page) {
+        currentPage = page;
 		float targetPos = rightMost - snap * ((float)page-1f);
 
 		StopMovement ();

@@ -93,6 +93,7 @@ public class DebugComponent : MonoBehaviour {
 
 	public	void TakeAllCoin() {
 		StoreInventory.TakeItem(StoreAssetInfo.COIN, StoreInventory.GetItemBalance(StoreAssetInfo.COIN));
+        StoreInventory.TakeItem(StoreAssetInfo.FOOT, StoreInventory.GetItemBalance(StoreAssetInfo.FOOT));
 		foreach (ThemeInfo theme in ThemeInfo.dictionaryId.Values) {
 			if (theme.costAmount>0) {
 				StoreInventory.TakeItem(theme.id, 1);
