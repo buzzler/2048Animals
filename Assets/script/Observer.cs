@@ -32,7 +32,7 @@ public	delegate void DelegateBeatNormal();
 public	delegate void DelegateBeatFever();
 public	delegate void DelegateThemeChange(ThemeInfo theme);
 public	delegate void DelegateHighLevel(int level);
-public	delegate void DelegateChangeInventory(string id, int balance);
+public	delegate void DelegateChangeInventory(string id, int balance, int delta);
 public	delegate void DelegateMaskClose();
 public	delegate void DelegateMaskOpen();
 public	delegate void DelegateCurrencyChange(int balance, int delta);

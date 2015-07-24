@@ -188,6 +188,7 @@ public class GameComponent : UIComponent {
 		}
 		StoreInventory.TakeItem (StoreAssetInfo.FOOT, 1);
 		animator.SetTrigger ("trigger_erase");
+        AnalyticsComponent.LogItemEvent(AnalyticsComponent.ACTION_USE, 1);
 	}
 
 	public	void OnEraseAnimationComplete() {

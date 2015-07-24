@@ -28,7 +28,7 @@ public class GameFootComponent : MonoBehaviour {
         textYes.text = lm.GetTextValue("fnf.ui.yes");
     }
 
-    private void OnUpdateInventory(string id, int balance) {
+    private void OnUpdateInventory(string id, int balance, int delta) {
         if (id == StoreAssetInfo.FOOT) {
             textFoot.text = balance.ToString();
         }

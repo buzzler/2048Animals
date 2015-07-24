@@ -58,6 +58,9 @@ public class ResultComponent : UIComponent {
 		SetCurrentScore ();
 		SetBox();
 
+        AnalyticsComponent.LogGameEvent(AnalyticsComponent.ACTION_SCORE, (long)currentGroup.GetScore());
+        AnalyticsComponent.LogGameEvent(AnalyticsComponent.ACTION_COIN, (long)info.coinDelta);
+
 		keeper.Save();
 	}
 

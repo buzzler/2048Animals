@@ -18,24 +18,21 @@ public class AdsComponent : MonoBehaviour {
 	}
 
 	void Update() {
-#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 		if (Advertisement.isReady ()) {
 			double t = DateTime.Now.Subtract (info.ads).TotalSeconds - timerMinute*60.0;
 			button.interactable = (t >= 0);
 		} else {
 			button.interactable = false;
 		}
-#endif
 	}
 
 	public	void OnClick() {
-#if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 		if (Advertisement.isReady()) {
 			ShowOptions opt = new ShowOptions();
 			opt.resultCallback = OnShowComplete;
 			Advertisement.Show(null, opt);
+            AnalyticsComponent.LogAdEvent(AnalyticsComponent.ACTION_SHOW);
 		}
-#endif
 	}
 
 	public	void OnShowComplete(ShowResult result) {
@@ -45,12 +42,15 @@ public class AdsComponent : MonoBehaviour {
 			info.ads = DateTime.Now;
 			PlayerInfoKeeper.GetInstance().Save();
 			EffectComponent.Show(EffectType.BONUS, Vector3.zero);
+            AnalyticsComponent.LogAdEvent(AnalyticsComponent.ACTION_FINISH);
 			break;
 		case ShowResult.Failed:
 			DebugComponent.Log("UNITY AD FAILED");
+            AnalyticsComponent.LogAdEvent(AnalyticsComponent.ACTION_FAIL);
 			break;
 		case ShowResult.Skipped:
 			DebugComponent.Log("UNITY AD SKIPPED");
+            AnalyticsComponent.LogAdEvent(AnalyticsComponent.ACTION_SKIP);
 			break;
 		}
 	}

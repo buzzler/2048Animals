@@ -56,8 +56,9 @@ public class FootpackComponent : UIComponent {
 		StoreInventory.BuyItem (sup.ItemId);
 	}
 
-    private void OnUpdateInventory(string id, int balance) {
+    private void OnUpdateInventory(string id, int balance, int delta = 0) {
         if ((id == StoreAssetInfo.FOOT) && (balance > 0)) {
+            AnalyticsComponent.LogItemEvent(AnalyticsComponent.ACTION_PURCHASE, delta);
             OnUIReserve(parent);
             OnUIBackward ();
         }

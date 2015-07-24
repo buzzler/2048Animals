@@ -43,7 +43,7 @@ public class StoreComponent : MonoBehaviour {
 		DebugComponent.Log("GOOD ("+ good.Name + ") : " + balance.ToString() + "(" + (delta>0?"+":"") + delta.ToString()+ ")");
         Observer ob = Observer.GetInstance ();
         if (ob.inventoryChange != null) {
-		    ob.inventoryChange(good.ItemId, balance);
+		    ob.inventoryChange(good.ItemId, balance, delta);
         }
 	}
 
@@ -51,8 +51,24 @@ public class StoreComponent : MonoBehaviour {
 		DebugComponent.Log("PURCHASING..");
 	}
 
-	public void onMarketPurchase(PurchasableVirtualItem pvi, string payload, Dictionary<string, string> extra) {
-		DebugComponent.Log("PURCHASED");
+	public void onMarketPurchase(PurchasableVirtualItem pvi, string payload, Dictionary<string, string> extras) {
+        DebugComponent.Log("PURCHASED");
+        double revenue = 0;
+        string currency = "";
+        string orderId = "";
+
+        PurchaseType type = pvi.PurchaseType;
+        if (type is PurchaseWithMarket) {
+            MarketItem item = ((PurchaseWithMarket)type).MarketItem;
+            revenue = item.MarketPriceMicros / 1000000;
+            currency = item.MarketCurrencyCode;
+        }
+#if UNITY_ANDROID
+        extras.TryGetValue("orderId", out orderId);
+#elif UNITY_IOS
+        extras.TryGetValue("transactionIdentifier", out orderId);
+#endif
+        AnalyticsComponent.LogTransaction(orderId, revenue, currency);
 	}
 
 	public void onMarketPurchaseCancelled(PurchasableVirtualItem pvi) {

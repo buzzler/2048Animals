@@ -44,7 +44,7 @@ public class HeaderComponent : UIComponent {
 		}
 	}
 
-	public	void OnInventoryChange(string id, int balance) {
+	public	void OnInventoryChange(string id, int balance, int delta) {
 		if (id == StoreAssetInfo.FOOT) {
             labelFoot.text = Utility.ToNumber(balance);
 		}

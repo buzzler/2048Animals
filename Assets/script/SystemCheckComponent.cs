@@ -227,8 +227,10 @@ public class SystemCheckComponent : MonoBehaviour {
 		if (FB.IsLoggedIn) {
 			PlayerPrefs.SetInt("login", 1);
 			if (observer.fbLogin!=null) {observer.fbLogin(true);}
+            AnalyticsComponent.LogSocial(AnalyticsComponent.ACTION_CONNECT);
 		} else {
 			if (observer.fbLogin!=null) {observer.fbLogin(false);}
+            AnalyticsComponent.LogSocial(AnalyticsComponent.ACTION_DISCONNECT);
 		}
 	}
 	

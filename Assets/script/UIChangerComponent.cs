@@ -114,6 +114,7 @@ public class UIChangerComponent : MonoBehaviour {
 		}
 
 		res.OnUIStart();
+        AnalyticsComponent.LogScreen(reserved);
 		current = reserved;
 		reserved = UIType.NONE;
 	}
