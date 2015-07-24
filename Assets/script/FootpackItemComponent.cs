@@ -20,7 +20,7 @@ public class FootpackItemComponent : MonoBehaviour {
 
         bool afford = sup.CanAfford();
         textPrice.color = afford ? colorNormal:colorRed;
-        buttonPrice.interactable = afford;
+//        buttonPrice.interactable = afford;
 	}
 
 	public	void SetIcon(Sprite sprite) {
@@ -28,6 +28,6 @@ public class FootpackItemComponent : MonoBehaviour {
 	}
 
 	public	void OnClickIcon() {
-		SendMessageUpwards ("OnClickFootPack", pack);
+        SendMessageUpwards ("OnClickFootPack", pack);
 	}
 }

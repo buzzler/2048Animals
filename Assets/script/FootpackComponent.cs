@@ -53,7 +53,12 @@ public class FootpackComponent : UIComponent {
 
 	public	void OnClickFootPack(SingleUsePackVG sup) {
 		AudioPlayerComponent.Play ("fx_click");
-		StoreInventory.BuyItem (sup.ItemId);
+        if (sup.CanAfford()) {
+            StoreInventory.BuyItem (sup.ItemId);
+        } else {
+            OnUIReserve(UIType.COINPACK);
+            OnUIChange();
+        }
 	}
 
     private void OnUpdateInventory(string id, int balance, int delta = 0) {
