@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class AnimalComponent : MonoBehaviour {
@@ -13,10 +13,10 @@ public class AnimalComponent : MonoBehaviour {
 
 	void OnEnable() {
 		if (independent!=true) {
-			PlayerInfo info = PlayerInfoKeeper.GetInstance().playerInfo;
+			PlayerInfo info = PlayerInfoManager.instance;
 			Observer ob = Observer.GetInstance();
 
-			type = info.type;
+			type = info.lastAnimalType;
 			ob.beatNormal += OnBeatNormal;
 			ob.beatFever += OnBeatFever;
 			ob.themeChange += OnChangeTheme;

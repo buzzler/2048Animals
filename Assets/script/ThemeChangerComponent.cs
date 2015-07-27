@@ -18,7 +18,7 @@ public class ThemeChangerComponent : MonoBehaviour
     public  TextAsset       assetFoot;
 
 	void Start() {
-		info = PlayerInfoKeeper.GetInstance().playerInfo;
+		info = PlayerInfoManager.instance;
 		observer = Observer.GetInstance();
 
 		List<string> category = new List<string>();
@@ -63,25 +63,25 @@ public class ThemeChangerComponent : MonoBehaviour
         StoreAssetInfo.Register(new VirtualCategory("cat_foot", category));
 
 		SoomlaStore.Initialize(new StoreAssetInfo());
-		SetTheme(info.type);
+		SetTheme(info.lastAnimalType);
 	}
 
 	public	void SetTheme(AnimalType type, bool newBackground = true) {
-		info.type = type;
+		info.lastAnimalType = type;
 		ThemeInfo selected = ThemeInfo.Find(type);
 		if (newBackground) {
 			background = GameObject.Instantiate(Resources.Load("bg/" + selected.bg.ToString().ToLower()), Vector3.zero, Quaternion.identity) as GameObject;
 			background.GetComponent<BackgroundComponent>().SetStatusNormal();
 		}
 
-		PlayerInfoKeeper.GetInstance().Save();
+		PlayerInfoManager.Save();
 		if (observer.themeChange!=null) {
 			observer.themeChange(selected);
 		}
 	}
 
 	public	void ChangeTheme(ThemeInfo selected) {
-		ThemeInfo current = ThemeInfo.Find(info.type);
+		ThemeInfo current = ThemeInfo.Find(info.lastAnimalType);
 
 		if ((current==selected)||(selected==null)||(current==null)) {
 			return;

@@ -35,7 +35,7 @@ public class TitleComponent : UIComponent {
 		int index = 0;
 		int counter = 0;
 		ThemeSelectorComponent[] selectors = themeContent.GetComponentsInChildren<ThemeSelectorComponent>();
-		PlayerInfo info = PlayerInfoKeeper.GetInstance().playerInfo;
+		PlayerInfo info = PlayerInfoManager.instance;
 		foreach (ThemeSelectorComponent tsc in selectors) {
 			if (tsc.SetGetAnimalType(info)) {
 				index = counter;
@@ -119,7 +119,7 @@ public class TitleComponent : UIComponent {
 		ThemeInfo theme = ThemeInfo.Find(id);
         if ((theme!=null) && (delta>0)) {
 			ThemeSelectorComponent tsc = dictionary[theme.type];
-			tsc.SetGetAnimalType(PlayerInfoKeeper.GetInstance().playerInfo);
+			tsc.SetGetAnimalType(PlayerInfoManager.instance);
 			RefreshHead(tsc);
 			CheckLock();
             AnalyticsComponent.LogThemeEvent(AnalyticsComponent.ACTION_UNLOCK, (long)theme.order);

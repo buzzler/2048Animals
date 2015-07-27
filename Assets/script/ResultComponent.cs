@@ -49,8 +49,7 @@ public class ResultComponent : UIComponent {
 	public	override void OnUIStart () {
 		base.OnUIStart();
 
-		PlayerInfoKeeper keeper = PlayerInfoKeeper.GetInstance ();
-		info = keeper.playerInfo;
+		info = PlayerInfoManager.instance;
 		flash = 0;
 
 		SetDeltaCoin ();
@@ -59,9 +58,9 @@ public class ResultComponent : UIComponent {
 		SetBox();
 
         AnalyticsComponent.LogGameEvent(AnalyticsComponent.ACTION_SCORE, (long)currentGroup.GetScore());
-        AnalyticsComponent.LogGameEvent(AnalyticsComponent.ACTION_COIN, (long)info.coinDelta);
+        AnalyticsComponent.LogGameEvent(AnalyticsComponent.ACTION_COIN, (long)info.gameCoin);
 
-		keeper.Save();
+		PlayerInfoManager.Save();
 	}
 
 	public override void OnUIStop () {
@@ -102,7 +101,7 @@ public class ResultComponent : UIComponent {
 
 	public	void SetDeltaCoin() {
 		textCoin.text = StoreInventory.GetItemBalance(StoreAssetInfo.COIN).ToString();
-		textCoinDelta.text = info.coinDelta.ToString();
+		textCoinDelta.text = info.gameCoin.ToString();
 	}
 
 	public	void SetBestScore() {
@@ -114,7 +113,7 @@ public class ResultComponent : UIComponent {
 	public	void SetCurrentScore() {
 		Hashtable hash = new Hashtable();
 		hash.Add("from", 0f);
-		hash.Add("to", (float)info.score);
+		hash.Add("to", (float)info.gameScore);
 		hash.Add("easetype", iTween.EaseType.easeOutCubic);
 		hash.Add("onupdatetarget", gameObject);
 		hash.Add("onupdate", "OnScoreUpdate");

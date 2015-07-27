@@ -133,9 +133,8 @@ public class SettingComponent : UIComponent {
 	}
 
 	private	void ChangeLanguage(string code) {
-		PlayerInfoKeeper pk = PlayerInfoKeeper.GetInstance();
-		pk.playerInfo.language = code;
-		pk.Save();
+		PlayerInfoManager.instance.language = code;
+		PlayerInfoManager.Save();
 		
 		LanguageManager.Instance.ChangeLanguage(code);
 		animator.SetTrigger("trigger_exit");

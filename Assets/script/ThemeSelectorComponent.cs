@@ -40,7 +40,7 @@ public class ThemeSelectorComponent : MonoBehaviour {
 		} else {
 			Blinded();
 		}
-		return (theme.type==info.type);
+		return (theme.type==info.lastAnimalType);
 	}
 
 	public	void OnClickButton() {

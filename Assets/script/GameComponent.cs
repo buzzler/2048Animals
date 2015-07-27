@@ -31,7 +31,7 @@ public class GameComponent : UIComponent {
 	public	override void OnUIStart() {
 		base.OnUIStart();
 		animator = GetComponent(typeof(Animator)) as Animator;
-		playerInfo = PlayerInfoKeeper.GetInstance().playerInfo;
+		playerInfo = PlayerInfoManager.instance;
 		bg = GameObject.FindObjectOfType<BackgroundComponent>();
 		observer = Observer.GetInstance();
         observer.beat += OnBeat;
@@ -102,11 +102,11 @@ public class GameComponent : UIComponent {
 	}
 
 	public	void ClearCoin() {
-		playerInfo.coinDelta = 0;
+		playerInfo.gameCoin = 0;
 	}
 
 	public	void AppendCoin(int delta = 1) {
-		playerInfo.coinDelta += (int)playerInfo.buffInfoCoin.Calculate((float)delta);
+		playerInfo.gameCoin += (int)playerInfo.buffInfoCoin.Calculate((float)delta);
 		StoreInventory.GiveItem(StoreAssetInfo.COIN, delta);
 	}
 
@@ -152,7 +152,7 @@ public class GameComponent : UIComponent {
 	}
 
 	private	void SaveScore() {
-		playerInfo.score = score;
+		playerInfo.gameScore = score;
 	}
 
     public  void OnClickClose() {

@@ -6,11 +6,11 @@ public class BackgroundComponent : MonoBehaviour {
 	public	Animator animator;
 
 	public	void SetStatusNormal() {
-		SetTheme(PlayerInfoKeeper.GetInstance().playerInfo.GetThemeInfo().bgNormal);
+		SetTheme(PlayerInfoManager.instance.GetThemeInfo().bgNormal);
 	}
 
 	public	void SetStatusFever() {
-		SetTheme(PlayerInfoKeeper.GetInstance().playerInfo.GetThemeInfo().bgFever);
+		SetTheme(PlayerInfoManager.instance.GetThemeInfo().bgFever);
 	}
 
 	public	void SetTheme(BackgroundStatus status) {

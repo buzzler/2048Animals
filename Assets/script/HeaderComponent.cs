@@ -14,7 +14,7 @@ public class HeaderComponent : UIComponent {
 	private	int			lastCoin;
 
 	void Start() {
-		info = PlayerInfoKeeper.GetInstance().playerInfo;
+		info = PlayerInfoManager.instance;
 	}
 
 	void OnEnable() {

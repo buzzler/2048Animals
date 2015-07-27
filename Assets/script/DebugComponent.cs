@@ -55,10 +55,6 @@ public class DebugComponent : MonoBehaviour {
 		Application.LoadLevel((Application.loadedLevel+1)%Application.levelCount);
 	}
 
-	public void ResetData() {
-		PlayerInfoKeeper.GetInstance().Create();
-	}
-
 	public	void ForceBG2A() {
 		BackgroundComponent bgc = GameObject.FindObjectOfType<BackgroundComponent>();
 		bgc.A();

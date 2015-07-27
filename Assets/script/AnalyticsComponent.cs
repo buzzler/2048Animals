@@ -3,7 +3,8 @@ using System.Collections;
 
 public class AnalyticsComponent : MonoBehaviour {
     private static AnalyticsComponent _this;
-    public  GoogleAnalyticsV3 google; 
+    public  GoogleAnalyticsV3	google; 
+	public	bool				logging;
 
     public  const string CATEGORY_GAME  = "Game";
     public  const string CATEGORY_AD    = "Advertisement";
@@ -29,58 +30,84 @@ public class AnalyticsComponent : MonoBehaviour {
 
     void Awake() {
         _this = this;
-        google.StartSession();
+		if (logging) {
+			google.StartSession ();
+		}
     }
 
 	void OnApplicationPause(bool pauseStatus) {
-		if (pauseStatus) {
-			google.StartSession ();
-		} else {
-			google.StopSession ();
+		if (logging) {
+			if (pauseStatus) {
+				google.StartSession ();
+			} else {
+				google.StopSession ();
+			}
 		}
 	}
 
 	void OnApplicationQuit() {
-		google.StopSession ();
+		if (logging) {
+			google.StopSession ();
+		}
 	}
 
     public  static void LogScreen(UIType type) {
-        _this.google.LogScreen(type.ToString());
+		if (_this.logging) {
+			_this.google.LogScreen (type.ToString ());
+		}
     }
 
     public  static void LogGameEvent(string action, long value) {
-        _this.google.LogEvent(CATEGORY_GAME, action, CATEGORY_GAME+" "+action, value);
+		if (_this.logging) {
+			_this.google.LogEvent (CATEGORY_GAME, action, CATEGORY_GAME + " " + action, value);
+		}
     }
 
     public  static void LogAdEvent(string action) {
-        _this.google.LogEvent(CATEGORY_AD, action, CATEGORY_AD+" "+action, (long)PlayerInfoKeeper.GetInstance().playerInfo.ads.Minute);
+		if (_this.logging) {
+			_this.google.LogEvent (CATEGORY_AD, action, CATEGORY_AD + " " + action, (long)PlayerInfoManager.instance.ads.Minute);
+		}
     }
 
     public  static void LogItemEvent(string action, long value) {
-        _this.google.LogEvent(CATEGORY_ITEM, action, CATEGORY_ITEM+" "+action, value);
+		if (_this.logging) {
+			_this.google.LogEvent (CATEGORY_ITEM, action, CATEGORY_ITEM + " " + action, value);
+		}
     }
 
     public  static void LogThemeEvent(string action, long value) {
-        _this.google.LogEvent(CATEGORY_THEME, action, CATEGORY_THEME+" "+action, value);
+		if (_this.logging) {
+			_this.google.LogEvent (CATEGORY_THEME, action, CATEGORY_THEME + " " + action, value);
+		}
     }
 
     public  static void LogLevelEvent(string action, long value) {
-        _this.google.LogEvent(CATEGORY_LEVEL, action, CATEGORY_LEVEL+" "+action, value);
+		if (_this.logging) {
+			_this.google.LogEvent (CATEGORY_LEVEL, action, CATEGORY_LEVEL + " " + action, value);
+		}
     }
 
     public  static void LogException(bool fatal) {
-        _this.google.LogException(EXCEPTION, fatal);
+		if (_this.logging) {
+			_this.google.LogException (EXCEPTION, fatal);
+		}
     }
 
     public  static void LogBootTiming(long timingInterval) {
-        _this.google.LogTiming(CATEGORY_BOOT, timingInterval, SystemInfo.deviceModel, SystemInfo.operatingSystem);
+		if (_this.logging) {
+			_this.google.LogTiming (CATEGORY_BOOT, timingInterval, SystemInfo.deviceModel, SystemInfo.operatingSystem);
+		}
     }
 
     public  static void LogSocial(string action) {
-        _this.google.LogSocial(SNS_FACEBOOK, action, FB.UserId);
+		if (_this.logging) {
+			_this.google.LogSocial (SNS_FACEBOOK, action, FB.UserId);
+		}
     }
 
     public  static void LogTransaction(string transanctionId, double revenue, string currency) {
-        _this.google.LogTransaction(transanctionId, StoreAssetInfo.COIN, revenue, 0, 0, currency);
+		if (_this.logging) {
+			_this.google.LogTransaction (transanctionId, StoreAssetInfo.COIN, revenue, 0, 0, currency);
+		}
     }
 }

@@ -13,7 +13,7 @@ public class AdsComponent : MonoBehaviour {
 	private	Button		button;
 
 	void OnEnable() {
-		info = PlayerInfoKeeper.GetInstance ().playerInfo;
+		info = PlayerInfoManager.instance;
 		button = GetComponent<Button> ();
 	}
 
@@ -40,7 +40,7 @@ public class AdsComponent : MonoBehaviour {
 		case ShowResult.Finished:
 			StoreInventory.GiveItem(StoreAssetInfo.COIN, Mathf.Max((int)info.buffInfoReward.Calculate(1),1));
 			info.ads = DateTime.Now;
-			PlayerInfoKeeper.GetInstance().Save();
+			PlayerInfoManager.Save();
 			EffectComponent.Show(EffectType.BONUS, Vector3.zero);
             AnalyticsComponent.LogAdEvent(AnalyticsComponent.ACTION_FINISH);
 			break;

@@ -17,17 +17,17 @@ public class PreloadComponent : UIComponent {
 
 		// for International Language
 		LanguageManager lm = LanguageManager.Instance;
-		PlayerInfoKeeper pk = PlayerInfoKeeper.GetInstance();
-		if (pk.playerInfo.language==null) {
+		PlayerInfo info = PlayerInfoManager.instance;
+		if (info.language==null) {
 			string code = lm.GetSupportedSystemLanguageCode();
 			if (lm.IsLanguageSupported(code)) {
-				pk.playerInfo.language = code;
+				info.language = code;
 			} else {
-				pk.playerInfo.language = "en";
+				info.language = "en";
 			}
-			pk.Save();
+			PlayerInfoManager.Save();
 		}
-		lm.ChangeLanguage(pk.playerInfo.language);
+		lm.ChangeLanguage(info.language);
 
         #if UNITY_EDITOR || UNITY_ANDROID
 		Advertisement.Initialize("44690", false);
