@@ -53,7 +53,12 @@ public class CoinpackComponent : UIComponent {
 
 	public	void OnClickCoinPack(VirtualCurrencyPack vcp) {
 		AudioPlayerComponent.Play ("fx_click");
-		StoreInventory.BuyItem (vcp.ItemId);
+		if (SystemCheckComponent.network) {
+			StoreInventory.BuyItem (vcp.ItemId);
+		} else {
+			OnUIReserve(UIType.ERROR);
+			OnUIChange();
+		}
 	}
 
     private void OnUpdateCurrency(int balance, int delta) {

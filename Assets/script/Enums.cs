@@ -83,7 +83,8 @@ public	enum UIType {
     FOOTPACK,
 	TUTORIAL,
 	PAUSE,
-	PRELOAD
+	PRELOAD,
+	ERROR
 }
 
 public	enum UIState {

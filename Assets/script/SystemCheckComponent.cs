@@ -5,7 +5,9 @@ using System.Collections;
 public delegate void SocialDelegate(SocialResult result);
 
 public class SystemCheckComponent : MonoBehaviour {
-	public	static bool network { get { return _network; } }
+	private	static SystemCheckComponent _this;
+
+	public	static bool network { get { return _network && _this.CheckNetwork(); } }
 	public	static bool data	{ get { return _data; } }
 	public	static bool wifi	{ get { return _wifi; } }
 	public	static int	pingTime{ get { return _pingTime; } }
@@ -20,6 +22,10 @@ public class SystemCheckComponent : MonoBehaviour {
 	private	Ping	ping;
 	private	bool	_last;
     private byte[]  _screenshot;
+
+	void Awake() {
+		_this = this;
+	}
 
 	void Start() {
 		_network = false;
@@ -76,6 +82,7 @@ public class SystemCheckComponent : MonoBehaviour {
 			pingStart = Time.time;
 		} else {
 			OnFail();
+			ping = null;
 		}
 	}
 

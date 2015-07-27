@@ -68,6 +68,7 @@ public class ResultComponent : UIComponent {
 		for (int i = boxHolder.childCount-1 ; i >= 0 ; i--) {
 			DestroyImmediate(boxHolder.GetChild(i).gameObject);
 		}
+		CancelInvoke ();
 	}
 
 	public	void OnClickRetry() {

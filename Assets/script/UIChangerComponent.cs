@@ -15,6 +15,7 @@ public class UIChangerComponent : MonoBehaviour {
 	public	UIComponent						ui_tutorial;
 	public	UIComponent						ui_pause;
 	public	UIComponent						ui_connect;
+	public	UIComponent						ui_error;
 	private Dictionary<UIType, UIComponent>	dictionary;
 	private	UIType							current;
 	private UIType							reserved;
@@ -33,6 +34,7 @@ public class UIChangerComponent : MonoBehaviour {
 		dictionary.Add(UIType.TUTORIAL,	ui_tutorial);
 		dictionary.Add(UIType.PAUSE,	ui_pause);
 		dictionary.Add(UIType.CONNECT,  ui_connect);
+		dictionary.Add(UIType.ERROR,	ui_error);
 		current = UIType.NONE;
 		reserved = UIType.PRELOAD;
 		changeNow = true;
@@ -129,6 +131,7 @@ public class UIChangerComponent : MonoBehaviour {
 		ui_tutorial.OnUIStop();
 		ui_pause.OnUIStop();
 		ui_connect.OnUIStop();
+		ui_error.OnUIStop ();
 
 		current = UIType.NONE;
 		reserved = UIType.NONE;
@@ -156,6 +159,7 @@ public class UIChangerComponent : MonoBehaviour {
 		ui_tutorial.OnUIStop();
 		ui_pause.OnUIStop();
 		ui_connect.OnUIStop();
+		ui_error.OnUIStop ();
 
 		ui_preload.OnUIStart();
 	}
@@ -170,6 +174,7 @@ public class UIChangerComponent : MonoBehaviour {
 		ui_tutorial.OnUIStop();
 		ui_pause.OnUIStop();
 		ui_connect.OnUIStop();
+		ui_error.OnUIStop ();
 
 		ui_title.OnUIStart();
 	}
@@ -184,6 +189,7 @@ public class UIChangerComponent : MonoBehaviour {
 		ui_tutorial.OnUIStop();
 		ui_pause.OnUIStop();
 		ui_connect.OnUIStop();
+		ui_error.OnUIStop ();
 
 		ui_game.OnUIStart();
 	}
@@ -198,6 +204,7 @@ public class UIChangerComponent : MonoBehaviour {
 		ui_tutorial.OnUIStop();
 		ui_pause.OnUIStop();
 		ui_connect.OnUIStop();
+		ui_error.OnUIStop ();
 
 		ui_result.OnUIStart();
 	}
