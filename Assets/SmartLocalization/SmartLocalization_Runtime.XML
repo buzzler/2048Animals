@@ -149,6 +149,14 @@
         <member name="M:SmartLocalization.LanguageManager.GetSupportedLanguages">
             <summary> Returns a list of all the supported languages in the project </summary>
         </member>
+        <member name="M:SmartLocalization.LanguageManager.GetKeysWithinCategory(System.String)">
+            <summary>
+            Returns a list of keys within a specified category.
+            Example: If you have keys named My.Key, the category would be "My."
+            </summary>
+            <returns>A list of keys that starts with the current category key</returns>
+            <param name="category">If you have keys named My.Key, the category would be "My."</param>
+        </member>
         <member name="M:SmartLocalization.LanguageManager.GetTextValue(System.String)">
             <summary>
             Returns a text value in the current language for the key. Returns null if nothing is found.

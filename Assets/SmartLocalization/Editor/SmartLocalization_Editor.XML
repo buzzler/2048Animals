@@ -101,6 +101,14 @@
             <param name="allCultures">A list of all the available cultures</param>
             <returns>A list of all the created languages</returns>
         </member>
+        <member name="M:SmartLocalization.Editor.LanguageHandlerEditor.GetKeysWithinCategory(System.String)">
+            <summary>
+            Returns a list of keys within a specified category.
+            Example: If you have keys named My.Key, the category would be "My."
+            </summary>
+            <returns>A list of keys that starts with the current category key</returns>
+            <param name="category">If you have keys named My.Key, the category would be "My."</param>
+        </member>
         <member name="M:SmartLocalization.Editor.LanguageHandlerEditor.CreateRootResourceFile">
             <summary>
             Creates the initial root language file

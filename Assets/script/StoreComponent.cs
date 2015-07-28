@@ -24,7 +24,6 @@ public class StoreComponent : MonoBehaviour {
 		StoreEvents.OnGoodUpgrade					+= onGoodUpgrade;
 		StoreEvents.OnBillingSupported				+= onBillingSupported;
 		StoreEvents.OnBillingNotSupported			+= onBillingNotSupported;
-		StoreEvents.OnUnexpectedErrorInStore		+= onUnexpectedErrorInStore;
 	}
 	
 	private	void onSoomlaStoreInitialized() {
@@ -116,9 +115,5 @@ public class StoreComponent : MonoBehaviour {
 
 	public void onBillingNotSupported() {
 		DebugComponent.Log("BILLING NOT SUPPORTED");
-	}
-
-	public void onUnexpectedErrorInStore(string message) {
-		DebugComponent.Error(message);
 	}
 }
