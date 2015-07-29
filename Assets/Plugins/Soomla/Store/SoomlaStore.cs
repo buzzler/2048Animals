@@ -34,10 +34,8 @@ namespace Soomla.Store
 					_instance = new SoomlaStoreAndroid();
 					#elif UNITY_IOS && !UNITY_EDITOR
 					_instance = new SoomlaStoreIOS();
-                    #elif UNITY_WP8 && !UNITY_EDITOR
-					_instance = new SoomlaStoreWP();
-                    #else
-                    _instance = new SoomlaStore();
+					#else
+					_instance = new SoomlaStore();
 					#endif
 				}
 				return _instance;
@@ -66,26 +64,24 @@ namespace Soomla.Store
 			}
 
 			if (Initialized) {
-				StoreEvents.Instance.onUnexpectedStoreError("{\"errorCode\": 0}", true);
-				SoomlaUtils.LogError(TAG, "SoomlaStore is already initialized. You can't initialize it twice!");
+				string err = "SoomlaStore is already initialized. You can't initialize it twice!";
+				StoreEvents.Instance.onUnexpectedErrorInStore(err, true);
+				SoomlaUtils.LogError(TAG, err);
 				return false;
 			}
 
 			SoomlaUtils.LogDebug(TAG, "SoomlaStore Initializing ...");
 
+			instance._loadBillingService();
+
 			StoreInfo.SetStoreAssets(storeAssets);
 
-			instance._loadBillingService();
-			
-			#if UNITY_IOS
+#if UNITY_IOS
 			// On iOS we only refresh market items
 			instance._refreshMarketItemsDetails();
 #elif UNITY_ANDROID
 			// On Android we refresh market items and restore transactions
 			instance._refreshInventory();
-#elif UNITY_WP8
-            instance._refreshInventory();
-            
 #endif
 
 			Initialized = true;
@@ -167,11 +163,10 @@ namespace Soomla.Store
 			eventJSON.AddField("payload", payload);
 			StoreEvents.Instance.onMarketPurchaseStarted(eventJSON.print());
             
-			// simulate events as they happen on the device
-			// the order is : 
-			//    onMarketPurchase
-			//    give item
-			//    onItemPurchase
+			// in the editor we just give the item... no real market.
+			item.Give(1);
+            
+			// simulate onMarketPurchase event
 			StoreEvents.Instance.RunLater(() => {
 				eventJSON = new JSONObject();
 				eventJSON.AddField("itemId", item.ItemId);
@@ -186,17 +181,6 @@ namespace Soomla.Store
 			#endif
 				eventJSON.AddField("extra", extraJSON);
 				StoreEvents.Instance.onMarketPurchase(eventJSON.print());
-
-				// in the editor we just give the item... no real market.
-				item.Give(1);
-	
-				// We have to make sure the ItemPurchased event will be fired AFTER the balance/currency-changed events.
-				StoreEvents.Instance.RunLater(() => {
-					eventJSON = new JSONObject();
-					eventJSON.AddField("itemId", item.ItemId);
-					eventJSON.AddField("payload", payload);
-	            	StoreEvents.Instance.onItemPurchased(eventJSON.print());
-				});
 			});
 #endif
 		}

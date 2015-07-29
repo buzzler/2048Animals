@@ -107,28 +107,7 @@ namespace Soomla.Store {
 			this.Equipping = equippingModel;
 		}
 
-#if UNITY_WP8 && !UNITY_EDITOR
-		public EquippableVG(SoomlaWpStore.domain.virtualGoods.EquippableVG wpEquippableVG)
-            : base(wpEquippableVG)
-		{   
-			switch(wpEquippableVG.ToString()){
-				case "local":
-					this.Equipping = EquippingModel.LOCAL;
-					break;
-				case "category":
-					this.Equipping = EquippingModel.CATEGORY;
-					break;
-				case "global":
-					this.Equipping = EquippingModel.GLOBAL;
-					break;
-				default:
-					this.Equipping = EquippingModel.CATEGORY;
-					break;
-			}
-		}
-#endif
-
-        /// <summary>
+		/// <summary>
 		/// see parent.
 		/// </summary>
 		public EquippableVG(JSONObject jsonItem)
