@@ -42,13 +42,7 @@ namespace Soomla.Store {
 		{
 		}
 
-#if UNITY_WP8 && !UNITY_EDITOR
-		public VirtualGood(SoomlaWpStore.domain.virtualGoods.VirtualGood wpVirtualGood)
-            : base(wpVirtualGood)
-		{
-		}
-#endif
-        /// <summary>
+		/// <summary>
 		/// see parent.
 		/// </summary>
 		public VirtualGood(JSONObject jsonVg)

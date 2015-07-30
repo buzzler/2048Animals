@@ -17,10 +17,6 @@ using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
-#if UNITY_WP8 && !UNITY_EDITOR
-using SoomlaWpCore.util;
-using SoomlaWpCore.events;
-#endif
 
 namespace Soomla {
 
@@ -44,7 +40,6 @@ namespace Soomla {
 		void Awake(){
 			if(instance == null){ 	// making sure we only initialize one instance.
 				instance = this;
-                gameObject.name = "CoreEvents";
 				GameObject.DontDestroyOnLoad(this.gameObject);
 				Initialize();
 			} else {				// Destroying unused instances.
@@ -73,30 +68,9 @@ namespace Soomla {
 			AndroidJNI.PopLocalFrame(IntPtr.Zero);
 #elif UNITY_IOS && !UNITY_EDITOR
 			soomlaCore_Init(CoreSettings.SoomlaSecret, CoreSettings.DebugMessages);
-#elif UNITY_WP8 && !UNITY_EDITOR
-            SoomlaWpCore.SoomlaConfig.logDebug = CoreSettings.DebugMessages;
-            SoomlaWpCore.Soomla.initialize(CoreSettings.SoomlaSecret);
-            BusProvider.Instance.Register(CoreEvents.instance);
 #endif
-
-        }
-
-
-#if UNITY_WP8 && !UNITY_EDITOR
-        [Subscribe]
-        public void onRewardGiven(RewardGivenEvent _Event)
-        {
-            SoomlaUtils.LogDebug(TAG, "SOOMLA/UNITY onRewardGiven:" + _Event.RewardId);
-			string rewardId = _Event.RewardId;
-			CoreEvents.OnRewardGiven(Reward.GetReward(rewardId));
-        }
-        [Subscribe]
-        public void onRewardTaken(RewardTakenEvent _Event) {
-			SoomlaUtils.LogDebug(TAG, "SOOMLA/UNITY onRewardTaken:" + _Event.RewardId);
-			string rewardId = _Event.RewardId;
-			CoreEvents.OnRewardTaken(Reward.GetReward(rewardId));
 		}
-#endif
+
 		/// <summary>
 		/// Will be called when a reward was given to the user.
 		/// </summary>

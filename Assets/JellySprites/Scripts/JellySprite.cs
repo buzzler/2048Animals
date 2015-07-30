@@ -3,7 +3,7 @@ using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
-#endif 
+#endif
 
 using System.Collections;
 using System.Collections.Generic;
@@ -815,7 +815,8 @@ public abstract class JellySprite : MonoBehaviour
 			if(m_2DMode)
 			{
 				Rigidbody2D centreRigidBody = m_CentralPoint.Body2D;
-				centreRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+//				centreRigidBody.fixedAngle = m_LockRotation;
+				centreRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;		// modified by buzzler
 				centreRigidBody.isKinematic = m_CentralBodyKinematic;
 			}
 			else
@@ -867,7 +868,8 @@ public abstract class JellySprite : MonoBehaviour
 			circleCollider.sharedMaterial = m_PhysicsMaterial2D;
 
 			Rigidbody2D newRigidBody = referencePointObject.AddComponent<Rigidbody2D>();
-			newRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
+//			newRigidBody.fixedAngle = lockRotation;
+			newRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;		// modified by buzzler
 
 			referencePoint = new ReferencePoint(newRigidBody);
 		}
@@ -2002,86 +2004,65 @@ public abstract class JellySprite : MonoBehaviour
 	/// Use this function to scale the Jelly Sprite at runtime. Scales the rigid bodies and
 	/// rendered mesh by the given amount
 	/// </summary>
-    public void Scale(float scaleRatio, bool scaleAttachedObjects = true)
-    {
-        int index = 0;
-        Vector3[] refPointPositions = new Vector3[m_ReferencePoints.Count];
+	public void Scale(float scaleRatio, bool scaleAttachedObjects = true)
+	{
+		int index = 0;
+		Vector3[] refPointPositions = new Vector3[m_ReferencePoints.Count];
 
-        foreach (ReferencePoint refPoint in m_ReferencePoints)
-        {
-            if (refPoint.GameObject)
-            {
-                refPointPositions[index] = refPoint.transform.position;
-            }
+		foreach(ReferencePoint refPoint in m_ReferencePoints)
+		{
+			if(refPoint.GameObject)
+			{
+				refPointPositions[index] = refPoint.transform.position;
+			}
 
-            index++;
-        }
+			index++;
+		}
 
-        m_Transform.localScale = m_Transform.localScale * scaleRatio;
-        index = 0;
+		m_Transform.localScale = m_Transform.localScale * scaleRatio;
+		m_CentralPoint.transform.parent.localScale = m_CentralPoint.transform.parent.localScale * scaleRatio;
 
-        foreach (ReferencePoint refPoint in m_ReferencePoints)
-        {
-            if (refPoint.GameObject)
-            {
-                if (!refPoint.IsDummy)
-                {
-                    if (refPoint.Body2D)
-                    {
-                        CircleCollider2D circleCollider = refPoint.GameObject.GetComponent<CircleCollider2D>();
+		index = 0;
 
-                        if (circleCollider)
-                        {
-                            circleCollider.radius = circleCollider.radius * scaleRatio;
-                        }
-                    }
-                    else
-                    {
-                        SphereCollider sphereCollider = refPoint.GameObject.GetComponent<SphereCollider>();
+		foreach(ReferencePoint refPoint in m_ReferencePoints)
+		{
+			if(refPoint.GameObject)
+			{
+				refPoint.transform.position = refPointPositions[0] + ((refPointPositions[index] - refPointPositions[0]) * scaleRatio);
 
-                        if (sphereCollider)
-                        {
-                            sphereCollider.radius = sphereCollider.radius * scaleRatio;
-                        }
-                    }
-                }
+				if(m_2DMode)
+				{
+					SpringJoint2D[] springJoints = refPoint.GameObject.GetComponents<SpringJoint2D>();
 
-                refPoint.transform.position = refPointPositions[0] + ((refPointPositions[index] - refPointPositions[0]) * scaleRatio);
-                refPoint.InitialOffset *= scaleRatio;
+					for(int jointLoop = 0; jointLoop < springJoints.Length; jointLoop++)
+					{
+						springJoints[jointLoop].connectedAnchor = springJoints[jointLoop].connectedAnchor * scaleRatio;
+					}
+				}
+				else
+				{
+					SpringJoint[] springJoints = refPoint.GameObject.GetComponents<SpringJoint>();
+					
+					for(int jointLoop = 0; jointLoop < springJoints.Length; jointLoop++)
+					{
+						springJoints[jointLoop].connectedAnchor = springJoints[jointLoop].connectedAnchor * scaleRatio;
+					}
+				}
+			}
+			
+			index++;
+		}
 
-                if (m_2DMode)
-                {
-                    SpringJoint2D[] springJoints = refPoint.GameObject.GetComponents<SpringJoint2D>();
-
-                    for (int jointLoop = 0; jointLoop < springJoints.Length; jointLoop++)
-                    {
-                        springJoints[jointLoop].connectedAnchor = springJoints[jointLoop].connectedAnchor * scaleRatio;
-                    }
-                }
-                else
-                {
-                    SpringJoint[] springJoints = refPoint.GameObject.GetComponents<SpringJoint>();
-
-                    for (int jointLoop = 0; jointLoop < springJoints.Length; jointLoop++)
-                    {
-                        springJoints[jointLoop].connectedAnchor = springJoints[jointLoop].connectedAnchor * scaleRatio;
-                    }
-                }
-            }
-
-            index++;
-        }
-
-        if (!scaleAttachedObjects && scaleRatio > 0)
-        {
-            float inverseScale = 1.0f / scaleRatio;
-
-            for (int attachPointIndex = 0; attachPointIndex < m_AttachPoints.Length; attachPointIndex++)
-            {
-                m_AttachPoints[attachPointIndex].localScale *= inverseScale;
-            }
-        }
-    }
+		if(!scaleAttachedObjects && scaleRatio > 0)
+		{
+			float inverseScale = 1.0f/scaleRatio;
+			
+			for(int attachPointIndex = 0; attachPointIndex < m_AttachPoints.Length; attachPointIndex++)
+			{
+				m_AttachPoints[attachPointIndex].localScale *= inverseScale;
+			}
+		}
+	}
 
 	/// <summary>
 	/// Attaches a new object to the Jelly Sprite at runtime

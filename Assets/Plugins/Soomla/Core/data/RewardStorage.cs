@@ -30,10 +30,8 @@ namespace Soomla
 					_instance = new RewardStorageAndroid();
 					#elif UNITY_IOS && !UNITY_EDITOR
 					_instance = new RewardStorageIOS();
-                    #elif UNITY_WP8 && !UNITY_EDITOR
-					_instance = new RewardStorageWP();
-                    #else
-                    _instance = new RewardStorage();
+					#else
+					_instance = new RewardStorage();
 					#endif
 				}
 				return _instance;

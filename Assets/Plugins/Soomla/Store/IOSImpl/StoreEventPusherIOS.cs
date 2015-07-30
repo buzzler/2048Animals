@@ -26,7 +26,7 @@ namespace Soomla.Store {
 		[DllImport ("__Internal")]
 		private static extern void eventDispatcher_PushEventSoomlaStoreInitialized(string message);
 		[DllImport ("__Internal")]
-		private static extern void eventDispatcher_PushEventUnexpectedStoreError(string message);
+		private static extern void eventDispatcher_PushEventUnexpectedStoreError(string errMessage);
 		[DllImport ("__Internal")]
 		private static extern void eventDispatcher_PushEventCurrencyBalanceChanged(string message);
 		[DllImport ("__Internal")]

@@ -1,6 +1,6 @@
 #define PRETTY		//Comment out when you no longer need to read JSON to disable pretty Print system-wide
-//Using doubles will cause errors in VectorTemplates.cs; Unity speaks floats, though floats will only provide you 7 digits of precision when updating Soomla StoreInventory balances
-//#define USEFLOAT	//Use floats for numbers instead of doubles	(enable if you're getting too many significant digits in string output)
+//Using doubles will cause errors in VectorTemplates.cs; Unity speaks floats
+#define USEFLOAT	//Use floats for numbers instead of doubles	(enable if you're getting too many significant digits in string output)
 //#define POOLING	//Currently using a build setting for this one (also it's experimental)
 
 using System.Diagnostics;
@@ -9,7 +9,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Globalization;
 using Debug = UnityEngine.Debug;
 
 /*
@@ -308,18 +307,13 @@ public class JSONObject : NullCheckable {
 				}
 			}
 			if(str.Length > 0) {
-                if (str.ToLower() == "true")
-                {
+				if(string.Compare(str, "true", true) == 0) {
 					type = Type.BOOL;
 					b = true;
-                }
-                else if (str.ToLower() == "false")
-                {
+				} else if(string.Compare(str, "false", true) == 0) {
 					type = Type.BOOL;
 					b = false;
-                }
-                else if (str.ToLower() == "null")
-                {
+				} else if(string.Compare(str, "null", true) == 0) {
 					type = Type.NULL;
 					#if USEFLOAT
 				} else if(str == INFINITY) {
@@ -876,7 +870,7 @@ public class JSONObject : NullCheckable {
 					builder.Append(NaN);
 				#endif
 				else
-                    builder.Append(n.ToString(CultureInfo.InvariantCulture));
+					builder.Append(n.ToString());
 				break;
 			case Type.OBJECT:
 				builder.Append("{");

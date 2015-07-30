@@ -1,4 +1,4 @@
-﻿#if UNITY_4_6 || UNITY_5_0
+﻿#if UNITY_4_6
 namespace SmartLocalization.Editor
 {
 using UnityEngine;
