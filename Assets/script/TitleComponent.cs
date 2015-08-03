@@ -9,7 +9,8 @@ public class TitleComponent : UIComponent {
 	public	Text											labelReward;
 	public	ThemeChangerComponent							themeChanger;
 	public	RectTransform									themeContent;
-	public	TitlePurchaseComponent							purchaser;					
+	public	TitlePurchaseComponent							purchaser;
+	public	TitleStarComponent								star;
 	public	Button											buttonStart;
 	public	Button											buttonAds;
 	private	Observer										observer;
@@ -49,6 +50,7 @@ public class TitleComponent : UIComponent {
 		// center aglign themeContent
 		themeContent.anchoredPosition = new Vector3(index * -180 + 300, 0);
 		MakeHead (selectors[index].theme);
+		star.SetThemeInfo (selectors [index].theme);
 
 		observer.themeChange += OnThemeChange;
 		observer.networkStatusChange += OnChangeNetwork;
@@ -111,8 +113,8 @@ public class TitleComponent : UIComponent {
 	}
 
 	public	void OnThemeChange(ThemeInfo info) {
-		ClearHead ();
 		MakeHead (info);
+		star.SetThemeInfo (info);
 	}
 
 	public	void OnUpdateInventory(string id, int balance, int delta) {
@@ -127,9 +129,9 @@ public class TitleComponent : UIComponent {
 	}
 
 	public	void RefreshHead(ThemeSelectorComponent tsc) {
-		ClearHead();
 		purchaser.ClearThemeInfo();
 		MakeHead (tsc.theme);
+		star.SetThemeInfo (tsc.theme);
 		head.GetComponent<HeadComponent> ().Flash ();
 
 	}

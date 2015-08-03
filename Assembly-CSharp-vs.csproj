@@ -119,6 +119,7 @@
      <Compile Include="Assets\script\ThemeSelectorComponent.cs" />
      <Compile Include="Assets\script\TitleComponent.cs" />
      <Compile Include="Assets\script\TitlePurchaseComponent.cs" />
+     <Compile Include="Assets\script\TitleStarComponent.cs" />
      <Compile Include="Assets\script\TutorialComponent.cs" />
      <Compile Include="Assets\script\UIChangerComponent.cs" />
      <Compile Include="Assets\script\UIComponent.cs" />

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using SmartLocalization;
@@ -13,6 +14,7 @@ public class PlayerInfo {
 	public DateTime		ads;
 	public AnimalType	lastAnimalType;
 	public uint			bestScore;
+	public int[]		stars;
 
 	public uint			gameScore;
 	public int			gameCoin;
@@ -27,14 +29,34 @@ public class PlayerInfo {
 		json.AddField ("ads", ads.ToString ());
 		json.AddField ("theme", lastAnimalType.ToString ());
 		json.AddField ("best", bestScore.ToString ());
+
+		string[] ary = new string[stars.Length];
+		for (int i = stars.Length-1 ; i >=0 ; i--) {
+			ary[i] = stars[i].ToString();
+		}
+		json.AddField ("stars", string.Join (",", ary));
 		return json;
 	}
 
 	public	void FromJSON(JSONObject json) {
-		language = json.GetField ("lang").str;
-		ads = DateTime.Parse (json.GetField("ads").str);
-		lastAnimalType = (AnimalType)Enum.Parse (typeof(AnimalType), json.GetField ("theme").str, true) ;
-		bestScore = uint.Parse (json.GetField("best").str);
+		if (json.HasField ("lang")) {
+			language = json.GetField ("lang").str;
+		}
+		if (json.HasField ("ads")) {
+			ads = DateTime.Parse (json.GetField ("ads").str);
+		}
+		if (json.HasField ("theme")) {
+			lastAnimalType = (AnimalType)Enum.Parse (typeof(AnimalType), json.GetField ("theme").str, true);
+		}
+		if (json.HasField ("best")) {
+			bestScore = uint.Parse (json.GetField ("best").str);
+		}
+		if (json.HasField ("stars")) {
+			string[] ary = json.GetField("stars").str.Split(","[0]);
+			for (int i = stars.Length-1 ; i >= 0 ; i--) {
+				stars[i] = int.Parse(ary[i]);
+			}
+		}
 	}
 
 	public PlayerInfo() {
@@ -42,12 +64,17 @@ public class PlayerInfo {
 		gameScore = 0;
 		gameCoin = 0;
 		highLevel = 1;
+		stars = new int[200];
 		lastAnimalType = AnimalType.BEAR;
 		ads = DateTime.MinValue;
 		buffInfoCoin = new BuffInfo();
 		buffInfoScore = new BuffInfo();
 		buffInfoReward = new BuffInfo();
 		language = null;
+
+		for (int i = stars.Length-1 ; i >= 0 ; i--) {
+			stars[i] = 0;
+		}
 	}
 
 	public	string GetId() {
@@ -91,6 +118,7 @@ public	class PlayerInfoManager {
 
 		_instance.bestScore = (_instance.bestScore > _instance.gameScore) ? _instance.bestScore : _instance.gameScore;
 		string str = _instance.ToJSON ().ToString ();
+		DebugComponent.Log (str);
 		PlayerPrefs.SetString (_KEY, EncryptText(str, true));
 	}
 

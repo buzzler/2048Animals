@@ -22,6 +22,7 @@ public class ThemeInfo
 	public	int					costAmount	{get{return _costAmount;	}}
 	public	string				bgm			{get{return _bgm;			}}
 	public	BuffInfo			buffInfo	{get{return _buff;			}}
+	public	int					star		{get{return _star;			}}
 
 	private	int					_order;
 	private	string				_id;
@@ -37,6 +38,7 @@ public class ThemeInfo
 	private	int					_costAmount;
 	private	string				_bgm;
 	private	BuffInfo			_buff;
+	private	int					_star;
 
 	public	static void Resister(ThemeInfo theme) {
 		if (dictionary==null) {
@@ -79,6 +81,7 @@ public class ThemeInfo
 		theme._bgFever		= (BackgroundStatus)System.Enum.Parse(typeof(BackgroundStatus), line[10], true);
 		theme._bgm			= line[11];
 		theme._buff			= BuffInfo.Parse(line[12], line[13], line[14]);
+		theme._star			= int.Parse (line[15]);
 		return theme;
 	}
 }
