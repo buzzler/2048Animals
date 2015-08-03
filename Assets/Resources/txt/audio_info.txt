@@ -7,18 +7,5 @@ fx_fever,fever,0,2,2
 fx_facein,face in,0,2,2
 fx_faceout,face out,0,2,2
 fx_score,score,0,2,2
-fx_voice01,voice 1,0,2,2
-fx_voice02,voice 2,0,2,2
-fx_voice03,voice 3,0,2,2
-fx_voice04,voice 4,0,2,2
-fx_voice05,voice 5,0,2,2
-fx_voice06,voice 6,0,2,2
-fx_voice07,voice 7,0,2,2
-fx_voice08,voice 8,0,2,2
-fx_voice09,voice 9,0,2,2
-fx_voice10,voice 10,0,2,2
-fx_voice11,voice 11,0,2,2
-fx_voice12,voice 12,0,2,2
-fx_voice13,voice 13,0,2,2
-fx_voice14,voice 14,0,2,2
-fx_voice15,voice 15,0,2,2
+fx_reward,reward,0,2,2
+fx_foot,breaker,0,2,2

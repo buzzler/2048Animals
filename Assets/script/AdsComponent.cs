@@ -42,6 +42,7 @@ public class AdsComponent : MonoBehaviour {
 			info.ads = DateTime.Now;
 			PlayerInfoManager.Save();
 			EffectComponent.Show(EffectType.BONUS, Vector3.zero);
+			AudioPlayerComponent.Play ("fx_reward");
             AnalyticsComponent.LogAdEvent(AnalyticsComponent.ACTION_FINISH);
 			break;
 		case ShowResult.Failed:
