@@ -1,0 +1,16 @@
+예외사항 
+
+아래의 캐릭터들은 이미지 1장으로 떼움
+
+chicken_base_160
+cow_base_160
+jindo_base_120  
+jindo_base_160
+loli_base_160
+naru_base_160
+persian_base_120
+persian_base_160
+santa_base_160
+sheep_base_160
+soan_base_160
+welshcorgi_base_160

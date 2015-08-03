@@ -1,6 +1,6 @@
 item id,name,description,currency,amount,productId,price
-pack1,5000,5K Pack,dollar,5000,cpack1,0.99
-pack2,26000,26K Pack,dollar,26000,cpack2,4.99
-pack3,55000,55K Pack,dollar,55000,cpack3,9.99
-pack4,125000,125K Pack,dollar,125000,cpack4,19.99
-pack5,250000,250K Pack,dollar,250000,cpack5,39.99
+pack1,12000,12K Pack,dollar,12000,cpack1,0.99
+pack2,66000,66K Pack,dollar,66000,cpack2,4.99
+pack3,138000,138K Pack,dollar,138000,cpack3,9.99
+pack4,300000,300K Pack,dollar,300000,cpack4,19.99
+pack5,625000,625K Pack,dollar,625000,cpack5,39.99
