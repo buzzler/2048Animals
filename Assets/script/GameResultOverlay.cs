@@ -25,18 +25,32 @@ public class GameResultOverlay : OverlayComponent {
 		ThemeInfo tinfo = pinfo.GetThemeInfo();
 
 		int starOld = pinfo.stars[tinfo.order];
-		int starTarget = Mathf.Max(starOld, tinfo.star);
+		int starMin = tinfo.star;
+		int starMax = stars.Length;
+
 		starSuccess = pinfo.highLevel;
 		starEnable = Mathf.Max(starOld, tinfo.star, starSuccess+1);
 		starEnable = Mathf.Min(starEnable, stars.Length);
 		starIndex = 0;
 
+		int starTarget = 0;
+		if (starOld == starMax) {
+			starTarget = starMax;
+		} else if (starOld < starMin) {
+			starTarget = starMin;
+		} else if (starOld == starMin) {
+			starTarget = Mathf.Min(starMin + 1, starMax);
+		} else if (starOld > starMin) {
+			starTarget = Mathf.Min(starOld + 1, starMax);
+		}
+
 		textCount.text = starSuccess.ToString() + " / " + starTarget.ToString();
-		if (starSuccess == stars.Length) {
-			textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.clear");
-		} else if (starSuccess > starTarget) {
-			textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.level.up");
-		} else {
+		if (starSuccess == starTarget) {
+			if (starTarget == starMax)
+				textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.clear");
+			else
+				textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.level.up");
+		} else if (starSuccess < starTarget) {
 			textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.level.practice");
 		}
 	}
@@ -85,10 +99,10 @@ public class GameResultOverlay : OverlayComponent {
 
 	private	void ShowEffect() {
 		RawImage raw = stars[starIndex];
-		if (starIndex <= starSuccess) {
+		if (starIndex < starSuccess) {
 			raw.texture = textureSuccess;
 			EffectComponent.Show(EffectType.STAR_SUCCESS, raw.transform.position).SetParent(panel.transform);
-		} else if (starIndex <= starEnable) {
+		} else if (starIndex < starEnable) {
 			raw.texture = textureEnable;
 			EffectComponent.Show(EffectType.STAR_ABLE, raw.transform.position).SetParent(panel.transform);
 		}
