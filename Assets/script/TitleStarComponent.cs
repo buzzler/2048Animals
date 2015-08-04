@@ -7,6 +7,9 @@ public class TitleStarComponent : MonoBehaviour {
 	public	Texture2D	textureDisable;
 	public	Texture2D	textureEnable;
 	public	Texture2D	textureSuccess;
+	public	Color		colorDisable;
+	public	Color		colorEnable;
+	public	Color		colorSuccess;
 
 	public	void SetThemeInfo(ThemeInfo themeInfo) {
 		int starSuccess = PlayerInfoManager.instance.stars[themeInfo.order];
@@ -16,10 +19,13 @@ public class TitleStarComponent : MonoBehaviour {
 		foreach (RawImage image in stars) {
 			if (i <= starSuccess) {
 				image.texture = textureSuccess;
+				image.color = colorSuccess;
 			} else if (i <= starEnable) {
 				image.texture = textureEnable;
+				image.color = colorEnable;
 			} else {
 				image.texture = textureDisable;
+				image.color = colorDisable;
 			}
 			i++;
 		}

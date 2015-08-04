@@ -19,7 +19,8 @@ public class CoreComponent : MonoBehaviour {
 	public	float			timeLastCombo;
 	public	float			timeDuration;
 	public	float			timeFever;
-	
+	public	bool			block;
+
 	private	Observer		observer;
 	private	GameComponent	game;
 	void Start() {
@@ -35,6 +36,7 @@ public class CoreComponent : MonoBehaviour {
 		count = 0;
 		combo = 0;
 		fever = false;
+		block = false;
 		game = GetComponentInParent<GameComponent> ();
 	}
 
@@ -157,6 +159,9 @@ public class CoreComponent : MonoBehaviour {
 	}
 
 	private bool IsMovable() {
+		if (block) {
+			return false;
+		}
 		foreach (BoxComponent box in boxes.Values) {
 			if (box.moving) {
 				return false;
@@ -218,7 +223,7 @@ public class CoreComponent : MonoBehaviour {
 		GameObject.DestroyImmediate(box2.gameObject);
 		New(level, slot);
 		// insert score increament
-		game.AppendScore (level);
+		bool isWin = game.AppendScore (level);
 
 		Vector3 pos = slot.transform.position;
 
@@ -236,11 +241,12 @@ public class CoreComponent : MonoBehaviour {
 			AudioPlayerComponent.Play ("fx_combo");
 		}
 
-		if (level==(prefabs.Length-1)) {
+		if (isWin) {
 			game.Win();
+			block = true;
+		} else {
+			OnMoved(slot);
 		}
-
-		OnMoved(slot);
 	}
 
 	public void OnMoved(SlotComponent slot) {
@@ -257,6 +263,7 @@ public class CoreComponent : MonoBehaviour {
 
 			if (gameover) {
                 game.NoMoreMove();
+				block = true;
             }
 		}
 	}

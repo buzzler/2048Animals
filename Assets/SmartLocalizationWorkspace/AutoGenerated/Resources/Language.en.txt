@@ -419,6 +419,12 @@
 	<data name="fnf.ui.language" xml:space="preserve">
 		<value>Language</value>
 	</data>
+	<data name="fnf.ui.level.practice" xml:space="preserve">
+		<value>You need practice</value>
+	</data>
+	<data name="fnf.ui.level.up" xml:space="preserve">
+		<value>Level Up</value>
+	</data>
 	<data name="fnf.ui.mute" xml:space="preserve">
 		<value>Sound off</value>
 	</data>

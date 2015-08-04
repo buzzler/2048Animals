@@ -63,7 +63,7 @@ public class PlayerInfo {
 		bestScore = 0;
 		gameScore = 0;
 		gameCoin = 0;
-		highLevel = 1;
+		highLevel = 0;
 		stars = new int[200];
 		lastAnimalType = AnimalType.BEAR;
 		ads = DateTime.MinValue;
@@ -83,6 +83,12 @@ public class PlayerInfo {
 
 	public	ThemeInfo GetThemeInfo() {
 		return ThemeInfo.Find (lastAnimalType);
+	}
+
+	public	void Clear() {
+		gameScore = 0;
+		gameCoin = 0;
+		highLevel = 0;
 	}
 }
 
@@ -116,7 +122,11 @@ public	class PlayerInfoManager {
 			_instance = new PlayerInfo ();
 		}
 
+		ThemeInfo themeInfo = _instance.GetThemeInfo();
 		_instance.bestScore = (_instance.bestScore > _instance.gameScore) ? _instance.bestScore : _instance.gameScore;
+		_instance.stars[themeInfo.order] = Mathf.Max(_instance.stars[themeInfo.order], _instance.highLevel);
+		_instance.Clear();
+
 		string str = _instance.ToJSON ().ToString ();
 		DebugComponent.Log (str);
 		PlayerPrefs.SetString (_KEY, EncryptText(str, true));

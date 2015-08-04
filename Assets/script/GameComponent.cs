@@ -14,10 +14,12 @@ public class GameComponent : UIComponent {
 	public	GameObject			fever;
     public  RawImage            rawShadow;
     public  RawImage            rawSpeaker;
+	public	GameResultOverlay	overlayResult;
     private Texture2D           textureNormal;
     private Texture2D           textureBoom;
 	private	Animator			animator;
 	private PlayerInfo			playerInfo;
+	private	ThemeInfo			themeInfo;
 	private	uint				score;
 	private	BackgroundComponent	bg;
 	private	Observer			observer;
@@ -36,9 +38,9 @@ public class GameComponent : UIComponent {
 		observer = Observer.GetInstance();
         observer.beat += OnBeat;
 
-        ThemeInfo info = playerInfo.GetThemeInfo();
-        textureNormal = Resources.Load<Texture2D>("bg/" + info.bg.ToString().ToLower()+"_1");
-        textureBoom = Resources.Load<Texture2D>("bg/" + info.bg.ToString().ToLower()+"_2");
+        themeInfo = playerInfo.GetThemeInfo();
+        textureNormal = Resources.Load<Texture2D>("bg/" + themeInfo.bg.ToString().ToLower()+"_1");
+        textureBoom = Resources.Load<Texture2D>("bg/" + themeInfo.bg.ToString().ToLower()+"_2");
         rawSpeaker.texture = textureNormal;
 
 		// change medium image to selected animal's one
@@ -85,7 +87,7 @@ public class GameComponent : UIComponent {
         }
 	}
 
-	public	void AppendScore(int level) {
+	public	bool AppendScore(int level) {
 		score += (uint)playerInfo.buffInfoScore.Calculate(Mathf.Pow(2, fever.activeSelf ? level+1:level));
 		UpdateScore();
 
@@ -93,6 +95,16 @@ public class GameComponent : UIComponent {
 		if (((level)>playerInfo.highLevel) && (observer.highLevelChange!=null)) {
 			playerInfo.highLevel = level;
 			observer.highLevelChange(level);
+		}
+
+		if (themeInfo.star <= level) {
+			if ((playerInfo.stars[themeInfo.order] < level) || (level == 12)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
 		}
 	}
 
@@ -115,17 +127,20 @@ public class GameComponent : UIComponent {
     }
 
 	public	void GameOver() {
-		SaveScore();
-		FeverOff();
-		SendMessageUpwards("ReserveNextUI", UIType.RESULT);
-		animator.SetTrigger("trigger_gameover");
+		OnWinOverPrefare().GameOver(OnWinOverComplete);
 	}
 
 	public	void Win() {
+		OnWinOverPrefare().Victory(OnWinOverComplete);
+	}
+
+	public	GameResultOverlay OnWinOverPrefare() {
 		SaveScore();
 		FeverOff();
 		SendMessageUpwards("ReserveNextUI", UIType.RESULT);
-		animator.SetTrigger("trigger_win");
+		GameResultOverlay overlay = GameObject.Instantiate<GameResultOverlay>(overlayResult);
+		overlay.transform.SetParent(transform, false);
+		return overlay;
 	}
 
 	public	void OnWinOverComplete() {

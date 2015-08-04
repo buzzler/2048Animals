@@ -485,4 +485,10 @@
 	<data name="fnf.ui.yes" xml:space="preserve">
 		<value>Yes, Please !</value>
 	</data>
+	<data name="fnf.ui.level.up" xml:space="preserve">
+		<value>Level Up</value>
+	</data>
+	<data name="fnf.ui.level.practice" xml:space="preserve">
+		<value>You need practice</value>
+	</data>
 </root>

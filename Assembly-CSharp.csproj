@@ -92,6 +92,7 @@
      <Compile Include="Assets\script\FootpackItemComponent.cs" />
      <Compile Include="Assets\script\GameComponent.cs" />
      <Compile Include="Assets\script\GameFootComponent.cs" />
+     <Compile Include="Assets\script\GameResultOverlay.cs" />
      <Compile Include="Assets\script\GyroComponent.cs" />
      <Compile Include="Assets\script\HeadComponent.cs" />
      <Compile Include="Assets\script\HeaderComponent.cs" />
@@ -99,6 +100,7 @@
      <Compile Include="Assets\script\JSONObject.cs" />
      <Compile Include="Assets\script\MaskComponent.cs" />
      <Compile Include="Assets\script\Observer.cs" />
+     <Compile Include="Assets\script\OverlayComponent.cs" />
      <Compile Include="Assets\script\PackInfo.cs" />
      <Compile Include="Assets\script\PagerComponent.cs" />
      <Compile Include="Assets\script\PauseComponent.cs" />

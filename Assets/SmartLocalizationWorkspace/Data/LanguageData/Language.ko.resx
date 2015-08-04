@@ -419,6 +419,12 @@
 	<data name="fnf.ui.language" xml:space="preserve">
 		<value>언어</value>
 	</data>
+	<data name="fnf.ui.level.practice" xml:space="preserve">
+		<value>조금 더 연습해보세요</value>
+	</data>
+	<data name="fnf.ui.level.up" xml:space="preserve">
+		<value>레벨 업</value>
+	</data>
 	<data name="fnf.ui.mute" xml:space="preserve">
 		<value>음소거</value>
 	</data>
