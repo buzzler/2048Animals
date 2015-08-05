@@ -78,6 +78,8 @@ public class GameResultOverlay : OverlayComponent {
 		hash.Add("from", 1f);
 		hash.Add("to", 0f);
 		hash.Add("time", 0.5f);
+		hash.Add("delay", 0.5f);
+		hash.Add("easetype", iTween.EaseType.easeOutCubic);
 		hash.Add("onupdate", "OnShowUpdate");
 		hash.Add("onupdatetarget", gameObject);
 		hash.Add("oncomplete", "OnShowComplete");
@@ -124,6 +126,7 @@ public class GameResultOverlay : OverlayComponent {
 		hash.Add("to", 1f);
 		hash.Add("delay", 0.5f);
 		hash.Add("time", 0.3f);
+		hash.Add("easetype", iTween.EaseType.easeInCubic);
 		hash.Add("onupdate", "OnHideUpdate");
 		hash.Add("onupdatetarget", gameObject);
 		hash.Add("oncomplete", "OnHideComplete");

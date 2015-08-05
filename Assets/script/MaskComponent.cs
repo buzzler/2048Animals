@@ -47,6 +47,6 @@ public class MaskComponent : UIComponent {
 			observer.maskClose();
 		}
 		OnUIChange ();
-		Invoke ("OpenMask", 0.6f);
+		Invoke ("OpenMask", 0.3f);
 	}
 }

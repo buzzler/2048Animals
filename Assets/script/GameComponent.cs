@@ -14,6 +14,7 @@ public class GameComponent : UIComponent {
 	public	GameObject			fever;
     public  RawImage            rawShadow;
     public  RawImage            rawSpeaker;
+	public	GameStartOverlay	overlayStart;
 	public	GameResultOverlay	overlayResult;
     private Texture2D           textureNormal;
     private Texture2D           textureBoom;
@@ -48,7 +49,11 @@ public class GameComponent : UIComponent {
 		ClearCoin();
 		core.Clear();
 		SendMessageUpwards("TurnOffFilter");
-		animator.SetTrigger("trigger_init");
+
+//		animator.SetTrigger("trigger_init");
+		GameStartOverlay overlay = GameObject.Instantiate<GameStartOverlay>(overlayStart);
+		overlay.transform.SetParent(transform, false);
+		overlay.Ready(OnPop);
 	}
 
 	public	override void OnUIStop() {

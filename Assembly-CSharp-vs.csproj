@@ -92,7 +92,9 @@
      <Compile Include="Assets\script\FootpackItemComponent.cs" />
      <Compile Include="Assets\script\GameComponent.cs" />
      <Compile Include="Assets\script\GameFootComponent.cs" />
+     <Compile Include="Assets\script\GameFootOverlay.cs" />
      <Compile Include="Assets\script\GameResultOverlay.cs" />
+     <Compile Include="Assets\script\GameStartOverlay.cs" />
      <Compile Include="Assets\script\GyroComponent.cs" />
      <Compile Include="Assets\script\HeadComponent.cs" />
      <Compile Include="Assets\script\HeadSelectorComponent.cs" />
