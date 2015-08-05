@@ -4,21 +4,20 @@ using System.Collections;
 using Soomla;
 using Soomla.Store;
 
-[RequireComponent (typeof(Animator))]
 public class GameComponent : UIComponent {
 	public	CoreComponent		core;
 	public	Text				labelBest;
 	public	Text				textBest;
 	public	Text				textScore;
-	public	Text				labelTap;
 	public	GameObject			fever;
     public  RawImage            rawShadow;
     public  RawImage            rawSpeaker;
 	public	GameStartOverlay	overlayStart;
+	public	GameFootOverlay		overlayFoot;
+	public	GameEraseOverlay	overlayErase;
 	public	GameResultOverlay	overlayResult;
     private Texture2D           textureNormal;
     private Texture2D           textureBoom;
-	private	Animator			animator;
 	private PlayerInfo			playerInfo;
 	private	ThemeInfo			themeInfo;
 	private	uint				score;
@@ -28,12 +27,10 @@ public class GameComponent : UIComponent {
 	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
 		base.OnUIChangeLanguage (lm);
 		labelBest.text = lm.GetTextValue ("fnf.ui.best");
-		labelTap.text = lm.GetTextValue ("fnf.ui.erase");
 	}
 
 	public	override void OnUIStart() {
 		base.OnUIStart();
-		animator = GetComponent(typeof(Animator)) as Animator;
 		playerInfo = PlayerInfoManager.instance;
 		bg = GameObject.FindObjectOfType<BackgroundComponent>();
 		observer = Observer.GetInstance();
@@ -50,7 +47,6 @@ public class GameComponent : UIComponent {
 		core.Clear();
 		SendMessageUpwards("TurnOffFilter");
 
-//		animator.SetTrigger("trigger_init");
 		GameStartOverlay overlay = GameObject.Instantiate<GameStartOverlay>(overlayStart);
 		overlay.transform.SetParent(transform, false);
 		overlay.Ready(OnPop);
@@ -128,7 +124,9 @@ public class GameComponent : UIComponent {
 	}
 
     public  void NoMoreMove() {
-        animator.SetTrigger("trigger_foot");
+		GameFootOverlay overlay = GameObject.Instantiate<GameFootOverlay>(overlayFoot);
+		overlay.transform.SetParent(transform, false);
+		overlay.Question (OnClickYes, GameOver);
     }
 
 	public	void GameOver() {
@@ -175,26 +173,11 @@ public class GameComponent : UIComponent {
 		playerInfo.gameScore = score;
 	}
 
-    public  void OnClickClose() {
-		AudioPlayerComponent.Play ("fx_click");
-        animator.SetTrigger("trigger_close");
-    }
-    
     public  void OnClickYes() {
-		AudioPlayerComponent.Play ("fx_click");
-		if (StoreInventory.GetItemBalance (StoreAssetInfo.FOOT) > 0) {
-			animator.SetTrigger ("trigger_yes");
-		} else {
-			OnUIReserve(UIType.FOOTPACK);
-			OnUIChange();
-		}
-    }
-    
-    public  void OnCloseAnimationComplete() {
-        GameOver();
-    }
-    
-    public  void OnYesAnimationComplete() {
+		GameEraseOverlay overlay = GameObject.Instantiate<GameEraseOverlay>(overlayErase);
+		overlay.transform.SetParent(transform, false);
+		overlay.Erase (rawShadow);
+
 		Button[] buttons = core.GetComponentsInChildren<Button> ();
 		foreach (Button b in buttons) {
 			b.interactable = true;
@@ -207,12 +190,8 @@ public class GameComponent : UIComponent {
 			b.interactable = false;
 		}
 		StoreInventory.TakeItem (StoreAssetInfo.FOOT, 1);
-		animator.SetTrigger ("trigger_erase");
         AnalyticsComponent.LogItemEvent(AnalyticsComponent.ACTION_USE, 1);
 		AudioPlayerComponent.Play ("fx_foot");
-	}
-
-	public	void OnEraseAnimationComplete() {
-
+		GetComponentInChildren<GameEraseOverlay> ().Quit ();
 	}
 }
