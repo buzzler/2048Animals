@@ -46,13 +46,13 @@ public class GameResultOverlay : OverlayComponent {
 			starEnable = starSuccess;
 			textCount.text = starSuccess.ToString() + " / " + starSuccess.ToString();
 			textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.clear");
-		} else if (starSuccess > starTarget) {
+		} else if (starSuccess >= starTarget) {
 			starEnable = starSuccess+1;
 			textCount.text = starSuccess.ToString() + " / " + starSuccess.ToString();
 			textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.level.up");
 		} else {
 			starEnable = Mathf.Min(starTarget+1, stars.Length);
-			textCount.text = starSuccess.ToString() + " / " + (starTarget+1).ToString();
+			textCount.text = starSuccess.ToString() + " / " + starTarget.ToString();
 			textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.level.practice");
 		}
 	}

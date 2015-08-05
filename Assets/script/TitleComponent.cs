@@ -91,12 +91,12 @@ public class TitleComponent : UIComponent {
 		}
 	}
 
-	public void MakeHead(ThemeInfo info) {
+	public void MakeHead(ThemeInfo info, int level = 1) {
 		ClearHead ();
 
 		ThemeSelectorComponent tsc = dictionary[info.type];
 		if (tsc.state == ThemeSelectorState.UNLOCKED) {
-			head = GameObject.Instantiate (Resources.Load("head/"+info.code.ToLower())) as GameObject;
+			head = GameObject.Instantiate (Resources.Load("head/"+info.code.ToLower()+"_"+level.ToString())) as GameObject;
 			purchaser.ClearThemeInfo();
 			buttonStart.interactable = true;
 		} else if (tsc.state == ThemeSelectorState.BLINDED) {
@@ -120,20 +120,22 @@ public class TitleComponent : UIComponent {
 	public	void OnUpdateInventory(string id, int balance, int delta) {
 		ThemeInfo theme = ThemeInfo.Find(id);
         if ((theme!=null) && (delta>0)) {
-			ThemeSelectorComponent tsc = dictionary[theme.type];
-			tsc.SetGetAnimalType(PlayerInfoManager.instance);
-			RefreshHead(tsc);
+			dictionary[theme.type].SetGetAnimalType(PlayerInfoManager.instance);
+			RefreshHead(theme);
 			CheckLock();
             AnalyticsComponent.LogThemeEvent(AnalyticsComponent.ACTION_UNLOCK, (long)theme.order);
 		}
 	}
 
-	public	void RefreshHead(ThemeSelectorComponent tsc) {
+	public	void RefreshHead(ThemeInfo theme, int level = 1) {
 		purchaser.ClearThemeInfo();
-		MakeHead (tsc.theme);
-		star.SetThemeInfo (tsc.theme);
+		MakeHead (theme, level);
+		star.SetThemeInfo (theme);
 		head.GetComponent<HeadComponent> ().Flash ();
+	}
 
+	public	void OnClickLevel(int level) {
+		RefreshHead(PlayerInfoManager.instance.GetThemeInfo(), level);
 	}
 
 	public void OnClickPlay() {
