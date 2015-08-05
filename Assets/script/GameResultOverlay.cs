@@ -29,8 +29,6 @@ public class GameResultOverlay : OverlayComponent {
 		int starMax = stars.Length;
 
 		starSuccess = pinfo.highLevel;
-		starEnable = Mathf.Max(starOld, tinfo.star, starSuccess+1);
-		starEnable = Mathf.Min(starEnable, stars.Length);
 		starIndex = 0;
 
 		int starTarget = 0;
@@ -44,13 +42,17 @@ public class GameResultOverlay : OverlayComponent {
 			starTarget = Mathf.Min(starOld + 1, starMax);
 		}
 
-		textCount.text = starSuccess.ToString() + " / " + starTarget.ToString();
-		if (starSuccess == starTarget) {
-			if (starTarget == starMax)
-				textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.clear");
-			else
-				textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.level.up");
-		} else if (starSuccess < starTarget) {
+		if (starSuccess == stars.Length) {
+			starEnable = starSuccess;
+			textCount.text = starSuccess.ToString() + " / " + starSuccess.ToString();
+			textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.clear");
+		} else if (starSuccess > starTarget) {
+			starEnable = starSuccess+1;
+			textCount.text = starSuccess.ToString() + " / " + starSuccess.ToString();
+			textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.level.up");
+		} else {
+			starEnable = Mathf.Min(starTarget+1, stars.Length);
+			textCount.text = starSuccess.ToString() + " / " + (starTarget+1).ToString();
 			textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.level.practice");
 		}
 	}

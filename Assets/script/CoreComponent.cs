@@ -204,6 +204,7 @@ public class CoreComponent : MonoBehaviour {
 		GameObject.DestroyImmediate (box.gameObject);
 		AudioPlayerComponent.Play ("fx_combo");
 		EffectComponent.Show (effectBang [0], slot.transform.position);
+		block = false;
 	}
 
 	public void OnMerge(SlotComponent slot) {
