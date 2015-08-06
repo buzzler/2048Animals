@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 
 public delegate void SocialDelegate(SocialResult result);
+public delegate void ScreenshotDelegate();
 
 public class SystemCheckComponent : MonoBehaviour {
 	private	static SystemCheckComponent _this;
@@ -199,8 +200,12 @@ public class SystemCheckComponent : MonoBehaviour {
         return (_screenshot!=null);
     }
 
-    public  void TakeScreenshot() {
-        StartCoroutine(EStoreScreenshot());
+	public  void TakeScreenshot(ScreenshotDelegate callback) {
+		if (IsLoggedIn ()) {
+			StartCoroutine (EStoreScreenshot (callback));
+		} else {
+			callback();
+		}
     }
 
 	/**
@@ -259,7 +264,7 @@ public class SystemCheckComponent : MonoBehaviour {
 		}
 	}
 
-    private IEnumerator EStoreScreenshot() {
+	private IEnumerator EStoreScreenshot(ScreenshotDelegate callback = null) {
         yield return new WaitForEndOfFrame();
 
         var width = Screen.width;
@@ -268,6 +273,10 @@ public class SystemCheckComponent : MonoBehaviour {
         tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
         tex.Apply();
         _screenshot = tex.EncodeToPNG();
+
+		if (callback != null) {
+			callback ();
+		}
     }
 
 	private void onsnapshotcomplete(FBResult result) {

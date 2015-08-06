@@ -147,8 +147,8 @@ public class GameComponent : UIComponent {
 	}
 
 	public	void OnWinOverComplete() {
-		GetComponentInParent<SystemCheckComponent>().TakeScreenshot();
-		OnUIChange ();
+		GetComponentInParent<SystemCheckComponent>().TakeScreenshot(OnUIChange);
+//		OnUIChange ();
 	}
 
 	public	void FeverOn() {

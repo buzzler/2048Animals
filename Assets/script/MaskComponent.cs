@@ -2,7 +2,6 @@
 using UnityEngine.UI;
 using System.Collections;
 
-//[RequireComponent(typeof(Animator))]
 public class MaskComponent : UIComponent {
 
 	public	Image		mask;
