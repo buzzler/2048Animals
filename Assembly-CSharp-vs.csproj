@@ -108,6 +108,7 @@
      <Compile Include="Assets\script\PagerComponent.cs" />
      <Compile Include="Assets\script\PauseComponent.cs" />
      <Compile Include="Assets\script\PlayerInfo.cs" />
+     <Compile Include="Assets\script\PopupOverlay.cs" />
      <Compile Include="Assets\script\PreloadComponent.cs" />
      <Compile Include="Assets\script\PsedoGIF.cs" />
      <Compile Include="Assets\script\ResultComponent.cs" />

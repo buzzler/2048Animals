@@ -47,15 +47,17 @@ public class GameStartOverlay : OverlayComponent {
 	}
 
 	public	void OnGoComplete() {
-		Invoke("OnExit", 0.3f);
+		Invoke("OnClose", 0.3f);
 	}
 
-	public	void OnExit() {
+	public override	void OnHide(Vector3 direction) {
+		base.OnHide (direction);
+
 		Hashtable hash = new Hashtable();
-		hash.Add("position", toPosition);
+		hash.Add("position", direction);
 		hash.Add("time", 0.2f);
 		hash.Add("easetype", iTween.EaseType.easeInCubic);
-		hash.Add("oncomplete", "OnClose");
+		hash.Add("oncomplete", "OnHideComplete");
 		hash.Add("oncompletetarget", gameObject);
 		iTween.MoveTo(imageGo.gameObject, hash);
 	}

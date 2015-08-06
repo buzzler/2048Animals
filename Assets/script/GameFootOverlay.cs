@@ -4,7 +4,7 @@ using System.Collections;
 using Soomla.Store;
 using SmartLocalization;
 
-public class GameFootOverlay : OverlayComponent {
+public class GameFootOverlay : PopupOverlay {
 	public  Text		textTitle;
 	public  Text		textFoot;
 	public  Text		textMessage;
@@ -44,90 +44,101 @@ public class GameFootOverlay : OverlayComponent {
 
 	public	void Question(OverlayEventHandler yesHandler, OverlayEventHandler noHandler) {
 		onOK += yesHandler;
-		onCancel += noHandler;
-		panel.transform.position = fromPosition;
-		shadow.color = fromColor;
+		onClose += noHandler;
 
-		Hashtable hash = new Hashtable ();
-		hash.Add ("position", Vector3.zero);
-		hash.Add ("time", 0.5f);
-		hash.Add ("delay", 0.5f);
-		hash.Add ("easeType", iTween.EaseType.easeOutCubic);
-		hash.Add ("oncomplete", "OnQuestionComplete");
-		hash.Add ("oncompletetarget", gameObject);
-		iTween.MoveTo (panel.gameObject, hash);
-
-		hash = new Hashtable ();
-		hash.Add ("from", fromColor);
-		hash.Add ("to", toColor);
-		hash.Add ("time", 0.5f);
-		hash.Add ("delay", 0.5f);
-		hash.Add ("easeType", iTween.EaseType.easeOutCubic);
-		hash.Add ("onupdate", "OnColorUpdate");
-		hash.Add ("onupdatetarget", gameObject);
-		iTween.ValueTo (shadow.gameObject, hash);
+		OnShow ();
+//		panel.transform.position = fromPosition;
+//		shadow.color = fromColor;
+//
+//		Hashtable hash = new Hashtable ();
+//		hash.Add ("position", Vector3.zero);
+//		hash.Add ("time", 0.5f);
+//		hash.Add ("delay", 0.5f);
+//		hash.Add ("easeType", iTween.EaseType.easeOutCubic);
+//		hash.Add ("oncomplete", "OnQuestionComplete");
+//		hash.Add ("oncompletetarget", gameObject);
+//		iTween.MoveTo (panel.gameObject, hash);
+//
+//		hash = new Hashtable ();
+//		hash.Add ("from", fromColor);
+//		hash.Add ("to", toColor);
+//		hash.Add ("time", 0.5f);
+//		hash.Add ("delay", 0.5f);
+//		hash.Add ("easeType", iTween.EaseType.easeOutCubic);
+//		hash.Add ("onupdate", "OnColorUpdate");
+//		hash.Add ("onupdatetarget", gameObject);
+//		iTween.ValueTo (shadow.gameObject, hash);
 	}
 
-	public	void OnColorUpdate(Color color) {
-		shadow.color = color;
-	}
+//	public	void OnColorUpdate(Color color) {
+//		shadow.color = color;
+//	}
 
-	public	void OnQuestionComplete() {
+//	public	void OnQuestionComplete() {
+//		buttonYes.interactable = true;
+//		buttonNo.interactable = true;
+//	}
+
+	public override void OnShowComplete () {
+		base.OnShowComplete ();
 		buttonYes.interactable = true;
 		buttonNo.interactable = true;
 	}
 
 	public	void OnClickYes() {
 		AudioPlayerComponent.Play ("fx_click");
-		buttonYes.interactable = false;
-		buttonNo.interactable = false;
 
-		Hashtable hash = new Hashtable ();
-		hash.Add ("position", fromPosition);
-		hash.Add ("time", 0.3f);
-		hash.Add ("easeType", iTween.EaseType.easeInCubic);
-		hash.Add ("oncomplete", "OnYesComplete");
-		hash.Add ("oncompletetarget", gameObject);
-		iTween.MoveTo (panel.gameObject, hash);
-		
-		hash = new Hashtable ();
-		hash.Add ("from", toColor);
-		hash.Add ("to", fromColor);
-		hash.Add ("time", 0.3f);
-		hash.Add ("easeType", iTween.EaseType.easeInCubic);
-		hash.Add ("onupdate", "OnColorUpdate");
-		hash.Add ("onupdatetarget", gameObject);
-		iTween.ValueTo (shadow.gameObject, hash);
+		OnOK ();
+//		buttonYes.interactable = false;
+//		buttonNo.interactable = false;
+//
+//		Hashtable hash = new Hashtable ();
+//		hash.Add ("position", fromPosition);
+//		hash.Add ("time", 0.3f);
+//		hash.Add ("easeType", iTween.EaseType.easeInCubic);
+//		hash.Add ("oncomplete", "OnYesComplete");
+//		hash.Add ("oncompletetarget", gameObject);
+//		iTween.MoveTo (panel.gameObject, hash);
+//		
+//		hash = new Hashtable ();
+//		hash.Add ("from", toColor);
+//		hash.Add ("to", fromColor);
+//		hash.Add ("time", 0.3f);
+//		hash.Add ("easeType", iTween.EaseType.easeInCubic);
+//		hash.Add ("onupdate", "OnColorUpdate");
+//		hash.Add ("onupdatetarget", gameObject);
+//		iTween.ValueTo (shadow.gameObject, hash);
 	}
 
 	public	void OnClickNo() {
 		AudioPlayerComponent.Play ("fx_click");
-		buttonYes.interactable = false;
-		buttonNo.interactable = false;
-		
-		Hashtable hash = new Hashtable ();
-		hash.Add ("position", toPosition);
-		hash.Add ("time", 0.3f);
-		hash.Add ("easeType", iTween.EaseType.easeInCubic);
-		hash.Add ("oncomplete", "OnNoComplete");
-		hash.Add ("oncompletetarget", gameObject);
-		iTween.MoveTo (panel.gameObject, hash);
-		
-		hash = new Hashtable ();
-		hash.Add ("from", toColor);
-		hash.Add ("to", fromColor);
-		hash.Add ("time", 0.3f);
-		hash.Add ("easeType", iTween.EaseType.easeInCubic);
-		hash.Add ("onupdate", "OnColorUpdate");
-		hash.Add ("onupdatetarget", gameObject);
-		iTween.ValueTo (shadow.gameObject, hash);
+		OnClose ();
+//		buttonYes.interactable = false;
+//		buttonNo.interactable = false;
+//		
+//		Hashtable hash = new Hashtable ();
+//		hash.Add ("position", toPosition);
+//		hash.Add ("time", 0.3f);
+//		hash.Add ("easeType", iTween.EaseType.easeInCubic);
+//		hash.Add ("oncomplete", "OnNoComplete");
+//		hash.Add ("oncompletetarget", gameObject);
+//		iTween.MoveTo (panel.gameObject, hash);
+//		
+//		hash = new Hashtable ();
+//		hash.Add ("from", toColor);
+//		hash.Add ("to", fromColor);
+//		hash.Add ("time", 0.3f);
+//		hash.Add ("easeType", iTween.EaseType.easeInCubic);
+//		hash.Add ("onupdate", "OnColorUpdate");
+//		hash.Add ("onupdatetarget", gameObject);
+//		iTween.ValueTo (shadow.gameObject, hash);
 	}
 
-	public	void OnYesComplete() {
-		OnOK ();
-	}
-
-	public	void OnNoComplete() {
-		OnCancel ();
-	}
+//	public	void OnYesComplete() {
+//		OnOK ();
+//	}
+//
+//	public	void OnNoComplete() {
+//		OnCancel ();
+//	}
 }
