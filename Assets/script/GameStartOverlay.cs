@@ -2,11 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class GameStartOverlay : OverlayComponent {
+public class GameStartOverlay : PopupOverlay {
 	public	Image imageReady;
 	public	Image imageGo;
-	public	Vector3 fromPosition;
-	public	Vector3	toPosition;
 	public	Vector3 fromScale;
 	public	Vector3 toScale;
 	
@@ -16,12 +14,17 @@ public class GameStartOverlay : OverlayComponent {
 
 	public	void Ready(OverlayEventHandler handler) {
 		onClose += handler;
-		imageReady.transform.position = fromPosition;
 
+		OnShow ();
+	}
+
+	public override void OnShowComplete () {
+		base.OnShowComplete ();
+
+		imageReady.transform.position = positionUp;
 		Hashtable hash = new Hashtable();
 		hash.Add("position", Vector3.zero);
 		hash.Add("time", 0.5f);
-		hash.Add("delay", 0.7f);
 		hash.Add("easetype", iTween.EaseType.easeOutElastic);
 		hash.Add("oncomplete", "OnReadyComplete");
 		hash.Add("oncompletetarget", gameObject);

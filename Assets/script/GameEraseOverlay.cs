@@ -3,11 +3,8 @@ using UnityEngine.UI;
 using System.Collections;
 using SmartLocalization;
 
-public class GameEraseOverlay : OverlayComponent {
+public class GameEraseOverlay : PopupOverlay {
 	public	Text		text;
-	public	Color		fromColor;
-	public	Color		toColor;
-	private	RawImage	shadow;
 
 	void OnEnable() {
 		OnUIChangeLanguage (LanguageManager.Instance);
@@ -23,26 +20,15 @@ public class GameEraseOverlay : OverlayComponent {
 	}
 
 	public	void Erase(RawImage shadow) {
-		this.shadow = shadow;
+		objectShadow = shadow;
 		shadow.gameObject.SetActive (true);
 
-		Hashtable hash = new Hashtable ();
-		hash.Add ("from", fromColor);
-		hash.Add ("to", toColor);
-		hash.Add ("time", 0.3f);
-		hash.Add ("easeType", iTween.EaseType.easeInCubic);
-		hash.Add ("onupdate", "OnShadowUpdate");
-		hash.Add ("onupdatetarget", gameObject);
-		hash.Add ("oncomplete", "OnText");
-		hash.Add ("oncompletetarget", gameObject);
-		iTween.ValueTo (shadow.gameObject, hash);
+		OnShow ();
 	}
 
-	public	void OnShadowUpdate(Color color) {
-		shadow.color = color;
-	}
+	public override void OnShowComplete () {
+		base.OnShowComplete ();
 
-	public	void OnText() {
 		Hashtable hash = new Hashtable ();
 		hash.Add ("from", Color.clear);
 		hash.Add ("to", Color.white);
@@ -50,16 +36,11 @@ public class GameEraseOverlay : OverlayComponent {
 		hash.Add ("easeType", iTween.EaseType.easeOutCubic);
 		hash.Add ("onupdate", "OnTextUpdate");
 		hash.Add ("onupdatetarget", gameObject);
-		hash.Add ("oncomplete", "OnTextComplete");
-		hash.Add ("oncompletetarget", gameObject);
 		iTween.ValueTo (text.gameObject, hash);
 	}
 
 	public	void OnTextUpdate(Color color) {
 		text.color = color;
-	}
-
-	public	void OnTextComplete() {
 	}
 
 	public	void Quit() {
@@ -70,26 +51,13 @@ public class GameEraseOverlay : OverlayComponent {
 		hash.Add ("easeType", iTween.EaseType.easeInCubic);
 		hash.Add ("onupdate", "OnTextUpdate");
 		hash.Add ("onupdatetarget", gameObject);
-		hash.Add ("oncomplete", "OnQuiting");
+		hash.Add ("oncomplete", "OnOK");
 		hash.Add ("oncompletetarget", gameObject);
 		iTween.ValueTo (text.gameObject, hash);
 	}
 
-	public	void OnQuiting() {
-		Hashtable hash = new Hashtable ();
-		hash.Add ("from", toColor);
-		hash.Add ("to", fromColor);
-		hash.Add ("time", 0.2f);
-		hash.Add ("easeType", iTween.EaseType.easeOutCubic);
-		hash.Add ("onupdate", "OnShadowUpdate");
-		hash.Add ("onupdatetarget", gameObject);
-		hash.Add ("oncomplete", "OnQuitComplete");
-		hash.Add ("oncompletetarget", gameObject);
-		iTween.ValueTo (shadow.gameObject, hash);
-	}
-
-	public	void OnQuitComplete() {
-		shadow.gameObject.SetActive (false);
-		OnQuit ();
+	public override void OnQuit() {
+		objectShadow.gameObject.SetActive (false);
+		base.OnQuit ();
 	}
 }

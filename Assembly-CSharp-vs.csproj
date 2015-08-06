@@ -88,6 +88,8 @@
      <Compile Include="Assets\script\EffectComponent.cs" />
      <Compile Include="Assets\script\Enums.cs" />
      <Compile Include="Assets\script\ErrorComponent.cs" />
+     <Compile Include="Assets\script\FAGE\CachedResource.cs" />
+     <Compile Include="Assets\script\FAGE\ObjectPool.cs" />
      <Compile Include="Assets\script\FootpackComponent.cs" />
      <Compile Include="Assets\script\FootpackItemComponent.cs" />
      <Compile Include="Assets\script\GameComponent.cs" />

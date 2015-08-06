@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 //[RequireComponent(typeof(Animator))]
 public class MaskComponent : UIComponent {
 
-	public	Animator	animator;
+	public	Image		mask;
 	public	MaskState	defaultState;
 	private	MaskState	currentState;
 	private	Observer	observer;
@@ -28,18 +29,48 @@ public class MaskComponent : UIComponent {
 
 	public	void OpenMask() {
 		currentState = MaskState.OPEN;
-		animator.SetBool("bool_open", true);
+
+		if (mask.rectTransform.sizeDelta.x != 2300f) {
+			Hashtable hash = new Hashtable ();
+			hash.Add ("from", 0f);
+			hash.Add ("to", 2300f);
+			hash.Add ("time", 0.75f);
+			hash.Add ("easeType", iTween.EaseType.easeInCubic);
+			hash.Add ("oncomplete", "OnOpenMask");
+			hash.Add ("oncompletetarget", gameObject);
+			hash.Add ("onupdate", "OnMaskUpdate");
+			hash.Add ("onupdatetarget", gameObject);
+			iTween.ValueTo (mask.gameObject, hash);
+		}
+	}
+
+	public	void OnMaskUpdate(float value) {
+		mask.rectTransform.sizeDelta = new Vector2 (value, value);
 	}
 
 	public	void CloseMask() {
 		currentState = MaskState.CLOSE;
-		animator.SetBool("bool_open", false);
+
+		if (mask.rectTransform.sizeDelta.x != 0f) {
+			mask.gameObject.SetActive (true);
+			Hashtable hash = new Hashtable ();
+			hash.Add ("from", 2300f);
+			hash.Add ("to", 0f);
+			hash.Add ("time", 0.25f);
+			hash.Add ("easeType", iTween.EaseType.easeInCubic);
+			hash.Add ("oncomplete", "OnCloseMask");
+			hash.Add ("oncompletetarget", gameObject);
+			hash.Add ("onupdate", "OnMaskUpdate");
+			hash.Add ("onupdatetarget", gameObject);
+			iTween.ValueTo (mask.gameObject, hash);
+		}
 	}
 
 	public	void OnOpenMask() {
 		if (observer.maskOpen != null) {
 			observer.maskOpen();
 		}
+		mask.gameObject.SetActive (false);
 	}
 
 	public	void OnCloseMask() {

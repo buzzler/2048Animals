@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using SmartLocalization;
 
-[RequireComponent (typeof(Animator))]
+//[RequireComponent (typeof(Animator))]
 public class SettingComponent : UIComponent {
 	public	Text labelOption;
 	public	Text labelLanguage;
@@ -17,8 +17,10 @@ public class SettingComponent : UIComponent {
 	public	Text labelLogout;
 	public	Button	buttonLogin;
 	public	Button	buttonLogout;
+	public	GameObject	objectMain;
+	public	GameObject	objectLanguage;
 
-	private Animator animator;
+//	private Animator animator;
 	private	bool		lastMute;
 	private	bool		lastFB;
 
@@ -38,7 +40,7 @@ public class SettingComponent : UIComponent {
 
 	public	override void OnUIStart() {
 		base.OnUIStart();
-		animator = GetComponent<Animator>();
+//		animator = GetComponent<Animator>();
 		lastMute = false;
 		lastFB = false;
 
@@ -90,7 +92,9 @@ public class SettingComponent : UIComponent {
 
 	public	void OnClickLanguage() {
 		AudioPlayerComponent.Play ("fx_click");
-		animator.SetTrigger("trigger_language");
+//		animator.SetTrigger("trigger_language");
+		objectMain.SetActive (false);
+		objectLanguage.SetActive (true);
 	}
 
 	public	void OnClickMute() {
@@ -124,22 +128,31 @@ public class SettingComponent : UIComponent {
 
 	public	void OnClickClose() {
 		AudioPlayerComponent.Play ("fx_click");
-		AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
-		animator.SetTrigger("trigger_exit");
-		if (info.IsName("Base Layer.language")!=true) {
-			OnUIReserve(parent);
-			OnUIBackward();
+		if (objectMain.activeSelf) {
+			OnUIReserve (parent);
+			OnUIBackward ();
+		} else {
+			objectLanguage.SetActive (false);
+			objectMain.SetActive (true);
 		}
+//
+//		AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+//		animator.SetTrigger("trigger_exit");
+//		if (info.IsName("Base Layer.language")!=true) {
+//			OnUIReserve(parent);
+//			OnUIBackward();
+//		}
 	}
 
 	private	void ChangeLanguage(string code) {
 		PlayerInfoManager.instance.language = code;
 		PlayerInfoManager.Save();
-		
 		LanguageManager.Instance.ChangeLanguage(code);
-		animator.SetTrigger("trigger_exit");
+//		animator.SetTrigger("trigger_exit");
 
 		AudioPlayerComponent.Play ("fx_click");
+		objectLanguage.SetActive (false);
+		objectMain.SetActive (true);
 	}
 
 	public	void OnClickEnglish() {

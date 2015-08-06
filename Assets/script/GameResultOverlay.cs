@@ -5,8 +5,6 @@ using System.Collections;
 public class GameResultOverlay : PopupOverlay {
 	public	Text		textCount;
 	public	Text		textMessage;
-	public	RawImage	shadow;
-	public	Image		panel;
 	public	RawImage[]	stars;
 	public	Image		title;
 	public	Button		button;
@@ -72,34 +70,7 @@ public class GameResultOverlay : PopupOverlay {
 		title.sprite = spriteGameOver;
 		OnShow();
 	}
-
-//	public	void OnShow() {
-//		Hashtable hash = new Hashtable();
-//		hash.Add("from", 1f);
-//		hash.Add("to", 0f);
-//		hash.Add("time", 0.5f);
-//		hash.Add("delay", 0.5f);
-//		hash.Add("easetype", iTween.EaseType.easeOutCubic);
-//		hash.Add("onupdate", "OnShowUpdate");
-//		hash.Add("onupdatetarget", gameObject);
-//		hash.Add("oncomplete", "OnShowComplete");
-//		hash.Add("oncompletetarget", gameObject);
-//		iTween.ValueTo(gameObject, hash);
-//	}
-//
-//	public	void OnShowUpdate(float value) {
-//		Vector3 pos = transform.position;
-//		pos.y = value * 1400f;
-//		panel.transform.localPosition = pos;
-//
-//		Color c = shadow.color;
-//		c.a = (1f-value) * 0.8f;
-//		shadow.color = c;
-//	}
-//
-//	public	void OnShowComplete() {
-//		Invoke("ShowEffect", 0.2f);
-//	}
+	
 	public override void OnShowComplete () {
 		base.OnShowComplete ();
 		Invoke("ShowEffect", 0.2f);
@@ -109,10 +80,10 @@ public class GameResultOverlay : PopupOverlay {
 		RawImage raw = stars[starIndex];
 		if (starIndex < starSuccess) {
 			raw.texture = textureSuccess;
-			EffectComponent.Show(EffectType.STAR_SUCCESS, raw.transform.position).SetParent(panel.transform);
+			EffectComponent.Show(EffectType.STAR_SUCCESS, raw.transform.position).SetParent(objectPanel.transform);
 		} else if (starIndex < starEnable) {
 			raw.texture = textureEnable;
-			EffectComponent.Show(EffectType.STAR_ABLE, raw.transform.position).SetParent(panel.transform);
+			EffectComponent.Show(EffectType.STAR_ABLE, raw.transform.position).SetParent(objectPanel.transform);
 		}
 
 		starIndex++;
@@ -127,33 +98,4 @@ public class GameResultOverlay : PopupOverlay {
 		AudioPlayerComponent.Play ("fx_click");
 		OnClose ();
 	}
-
-//	public	void OnHide() {
-//		AudioPlayerComponent.Play("fx_click");
-//		Hashtable hash = new Hashtable();
-//		hash.Add("from", 0f);
-//		hash.Add("to", 1f);
-//		hash.Add("delay", 0.5f);
-//		hash.Add("time", 0.3f);
-//		hash.Add("easetype", iTween.EaseType.easeInCubic);
-//		hash.Add("onupdate", "OnHideUpdate");
-//		hash.Add("onupdatetarget", gameObject);
-//		hash.Add("oncomplete", "OnHideComplete");
-//		hash.Add("oncompletetarget", gameObject);
-//		iTween.ValueTo(gameObject, hash);
-//	}
-//
-//	public	void OnHideUpdate(float value) {
-//		Vector3 pos = transform.position;
-//		pos.y = value * -1400f;
-//		panel.transform.localPosition = pos;
-//		
-//		Color c = shadow.color;
-//		c.a = (1f-value) * 0.8f;
-//		shadow.color = c;
-//	}
-//
-//	public	void OnHideComplete() {
-//		OnOK();
-//	}
 }

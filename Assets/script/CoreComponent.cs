@@ -64,11 +64,14 @@ public class CoreComponent : MonoBehaviour {
 
 		// instantiate box
 		count++;
-		BoxComponent box = Instantiate(prefabs[level], slot.transform.position, Quaternion.identity) as BoxComponent;
-		box.transform.SetParent(transform);
-		box.id = count.ToString();
-		box.level = level;
-		box.SetSlot(slot);
+//		BoxComponent box = Instantiate(prefabs[level], slot.transform.position, Quaternion.identity) as BoxComponent;
+		BoxComponent box = ObjectPool.Spawn<BoxComponent> (prefabs[level], transform);
+		box.transform.localPosition = slot.transform.localPosition;
+//		box.transform.SetParent(transform);
+//		box.id = count.ToString();
+//		box.level = level;
+//		box.SetSlot(slot);
+		box.Init (count.ToString (), level, slot);
 		slot.ReserveHold(box);
 		boxes.Add(box.id, box);
 		
@@ -82,10 +85,11 @@ public class CoreComponent : MonoBehaviour {
 			slot.Clear();
 		}
 		if (boxes!=null) {
-			foreach (BoxComponent box in boxes.Values) {
-				GameObject.Destroy(box.gameObject);
-			}
+//			foreach (BoxComponent box in boxes.Values) {
+//				GameObject.Destroy(box.gameObject);
+//			}
 			boxes.Clear();
+			ObjectPool.RecycleAll();
 		}
 		Init();
 	}
@@ -201,7 +205,8 @@ public class CoreComponent : MonoBehaviour {
 		BoxComponent box = slot.box;
 		slot.Clear ();
 		boxes.Remove(box.id);
-		GameObject.DestroyImmediate (box.gameObject);
+//		GameObject.DestroyImmediate (box.gameObject);
+		ObjectPool.Recycle<BoxComponent> (box);
 		AudioPlayerComponent.Play ("fx_combo");
 		EffectComponent.Show (effectBang [0], slot.transform.position);
 		block = false;
@@ -220,8 +225,10 @@ public class CoreComponent : MonoBehaviour {
 		slot.Clear();
 		boxes.Remove(box1.id);
 		boxes.Remove(box2.id);
-		GameObject.DestroyImmediate(box1.gameObject);
-		GameObject.DestroyImmediate(box2.gameObject);
+//		GameObject.DestroyImmediate(box1.gameObject);
+//		GameObject.DestroyImmediate(box2.gameObject);
+		ObjectPool.Recycle<BoxComponent> (box1);
+		ObjectPool.Recycle<BoxComponent> (box2);
 		New(level, slot);
 		// insert score increament
 		bool isWin = game.AppendScore (level);

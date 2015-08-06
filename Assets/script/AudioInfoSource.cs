@@ -58,7 +58,8 @@ public class AudioInfoSource : MonoBehaviour {
 		_info = info;
 		_source.loop = loop;
 		_source.volume = volumn;
-		_source.clip = Resources.Load("audio/"+info.id, typeof(AudioClip)) as AudioClip;
+//		_source.clip = Resources.Load("audio/"+info.id, typeof(AudioClip)) as AudioClip;
+		_source.clip = CachedResource.Load<AudioClip> ("audio/" + info.id);
 		_source.enabled = true;
 		_source.Play ();
 

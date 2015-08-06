@@ -10,9 +10,18 @@ public class BoxComponent : MonoBehaviour {
 	private	Animator animator;
 	private	bool tween;
 
-	void Start() {
+	void Awake() {
 		animator = GetComponent(typeof(Animator)) as Animator;
+	}
+
+	void OnEnable() {
 		animator.SetTrigger("trigger_init");
+	}
+
+	public	void Init(string id, int level, SlotComponent slot) {
+		this.id = id;
+		this.level = level;
+		this.current = slot;
 	}
 
 	public bool moving {

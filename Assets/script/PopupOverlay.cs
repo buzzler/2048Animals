@@ -27,13 +27,20 @@ public class PopupOverlay : OverlayComponent {
 			hash.Add ("easetype", iTween.EaseType.easeOutElastic);
 			hash.Add ("onupdate", "OnShadowUpdate");
 			hash.Add ("onupdatetarget", gameObject);
+			if (objectPanel == null) {
+				hash.Add ("oncomplete", "OnShowComplete");
+				hash.Add ("oncompletetarget", gameObject);
+			}
 			iTween.ValueTo (objectShadow.gameObject, hash);
+		}
+
+		if ((objectPanel == null) && (objectShadow == null)) {
+			OnShowComplete ();
 		}
 	}
 
 	public	void OnShadowUpdate(Color color) {
 		objectShadow.color = color;
-//		Debug.Log (color.ToString());
 	}
 
 	public override void OnHide (Vector3 direction) {
@@ -61,7 +68,15 @@ public class PopupOverlay : OverlayComponent {
 			hash.Add ("easetype", iTween.EaseType.easeInCubic);
 			hash.Add ("onupdate", "OnShadowUpdate");
 			hash.Add ("onupdatetarget", gameObject);
+			if (objectPanel == null) {
+				hash.Add ("oncomplete", "OnHideComplete");
+				hash.Add ("oncompletetarget", gameObject);
+			}
 			iTween.ValueTo (objectShadow.gameObject, hash);
+		}
+
+		if ((objectShadow == null) && (objectPanel == null)) {
+			OnHideComplete ();
 		}
 	}
 }
