@@ -118,7 +118,7 @@ public class GameComponent : UIComponent {
 		playerInfo.gameCoin = 0;
 	}
 
-	public	void AppendCoin(int delta = 1) {
+	public	void AppendCoin(int delta = 110) {
 		playerInfo.gameCoin += (int)playerInfo.buffInfoCoin.Calculate((float)delta);
 		StoreInventory.GiveItem(StoreAssetInfo.COIN, delta);
 	}

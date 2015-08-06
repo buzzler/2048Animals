@@ -34,7 +34,7 @@ public class MaskComponent : UIComponent {
 			Hashtable hash = new Hashtable ();
 			hash.Add ("from", 0f);
 			hash.Add ("to", 2300f);
-			hash.Add ("time", 0.75f);
+			hash.Add ("time", 0.5f);
 			hash.Add ("easeType", iTween.EaseType.easeInCubic);
 			hash.Add ("oncomplete", "OnOpenMask");
 			hash.Add ("oncompletetarget", gameObject);
@@ -74,6 +74,10 @@ public class MaskComponent : UIComponent {
 	}
 
 	public	void OnCloseMask() {
+		Invoke ("OnWaitDelay", 0.3f);
+	}
+
+	public	void OnWaitDelay() {
 		if (observer.maskClose != null) {
 			observer.maskClose();
 		}

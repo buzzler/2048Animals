@@ -241,7 +241,7 @@ public class CoreComponent : MonoBehaviour {
 		// insert coin increment
 		if (EffectComponent.Show (effectCoin [level], pos) != null) {
 			AudioPlayerComponent.Play ("fx_coin");
-			game.AppendCoin(1);
+			game.AppendCoin();
 		}
 
 		// insert effect 'combo'

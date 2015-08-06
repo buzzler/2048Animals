@@ -20,14 +20,19 @@ public class ResultComponent : UIComponent {
 	public	Transform[]		boxes;
 	public	Color			colorUpdate;
 	public	Color			colorNormal;
+	public	Button			buttonHome;
 	public	Button			buttonShare;
+	public	Button			buttonRetry;
 	private	PlayerInfo		info;
 	private	int				flash;
 	private	bool			uploading;
+	private	bool			interactable;
 
 	void Update() {
 		SystemCheckComponent scc = GetComponentInParent<SystemCheckComponent> ();
-		buttonShare.interactable = SystemCheckComponent.network && FB.IsInitialized && FB.IsLoggedIn && scc.HasScreenshot ();
+		buttonHome.interactable = interactable;
+		buttonRetry.interactable = interactable;
+		buttonShare.interactable = interactable && SystemCheckComponent.network && FB.IsInitialized && FB.IsLoggedIn && scc.HasScreenshot ();
 		if (uploading) {
 			if (!scc.HasScreenshot ()) {
 				uploading = false;
@@ -49,17 +54,22 @@ public class ResultComponent : UIComponent {
 	public	override void OnUIStart () {
 		base.OnUIStart();
 
+		Observer.GetInstance ().maskOpen += OnMaskOpen;
+
 		info = PlayerInfoManager.instance;
 		flash = 0;
 
 		SetDeltaCoin ();
 		SetBestScore();
-		SetCurrentScore ();
+		OnScoreUpdate (0);
 		SetBox();
 
         AnalyticsComponent.LogGameEvent(AnalyticsComponent.ACTION_SCORE, (long)currentGroup.GetScore());
         AnalyticsComponent.LogGameEvent(AnalyticsComponent.ACTION_COIN, (long)info.gameCoin);
+	}
 
+	public	void OnMaskOpen() {
+		SetCurrentScore ();
 		PlayerInfoManager.Save();
 	}
 
@@ -69,6 +79,8 @@ public class ResultComponent : UIComponent {
 			DestroyImmediate(boxHolder.GetChild(i).gameObject);
 		}
 		CancelInvoke ();
+		Observer.GetInstance ().maskOpen -= OnMaskOpen;
+		interactable = false;
 	}
 
 	public	void OnClickRetry() {
@@ -140,6 +152,7 @@ public class ResultComponent : UIComponent {
 		} else if (delta > 100) {
 			flash = 6;
 		}
+		interactable = true;
 		Invoke("Flash", 0.3f);
 	}
 
