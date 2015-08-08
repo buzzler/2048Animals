@@ -51,8 +51,13 @@ public class GameFootOverlay : PopupOverlay {
 
 	public	void OnClickYes() {
 		AudioPlayerComponent.Play ("fx_click");
-
-		OnOK ();
+		if (StoreInventory.GetItemBalance(StoreAssetInfo.FOOT) > 0) {
+			OnOK ();
+		} else {
+			UIComponent uic = GetComponentInParent<UIComponent>();
+			uic.OnUIReserve(UIType.FOOTPACK);
+			uic.OnUIChange();
+		}
 	}
 
 	public	void OnClickNo() {

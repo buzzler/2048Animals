@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Soomla.Store;
 
 public class GameResultOverlay : PopupOverlay {
 	public	Text		textCount;
@@ -13,10 +14,14 @@ public class GameResultOverlay : PopupOverlay {
 	public	Texture2D	textureSuccess;
 	public	Texture2D	textureEnable;
 	public	Texture2D	textureDisable;
+	public	GameObject	objectCoin;
+	public	Text		textCoin;
+	public	float[]		coinMux;
 
-	private	int starSuccess;
-	private	int starEnable;
-	private	int starIndex;
+	private	int	 starSuccess;
+	private	int	 starEnable;
+	private	int	 starIndex;
+	private	bool rewardable;
 
 	void OnEnable() {
 		PlayerInfo pinfo = PlayerInfoManager.instance;
@@ -40,19 +45,23 @@ public class GameResultOverlay : PopupOverlay {
 			starTarget = Mathf.Min(starOld + 1, starMax);
 		}
 
-		if (starSuccess == stars.Length) {
+		if (starSuccess == starMax) {
 			starEnable = starSuccess;
 			textCount.text = starSuccess.ToString() + " / " + starSuccess.ToString();
 			textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.clear");
+			rewardable = (starOld < starMax);
 		} else if (starSuccess >= starTarget) {
 			starEnable = starSuccess+1;
 			textCount.text = starSuccess.ToString() + " / " + starSuccess.ToString();
 			textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.level.up");
+			rewardable = true;
 		} else {
-			starEnable = Mathf.Min(starTarget+1, stars.Length);
+			starEnable = Mathf.Min(starTarget+1, starMax);
 			textCount.text = starSuccess.ToString() + " / " + starTarget.ToString();
 			textMessage.text = SmartLocalization.LanguageManager.Instance.GetTextValue("fnf.ui.level.practice");
+			rewardable = false;
 		}
+		objectCoin.SetActive(rewardable);
 	}
 
 	void OnDisable() {
@@ -73,6 +82,7 @@ public class GameResultOverlay : PopupOverlay {
 	
 	public override void OnShowComplete () {
 		base.OnShowComplete ();
+		GetReward();
 		Invoke("ShowEffect", 0.2f);
 	}
 
@@ -97,5 +107,32 @@ public class GameResultOverlay : PopupOverlay {
 	public	void OnClickButton() {
 		AudioPlayerComponent.Play ("fx_click");
 		OnClose ();
+	}
+
+	private	void GetReward() {
+		if (rewardable) {
+			PlayerInfo pinfo = PlayerInfoManager.instance;
+			int num = pinfo.highLevel;
+			int coin = (int)(pinfo.buffInfoCoin.Calculate(110f) * coinMux[num]);
+
+			Hashtable hash = new Hashtable();
+			hash.Add("from", 0);
+			hash.Add("to", coin);
+			hash.Add("time", (float)num*0.2f);
+			hash.Add("onupdate", "OnCoinUpdate");
+			hash.Add("onupdatetarget", gameObject);
+			hash.Add("oncomplete", "OnCoinComplete");
+			hash.Add("oncompletetarget", gameObject);
+			hash.Add("oncompleteparams", coin);
+			iTween.ValueTo(objectCoin, hash);
+		}
+	}
+
+	public	void OnCoinUpdate(int value) {
+		textCoin.text = value.ToString();
+	}
+
+	public	void OnCoinComplete(int coin) {
+		StoreInventory.GiveItem(StoreAssetInfo.COIN, coin);
 	}
 }

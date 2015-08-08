@@ -14,6 +14,7 @@ public class CoreComponent : MonoBehaviour {
 	
 	private Dictionary<string, BoxComponent> boxes;
 	private int				count;
+	private	int				boxCount;
 	public	int				combo;
 	public	bool			fever;
 	public	float			timeLastCombo;
@@ -23,6 +24,7 @@ public class CoreComponent : MonoBehaviour {
 
 	private	Observer		observer;
 	private	GameComponent	game;
+
 	void Start() {
 		Init();
 	}
@@ -34,10 +36,15 @@ public class CoreComponent : MonoBehaviour {
 	private void Init() {
 		boxes = new Dictionary<string, BoxComponent>();
 		count = 0;
+		boxCount = 0;
 		combo = 0;
 		fever = false;
 		block = false;
 		game = GetComponentInParent<GameComponent> ();
+	}
+
+	public	int GetBoxCount() {
+		return boxCount;
 	}
 
 	public void RandomNew() {
@@ -64,6 +71,7 @@ public class CoreComponent : MonoBehaviour {
 
 		// instantiate box
 		count++;
+		boxCount++;
 //		BoxComponent box = Instantiate(prefabs[level], slot.transform.position, Quaternion.identity) as BoxComponent;
 		BoxComponent box = ObjectPool.Spawn<BoxComponent> (prefabs[level], transform);
 		box.transform.localPosition = slot.transform.localPosition;
@@ -204,6 +212,7 @@ public class CoreComponent : MonoBehaviour {
 	public	void OnErase(SlotComponent slot) {
 		BoxComponent box = slot.box;
 		slot.Clear ();
+		boxCount--;
 		boxes.Remove(box.id);
 //		GameObject.DestroyImmediate (box.gameObject);
 		ObjectPool.Recycle<BoxComponent> (box);
@@ -223,6 +232,7 @@ public class CoreComponent : MonoBehaviour {
 		}
 
 		slot.Clear();
+		boxCount -= 2;
 		boxes.Remove(box1.id);
 		boxes.Remove(box2.id);
 //		GameObject.DestroyImmediate(box1.gameObject);

@@ -174,6 +174,12 @@ public class GameComponent : UIComponent {
 	}
 
     public  void OnClickYes() {
+		if (core.GetBoxCount() < 3) {
+			return;
+		} else {
+			Debug.Log("BOX:"+core.GetBoxCount().ToString());
+		}
+
 		GameEraseOverlay overlay = GameObject.Instantiate<GameEraseOverlay>(overlayErase);
 		overlay.transform.SetParent(transform, false);
 		overlay.Erase (rawShadow);
@@ -192,6 +198,10 @@ public class GameComponent : UIComponent {
 		StoreInventory.TakeItem (StoreAssetInfo.FOOT, 1);
         AnalyticsComponent.LogItemEvent(AnalyticsComponent.ACTION_USE, 1);
 		AudioPlayerComponent.Play ("fx_foot");
-		GetComponentInChildren<GameEraseOverlay> ().Quit ();
+
+		GameEraseOverlay overlay = GetComponentInChildren<GameEraseOverlay> ();
+		if (overlay != null) {
+			overlay.Quit ();
+		}
 	}
 }

@@ -52,8 +52,15 @@ public class HeaderComponent : UIComponent {
 
     public  void OnClickFoot() {
         AudioPlayerComponent.Play ("fx_click");
-        OnUIReserve(UIType.FOOTPACK);
-        OnUIChange();
+
+		GameComponent gc = GetComponentInParent<GameComponent>();
+		int balance = StoreInventory.GetItemBalance(StoreAssetInfo.FOOT);
+		if ((gc != null) && (balance > 0)) {
+			gc.OnClickYes ();
+		} else {
+			OnUIReserve(UIType.FOOTPACK);
+			OnUIChange();
+		}
     }
 
 	public	void OnClickCoin() {
