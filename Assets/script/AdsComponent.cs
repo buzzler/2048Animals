@@ -7,8 +7,12 @@ using Soomla.Store;
 
 [RequireComponent(typeof(Button))]
 public class AdsComponent : MonoBehaviour {
-
 	public	double		timerMinute;
+	public	Sprite		imageWait;
+	public	Sprite		imageReward;
+	public	Text		textWait;
+	public	Text		textReward;
+	public	GameObject	objectCoin;
 	private	PlayerInfo	info;
 	private	Button		button;
 
