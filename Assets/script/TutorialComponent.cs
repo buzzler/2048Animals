@@ -1,17 +1,30 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using System.Collections;
+using SmartLocalization;
 
-public class TutorialComponent : UIComponent {
+public class TutorialComponent : PopupOverlay {
 	public	Text labelPage1_1;
 	public	Text labelPage2_1;
 	public	Text labelPage2_2;
 	public	Text labelPage3_1;
 	public	Text labelOk;
 
-	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
-		base.OnUIChangeLanguage (lm);
+	void OnEnable() {
+		LanguageManager.Instance.OnChangeLanguage += OnUIChangeLanguage;
+	}
+
+	void OnDisable() {
+		LanguageManager.Instance.OnChangeLanguage -= OnUIChangeLanguage;
+	}
+
+	public	void Show(OverlayEventHandler OkHandler = null) {
+		if (OkHandler != null) {
+			onOK += OkHandler;
+		}
+		OnShow ();
+	}
+
+	public	void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
 		labelOk.text = lm.GetTextValue ("fnf.ui.ok");
 		labelPage1_1.text = lm.GetTextValue ("fnf.ui.tutorial.1");
 		labelPage2_1.text = lm.GetTextValue ("fnf.ui.tutorial.2");
@@ -19,8 +32,8 @@ public class TutorialComponent : UIComponent {
 		labelPage3_1.text = lm.GetTextValue ("fnf.ui.tutorial.4");
 	}
 
-	public	void OnClickClose() {
-		OnUIReserve(parent);
-		OnUIBackward();
+	public	void OnClick() {
+		AudioPlayerComponent.Play ("fx_click");
+		OnOK ();
 	}
 }

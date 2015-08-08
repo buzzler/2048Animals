@@ -15,6 +15,8 @@ public class PlayerInfo {
 	public AnimalType	lastAnimalType;
 	public uint			bestScore;
 	public int[]		stars;
+	public bool			flagFoot;
+	public bool			flagTutorial;
 
 	public uint			gameScore;
 	public int			gameCoin;
@@ -29,6 +31,8 @@ public class PlayerInfo {
 		json.AddField ("ads", ads.ToString ());
 		json.AddField ("theme", lastAnimalType.ToString ());
 		json.AddField ("best", bestScore.ToString ());
+		json.AddField ("flagFoot", flagFoot);
+		json.AddField ("flagTutorial", flagTutorial);
 
 		string[] ary = new string[stars.Length];
 		for (int i = stars.Length-1 ; i >=0 ; i--) {
@@ -57,6 +61,12 @@ public class PlayerInfo {
 				stars[i] = int.Parse(ary[i]);
 			}
 		}
+		if (json.HasField ("flagFoot")) {
+			flagFoot = json.GetField("flagFoot").b;
+		}
+		if (json.HasField("flagTutorial")) {
+			flagTutorial = json.GetField("flagTutorial").b;
+		}
 	}
 
 	public PlayerInfo() {
@@ -65,6 +75,8 @@ public class PlayerInfo {
 		gameCoin = 0;
 		highLevel = 0;
 		stars = new int[200];
+		flagFoot = false;
+		flagTutorial = false;
 		lastAnimalType = AnimalType.BEAR;
 		ads = DateTime.MinValue;
 		buffInfoCoin = new BuffInfo();

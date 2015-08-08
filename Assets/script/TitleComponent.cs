@@ -7,6 +7,7 @@ using Soomla.Store;
 public class TitleComponent : UIComponent {
 	public	Text											labelStart;
 	public	Text											labelReward;
+	public	TutorialComponent								overlayTutorial;
 	public	ThemeChangerComponent							themeChanger;
 	public	RectTransform									themeContent;
 	public	TitlePurchaseComponent							purchaser;
@@ -140,6 +141,17 @@ public class TitleComponent : UIComponent {
 
 	public void OnClickPlay() {
 		AudioPlayerComponent.Play ("fx_click");
+
+		if (PlayerInfoManager.instance.flagTutorial != true) {
+			TutorialComponent overlay = GameObject.Instantiate<TutorialComponent> (overlayTutorial);
+			overlay.transform.SetParent (transform, false);
+			overlay.Show (OnTutorialComplete);
+		} else {
+			OnTutorialComplete ();
+		}
+	}
+
+	private	void OnTutorialComplete() {
 		SendMessageUpwards("ReserveNextUI", UIType.GAME);
 		OnUIChange ();
 	}

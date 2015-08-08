@@ -81,7 +81,6 @@ public	enum UIType {
 	CONNECT,
 	COINPACK,
     FOOTPACK,
-	TUTORIAL,
 	PAUSE,
 	PRELOAD,
 	ERROR

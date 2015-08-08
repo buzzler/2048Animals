@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
 using System.Collections;
+using Soomla.Store;
 using SmartLocalization;
 
 public class PreloadComponent : UIComponent {
@@ -34,6 +35,12 @@ public class PreloadComponent : UIComponent {
         #elif UNITY_IOS
         Advertisement.Initialize("57316", false);
         #endif
+
+		if (info.flagFoot != true) {
+			StoreInventory.GiveItem (StoreAssetInfo.FOOT, 5);
+			info.flagFoot = true;
+			PlayerInfoManager.Save ();
+		}
 
 		Invoke ("OnDelay", 2);
 	}

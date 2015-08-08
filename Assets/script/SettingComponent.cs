@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 using SmartLocalization;
 
-//[RequireComponent (typeof(Animator))]
 public class SettingComponent : UIComponent {
 	public	Text labelOption;
 	public	Text labelLanguage;
@@ -19,8 +18,8 @@ public class SettingComponent : UIComponent {
 	public	Button	buttonLogout;
 	public	GameObject	objectMain;
 	public	GameObject	objectLanguage;
+	public	TutorialComponent overlayTutorial;
 
-//	private Animator animator;
 	private	bool		lastMute;
 	private	bool		lastFB;
 
@@ -40,7 +39,6 @@ public class SettingComponent : UIComponent {
 
 	public	override void OnUIStart() {
 		base.OnUIStart();
-//		animator = GetComponent<Animator>();
 		lastMute = false;
 		lastFB = false;
 
@@ -92,7 +90,6 @@ public class SettingComponent : UIComponent {
 
 	public	void OnClickLanguage() {
 		AudioPlayerComponent.Play ("fx_click");
-//		animator.SetTrigger("trigger_language");
 		objectMain.SetActive (false);
 		objectLanguage.SetActive (true);
 	}
@@ -111,8 +108,9 @@ public class SettingComponent : UIComponent {
 
 	public	void OnClickTutorial() {
 		AudioPlayerComponent.Play ("fx_click");
-		OnUIReserve(UIType.TUTORIAL);
-		OnUIChange();
+		TutorialComponent overlay = GameObject.Instantiate<TutorialComponent> (overlayTutorial);
+		overlay.transform.SetParent (transform, false);
+		overlay.Show ();
 	}
 
 	public	void OnClickLogin() {
@@ -135,20 +133,12 @@ public class SettingComponent : UIComponent {
 			objectLanguage.SetActive (false);
 			objectMain.SetActive (true);
 		}
-//
-//		AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
-//		animator.SetTrigger("trigger_exit");
-//		if (info.IsName("Base Layer.language")!=true) {
-//			OnUIReserve(parent);
-//			OnUIBackward();
-//		}
 	}
 
 	private	void ChangeLanguage(string code) {
 		PlayerInfoManager.instance.language = code;
 		PlayerInfoManager.Save();
 		LanguageManager.Instance.ChangeLanguage(code);
-//		animator.SetTrigger("trigger_exit");
 
 		AudioPlayerComponent.Play ("fx_click");
 		objectLanguage.SetActive (false);
