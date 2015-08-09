@@ -419,6 +419,12 @@
 	<data name="fnf.ui.language" xml:space="preserve">
 		<value>LANGUAGE</value>
 	</data>
+	<data name="fnf.ui.level.practice" xml:space="preserve">
+		<value />
+	</data>
+	<data name="fnf.ui.level.up" xml:space="preserve">
+		<value />
+	</data>
 	<data name="fnf.ui.mute" xml:space="preserve">
 		<value>Sound off</value>
 	</data>
@@ -442,6 +448,21 @@
 	</data>
 	<data name="fnf.ui.rank" xml:space="preserve">
 		<value>順位</value>
+	</data>
+	<data name="fnf.ui.rate.cancel" xml:space="preserve">
+		<value>後でする</value>
+	</data>
+	<data name="fnf.ui.rate.message" xml:space="preserve">
+		<value>このアプリをお使い頂き大変ありがとうございます。もしよろしければ1分程で済みますので、このアプリの評価をお願いします。ご協力感謝いたします！</value>
+	</data>
+	<data name="fnf.ui.rate.no" xml:space="preserve">
+		<value>いえ、結構です</value>
+	</data>
+	<data name="fnf.ui.rate.ok" xml:space="preserve">
+		<value>今すぐ評価する</value>
+	</data>
+	<data name="fnf.ui.rate.title" xml:space="preserve">
+		<value>アプリの評価</value>
 	</data>
 	<data name="fnf.ui.restore" xml:space="preserve">
 		<value>購入復旧</value>
@@ -484,11 +505,5 @@
 	</data>
 	<data name="fnf.ui.yes" xml:space="preserve">
 		<value>使います。</value>
-	</data>
-	<data name="fnf.ui.level.up" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.level.practice" xml:space="preserve">
-		<value />
 	</data>
 </root>

@@ -419,6 +419,12 @@
 	<data name="fnf.ui.language" xml:space="preserve">
 		<value>Язык</value>
 	</data>
+	<data name="fnf.ui.level.practice" xml:space="preserve">
+		<value />
+	</data>
+	<data name="fnf.ui.level.up" xml:space="preserve">
+		<value />
+	</data>
 	<data name="fnf.ui.mute" xml:space="preserve">
 		<value>Звук выкл</value>
 	</data>
@@ -442,6 +448,21 @@
 	</data>
 	<data name="fnf.ui.rank" xml:space="preserve">
 		<value>Ранг</value>
+	</data>
+	<data name="fnf.ui.rate.cancel" xml:space="preserve">
+		<value>Напомнить позже</value>
+	</data>
+	<data name="fnf.ui.rate.message" xml:space="preserve">
+		<value>Если вам нравится это приложение не забудьте оценить его в Google Play, это потребует не более минуты вашего времени. Спасибо за вашу поддержку!</value>
+	</data>
+	<data name="fnf.ui.rate.no" xml:space="preserve">
+		<value>Нет, спасибо</value>
+	</data>
+	<data name="fnf.ui.rate.ok" xml:space="preserve">
+		<value>Оценить сейчас</value>
+	</data>
+	<data name="fnf.ui.rate.title" xml:space="preserve">
+		<value>Оцените это приложение</value>
 	</data>
 	<data name="fnf.ui.restore" xml:space="preserve">
 		<value>Восстановление</value>
@@ -484,11 +505,5 @@
 	</data>
 	<data name="fnf.ui.yes" xml:space="preserve">
 		<value>Да, пожалуйста!</value>
-	</data>
-	<data name="fnf.ui.level.up" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.level.practice" xml:space="preserve">
-		<value />
 	</data>
 </root>

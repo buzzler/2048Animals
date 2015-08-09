@@ -449,6 +449,21 @@
 	<data name="fnf.ui.rank" xml:space="preserve">
 		<value>순위</value>
 	</data>
+	<data name="fnf.ui.rate.cancel" xml:space="preserve">
+		<value>나중에 하기</value>
+	</data>
+	<data name="fnf.ui.rate.message" xml:space="preserve">
+		<value>재밌게 즐기고 계신가요? 게임의 평가를 부탁드립니다. 여러분의 평가로 더 재밌는 게임을 만드는데 도움이 됩니다.</value>
+	</data>
+	<data name="fnf.ui.rate.no" xml:space="preserve">
+		<value>아니, 괜찮아요</value>
+	</data>
+	<data name="fnf.ui.rate.ok" xml:space="preserve">
+		<value>평가하기</value>
+	</data>
+	<data name="fnf.ui.rate.title" xml:space="preserve">
+		<value>평가해 주세요</value>
+	</data>
 	<data name="fnf.ui.restore" xml:space="preserve">
 		<value>구매복구</value>
 	</data>

@@ -419,6 +419,12 @@
 	<data name="fnf.ui.language" xml:space="preserve">
 		<value>Game System Language</value>
 	</data>
+	<data name="fnf.ui.level.practice" xml:space="preserve">
+		<value>You need practice</value>
+	</data>
+	<data name="fnf.ui.level.up" xml:space="preserve">
+		<value>Level Up</value>
+	</data>
 	<data name="fnf.ui.mute" xml:space="preserve">
 		<value>Mute Sound</value>
 	</data>
@@ -485,10 +491,19 @@
 	<data name="fnf.ui.yes" xml:space="preserve">
 		<value>Yes, Please !</value>
 	</data>
-	<data name="fnf.ui.level.up" xml:space="preserve">
-		<value>Level Up</value>
+	<data name="fnf.ui.rate.title" xml:space="preserve">
+		<value>Rate this app</value>
 	</data>
-	<data name="fnf.ui.level.practice" xml:space="preserve">
-		<value>You need practice</value>
+	<data name="fnf.ui.rate.message" xml:space="preserve">
+		<value>If you enjoy playing this app, would you mind taking a moment to rate it? It won\'t take more than a minute. Thanks for your support!</value>
+	</data>
+	<data name="fnf.ui.rate.ok" xml:space="preserve">
+		<value>Rate It Now</value>
+	</data>
+	<data name="fnf.ui.rate.cancel" xml:space="preserve">
+		<value>Remind Me Later</value>
+	</data>
+	<data name="fnf.ui.rate.no" xml:space="preserve">
+		<value>No, Thanks</value>
 	</data>
 </root>

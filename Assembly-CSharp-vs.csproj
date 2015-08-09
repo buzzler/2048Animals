@@ -113,6 +113,7 @@
      <Compile Include="Assets\script\PopupOverlay.cs" />
      <Compile Include="Assets\script\PreloadComponent.cs" />
      <Compile Include="Assets\script\PsedoGIF.cs" />
+     <Compile Include="Assets\script\RateOverlay.cs" />
      <Compile Include="Assets\script\ResultComponent.cs" />
      <Compile Include="Assets\script\RewardComponent.cs" />
      <Compile Include="Assets\script\ScoreComponent.cs" />

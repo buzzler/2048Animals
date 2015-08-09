@@ -24,7 +24,7 @@ public class OverlayComponent : MonoBehaviour {
 	public	event OverlayEventHandler onHide;
 	public	event OverlayEventHandler onHideComplete;
 
-	private	int	selected;
+	protected int	selected;
 
 	public	virtual void OnShow() {
 		if (onShow!=null) {

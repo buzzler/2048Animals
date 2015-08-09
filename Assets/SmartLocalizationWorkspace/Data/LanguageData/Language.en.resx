@@ -449,6 +449,21 @@
 	<data name="fnf.ui.rank" xml:space="preserve">
 		<value>Rank</value>
 	</data>
+	<data name="fnf.ui.rate.cancel" xml:space="preserve">
+		<value>Remind Me Later</value>
+	</data>
+	<data name="fnf.ui.rate.message" xml:space="preserve">
+		<value>If you enjoy playing this app, would you mind taking a moment to rate it? It won\'t take more than a minute. Thanks for your support!</value>
+	</data>
+	<data name="fnf.ui.rate.no" xml:space="preserve">
+		<value>No, Thanks</value>
+	</data>
+	<data name="fnf.ui.rate.ok" xml:space="preserve">
+		<value>Rate It Now</value>
+	</data>
+	<data name="fnf.ui.rate.title" xml:space="preserve">
+		<value>Rate this app</value>
+	</data>
 	<data name="fnf.ui.restore" xml:space="preserve">
 		<value>Restore</value>
 	</data>

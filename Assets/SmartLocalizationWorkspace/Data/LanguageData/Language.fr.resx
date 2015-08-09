@@ -419,6 +419,12 @@
 	<data name="fnf.ui.language" xml:space="preserve">
 		<value>Langue</value>
 	</data>
+	<data name="fnf.ui.level.practice" xml:space="preserve">
+		<value />
+	</data>
+	<data name="fnf.ui.level.up" xml:space="preserve">
+		<value />
+	</data>
 	<data name="fnf.ui.mute" xml:space="preserve">
 		<value>Sonores sur les</value>
 	</data>
@@ -442,6 +448,21 @@
 	</data>
 	<data name="fnf.ui.rank" xml:space="preserve">
 		<value>Rang</value>
+	</data>
+	<data name="fnf.ui.rate.cancel" xml:space="preserve">
+		<value>Me rappeler plus tard</value>
+	</data>
+	<data name="fnf.ui.rate.message" xml:space="preserve">
+		<value>Vous aimez notre application, voulez-vous prendre un moment pour l'évaluer ? Cela ne vous prendra pas plus d'une minute. Merci de votre soutien !</value>
+	</data>
+	<data name="fnf.ui.rate.no" xml:space="preserve">
+		<value>Non, merci</value>
+	</data>
+	<data name="fnf.ui.rate.ok" xml:space="preserve">
+		<value>Évaluer maintenant</value>
+	</data>
+	<data name="fnf.ui.rate.title" xml:space="preserve">
+		<value>Evaluation de l'application</value>
 	</data>
 	<data name="fnf.ui.restore" xml:space="preserve">
 		<value>Restauration</value>
@@ -484,11 +505,5 @@
 	</data>
 	<data name="fnf.ui.yes" xml:space="preserve">
 		<value>Oui, s'il vous plaît !</value>
-	</data>
-	<data name="fnf.ui.level.up" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.level.practice" xml:space="preserve">
-		<value />
 	</data>
 </root>

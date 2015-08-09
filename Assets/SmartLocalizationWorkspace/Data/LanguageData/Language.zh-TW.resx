@@ -419,6 +419,12 @@
 	<data name="fnf.ui.language" xml:space="preserve">
 		<value>语言</value>
 	</data>
+	<data name="fnf.ui.level.practice" xml:space="preserve">
+		<value />
+	</data>
+	<data name="fnf.ui.level.up" xml:space="preserve">
+		<value />
+	</data>
 	<data name="fnf.ui.mute" xml:space="preserve">
 		<value>静音</value>
 	</data>
@@ -442,6 +448,21 @@
 	</data>
 	<data name="fnf.ui.rank" xml:space="preserve">
 		<value>排名</value>
+	</data>
+	<data name="fnf.ui.rate.cancel" xml:space="preserve">
+		<value>稍候提醒我</value>
+	</data>
+	<data name="fnf.ui.rate.message" xml:space="preserve">
+		<value>如果你喜歡這個 App，希望你能給予五顆星的評價，讓更多人下載使用它！</value>
+	</data>
+	<data name="fnf.ui.rate.no" xml:space="preserve">
+		<value>不，謝謝</value>
+	</data>
+	<data name="fnf.ui.rate.ok" xml:space="preserve">
+		<value>給五顆星</value>
+	</data>
+	<data name="fnf.ui.rate.title" xml:space="preserve">
+		<value>給五顆星評價的鼓勵？</value>
 	</data>
 	<data name="fnf.ui.restore" xml:space="preserve">
 		<value>购买复原</value>
@@ -486,11 +507,5 @@
 	</data>
 	<data name="fnf.ui.yes" xml:space="preserve">
 		<value>我要使用!!</value>
-	</data>
-	<data name="fnf.ui.level.up" xml:space="preserve">
-		<value />
-	</data>
-	<data name="fnf.ui.level.practice" xml:space="preserve">
-		<value />
 	</data>
 </root>
