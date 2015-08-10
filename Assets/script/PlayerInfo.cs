@@ -11,12 +11,14 @@ using System.Security.Cryptography;
 [Serializable]
 public class PlayerInfo {
 	public string		language;
-	public DateTime		ads;
+	public DateTime		dateAds;
+	public DateTime		dateRate;
 	public AnimalType	lastAnimalType;
 	public uint			bestScore;
 	public int[]		stars;
 	public bool			flagFoot;
 	public bool			flagTutorial;
+	public bool			flagRate;
 
 	public uint			gameScore;
 	public int			gameCoin;
@@ -28,11 +30,13 @@ public class PlayerInfo {
 	public	JSONObject ToJSON() {
 		JSONObject json = new JSONObject ();
 		json.AddField ("lang", language);
-		json.AddField ("ads", ads.ToString ());
+		json.AddField ("ads", dateAds.ToString ());
+		json.AddField ("rate", dateRate.ToString ());
 		json.AddField ("theme", lastAnimalType.ToString ());
 		json.AddField ("best", bestScore.ToString ());
 		json.AddField ("flagFoot", flagFoot);
 		json.AddField ("flagTutorial", flagTutorial);
+		json.AddField ("flagRate", flagRate);
 
 		string[] ary = new string[stars.Length];
 		for (int i = stars.Length-1 ; i >=0 ; i--) {
@@ -47,7 +51,10 @@ public class PlayerInfo {
 			language = json.GetField ("lang").str;
 		}
 		if (json.HasField ("ads")) {
-			ads = DateTime.Parse (json.GetField ("ads").str);
+			dateAds = DateTime.Parse (json.GetField ("ads").str);
+		}
+		if (json.HasField ("rate")) {
+			dateRate = DateTime.Parse (json.GetField ("rate").str);
 		}
 		if (json.HasField ("theme")) {
 			lastAnimalType = (AnimalType)Enum.Parse (typeof(AnimalType), json.GetField ("theme").str, true);
@@ -67,6 +74,9 @@ public class PlayerInfo {
 		if (json.HasField("flagTutorial")) {
 			flagTutorial = json.GetField("flagTutorial").b;
 		}
+		if (json.HasField ("flagRate")) {
+			flagRate = json.GetField("flagRate").b;
+		}
 	}
 
 	public PlayerInfo() {
@@ -77,8 +87,10 @@ public class PlayerInfo {
 		stars = new int[200];
 		flagFoot = false;
 		flagTutorial = false;
+		flagRate = false;
 		lastAnimalType = AnimalType.BEAR;
-		ads = DateTime.MinValue;
+		dateAds = DateTime.MinValue;
+		dateAds = DateTime.MinValue;
 		buffInfoCoin = new BuffInfo();
 		buffInfoScore = new BuffInfo();
 		buffInfoReward = new BuffInfo();

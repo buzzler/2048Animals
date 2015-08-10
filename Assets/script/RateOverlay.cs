@@ -25,7 +25,7 @@ public class RateOverlay : PopupOverlay {
 	private	void OnUIChangeLanguage(SmartLocalization.LanguageManager lm) {
 		textTitle.text	= lm.GetTextValue ("fnf.ui.rate.title");
 		textMessage.text= lm.GetTextValue ("fnf.ui.rate.message");
-		textYes.text	= lm.GetTextValue ("fnf.ui.rate.yes");
+		textYes.text	= lm.GetTextValue ("fnf.ui.rate.ok");
 		textCancel.text	= lm.GetTextValue ("fnf.ui.rate.cancel");
 		textNo.text		= lm.GetTextValue ("fnf.ui.rate.no");
 	}
@@ -52,6 +52,8 @@ public class RateOverlay : PopupOverlay {
 		switch (selected) {
 		case 1:
 			// set flag and..
+			PlayerInfoManager.instance.flagRate = true;
+			Soomla.Store.StoreInventory.GiveItem(StoreAssetInfo.FOOT, 5);
 			#if UNITY_IPHONE
 			Application.OpenURL(urliOS);
 			#elif UNITY_ANDROID && UNITY_EDITOR
@@ -59,12 +61,13 @@ public class RateOverlay : PopupOverlay {
 			#endif
 			break;
 		case 2:
-			// set time
+			PlayerInfoManager.instance.dateRate = System.DateTime.Now;
 			break;
 		case 3:
-			// set flag
+			PlayerInfoManager.instance.flagRate = true;
 			break;
 		}
+		PlayerInfoManager.Save ();
 		OnQuit ();
 	}
 }

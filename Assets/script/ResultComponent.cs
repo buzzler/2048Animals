@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections;
 using Soomla;
 using Soomla.Store;
@@ -23,6 +24,7 @@ public class ResultComponent : UIComponent {
 	public	Button			buttonHome;
 	public	Button			buttonShare;
 	public	Button			buttonRetry;
+	public	RateOverlay		overlayRate;
 	private	PlayerInfo		info;
 	private	int				flash;
 	private	bool			uploading;
@@ -159,12 +161,18 @@ public class ResultComponent : UIComponent {
 	public	void Flash() {
 		flash--;
 		if (flash > 0) {
-			float rndX = Random.Range(-0.1f, 0.1f);
-			float rndY = Random.Range(-0.1f, 0.1f);
-			rndX += (rndX>0) ? 0.1f:-0.1f;
-			rndY += (rndY>0) ? 0.1f:-0.1f;
-			EffectComponent.Show(EffectType.FACE_DRAG_OUT, boxHolder.position + new Vector3(rndX, rndY,0f));
-			Invoke("Flash", 0.5f);
+			float rndX = UnityEngine.Random.Range (-0.1f, 0.1f);
+			float rndY = UnityEngine.Random.Range (-0.1f, 0.1f);
+			rndX += (rndX > 0) ? 0.1f : -0.1f;
+			rndY += (rndY > 0) ? 0.1f : -0.1f;
+			EffectComponent.Show (EffectType.FACE_DRAG_OUT, boxHolder.position + new Vector3 (rndX, rndY, 0f));
+			Invoke ("Flash", 0.5f);
+		} else if (!info.flagRate) {
+			if ((DateTime.Now.Subtract(info.dateRate).TotalHours >= 12) && (StoreInventory.GetItemBalance(StoreAssetInfo.COIN) > 3300)) {
+				RateOverlay overlay = GameObject.Instantiate<RateOverlay>(overlayRate);
+				overlay.transform.SetParent(transform, false);
+				overlay.Show();
+			}
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
 using System;
@@ -28,7 +28,7 @@ public class AdsComponent : MonoBehaviour {
 
 	void Update() {
 		if (Advertisement.isReady ()) {
-			double t = DateTime.Now.Subtract (info.ads).TotalSeconds - timerMinute*60.0;
+			double t = DateTime.Now.Subtract (info.dateAds).TotalSeconds - timerMinute*60.0;
 			bool ontime = (t >= 0);
 			button.interactable = ontime;
 			if (ontime) {
@@ -59,7 +59,7 @@ public class AdsComponent : MonoBehaviour {
 		switch (result) {
 		case ShowResult.Finished:
 			StoreInventory.GiveItem(StoreAssetInfo.COIN, Mathf.Max((int)info.buffInfoReward.Calculate(1100),1100));
-			info.ads = DateTime.Now;
+			info.dateAds = DateTime.Now;
 			PlayerInfoManager.Save();
 			EffectComponent.Show(EffectType.BONUS, Vector3.zero);
 			AudioPlayerComponent.Play ("fx_reward");

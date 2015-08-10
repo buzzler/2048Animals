@@ -152,6 +152,8 @@ public class TitleComponent : UIComponent {
 	}
 
 	private	void OnTutorialComplete() {
+		PlayerInfoManager.instance.flagTutorial = true;
+		PlayerInfoManager.Save ();
 		SendMessageUpwards("ReserveNextUI", UIType.GAME);
 		OnUIChange ();
 	}

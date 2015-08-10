@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class AnalyticsComponent : MonoBehaviour {
@@ -65,7 +65,7 @@ public class AnalyticsComponent : MonoBehaviour {
 
     public  static void LogAdEvent(string action) {
 		if (_this.logging) {
-			_this.google.LogEvent (CATEGORY_AD, action, CATEGORY_AD + " " + action, (long)PlayerInfoManager.instance.ads.Minute);
+			_this.google.LogEvent (CATEGORY_AD, action, CATEGORY_AD + " " + action, (long)PlayerInfoManager.instance.dateAds.Minute);
 		}
     }
 
