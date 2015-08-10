@@ -152,7 +152,6 @@ public	class PlayerInfoManager {
 		_instance.Clear();
 
 		string str = _instance.ToJSON ().ToString ();
-		DebugComponent.Log (str);
 		PlayerPrefs.SetString (_KEY, EncryptText(str, true));
 	}
 
