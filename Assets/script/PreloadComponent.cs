@@ -30,7 +30,7 @@ public class PreloadComponent : UIComponent {
 		}
 		lm.ChangeLanguage(info.language);
 
-        #if UNITY_EDITOR || UNITY_ANDROID
+        #if UNITY_ANDROID
 		Advertisement.Initialize("44690", false);
         #elif UNITY_IOS
         Advertisement.Initialize("57316", false);

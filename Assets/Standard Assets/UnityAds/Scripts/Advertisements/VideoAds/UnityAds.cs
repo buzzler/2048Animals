@@ -63,7 +63,6 @@ namespace UnityEngine.Advertisements {
 #endif
 		} catch(System.Exception e) {
 			Utils.LogDebug("Exception during connectivity check: " + e.Message);
-			return;
 		}
 
 		UnityAdsExternal.init(gameId, testModeEnabled, SharedInstance.gameObject.name, _versionString);
@@ -171,10 +170,15 @@ namespace UnityEngine.Advertisements {
 				resultCallback = options.resultCallback;
 			}
 
+			// Disable obsolete method warnings for this piece of code because here we need to access legacy ShowOptionsExtended to maintain compability
+#pragma warning disable 612, 618
 			ShowOptionsExtended extendedOptions = options as ShowOptionsExtended;
 			if(extendedOptions != null && extendedOptions.gamerSid != null && extendedOptions.gamerSid.Length > 0) {
 				gamerSid = extendedOptions.gamerSid;
+			} else {
+				gamerSid = options.gamerSid;
 			}
+#pragma warning restore 612, 618
 		}
 
 		if (!isInitialized || isShowing) {

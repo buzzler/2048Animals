@@ -56,7 +56,7 @@ public class RateOverlay : PopupOverlay {
 			Soomla.Store.StoreInventory.GiveItem(StoreAssetInfo.FOOT, 5);
 			#if UNITY_IPHONE
 			Application.OpenURL(urliOS);
-			#elif UNITY_ANDROID && UNITY_EDITOR
+			#elif UNITY_ANDROID
 			Application.OpenURL(urlAndroid);
 			#endif
 			break;

@@ -24,7 +24,8 @@ public class TitlePurchaseComponent : UIComponent {
 	}
 
 	private bool CheckAvailability() {
-		if ((info != null) && StoreInventory.CanAfford (info.id)) {
+//		if ((info != null) && StoreInventory.CanAfford (info.id)) {
+		if ((info !=null) && (info.costAmount <= StoreInventory.GetItemBalance(StoreAssetInfo.COIN))) {
 			textCoin.color = Color.white;
 			return true;
 		} else {
