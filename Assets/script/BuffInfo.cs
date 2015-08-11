@@ -35,6 +35,6 @@ public class BuffInfo {
 	}
 
 	public	float Calculate(float value) {
-		return value * _rate + _add;
+		return (value + _add) * _rate;
 	}
 }
