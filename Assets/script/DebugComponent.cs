@@ -77,7 +77,7 @@ public class DebugComponent : MonoBehaviour {
 
 	public	void ShowAds() {
 #if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
-		if (Advertisement.isReady()) {
+		if (Advertisement.IsReady()) {
 			Advertisement.Show();
 		}
 #endif

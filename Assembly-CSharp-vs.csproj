@@ -71,7 +71,9 @@
      <Compile Include="Assets\SmartLocalization\Scripts\uGUI\LocalizedText.cs" />
      <Compile Include="Assets\script\AdsComponent.cs" />
      <Compile Include="Assets\script\AnalyticsComponent.cs" />
+     <Compile Include="Assets\script\AnimalBeatComponent.cs" />
      <Compile Include="Assets\script\AnimalComponent.cs" />
+     <Compile Include="Assets\script\AnimalThemeComponent.cs" />
      <Compile Include="Assets\script\AudioInfo.cs" />
      <Compile Include="Assets\script\AudioInfoSource.cs" />
      <Compile Include="Assets\script\AudioPlayerComponent.cs" />

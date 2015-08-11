@@ -27,7 +27,7 @@ public class AdsComponent : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Advertisement.isReady ()) {
+		if (Advertisement.IsReady ()) {
 			double t = DateTime.Now.Subtract (info.dateAds).TotalSeconds - timerMinute*60.0;
 			bool ontime = (t >= 0);
 			button.interactable = ontime;
@@ -44,7 +44,7 @@ public class AdsComponent : MonoBehaviour {
 	}
 
 	public	void OnClick() {
-		if (Advertisement.isReady()) {
+		if (Advertisement.IsReady()) {
 			ShowOptions opt = new ShowOptions();
 			opt.resultCallback = OnShowComplete;
 			Advertisement.Show(null, opt);
