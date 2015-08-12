@@ -41,6 +41,10 @@ public class ResultComponent : UIComponent {
 			}
 			OnUIChangeLanguage (SmartLocalization.LanguageManager.Instance);
 		}
+
+		if (Input.GetKeyDown (KeyCode.Escape)&&escapable) {
+			OnClickTitle();
+		}
 	}
 
 	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {

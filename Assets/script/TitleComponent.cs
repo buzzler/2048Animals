@@ -23,6 +23,12 @@ public class TitleComponent : UIComponent {
 		themeContent.sizeDelta = new Vector2(160*themeContent.childCount+20*(themeContent.childCount-1), 160);
 	}
 
+	void Update() {
+		if (Input.GetKeyDown (KeyCode.Escape)&&escapable) {
+			Application.Quit();
+		}
+	}
+
 	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) { 
 		base.OnUIChangeLanguage (lm);
 		labelStart.text = lm.GetTextValue ("fnf.ui.start");

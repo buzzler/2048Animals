@@ -10,6 +10,13 @@ public class ConnectComponent : UIComponent {
 	private	int						step;
 	private	string					keyMessage = "fnf.ui.connect.wait";
 	private	SystemCheckComponent	checker;
+
+	void Update() {
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			OnClickClose();
+		}
+	}
+
 #if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
 	public	override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
 		base.OnUIChangeLanguage (lm);

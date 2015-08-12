@@ -8,6 +8,7 @@ public class UIComponent : MonoBehaviour {
 	private UIState	_state = UIState.STOPPED;
 	private	UIType	_parent;
 	private	UIType	_child;
+	protected bool	escapable;
 
 	public	UIState state {
 		get {
@@ -35,6 +36,8 @@ public class UIComponent : MonoBehaviour {
 
 	public	virtual	void OnUIStart() {
 		if (_state!=UIState.START) {
+			Observer.GetInstance().maskOpen += OnMaskOpen;
+			Observer.GetInstance().maskClose += OnMaskClose;
 			OnUIChangeLanguage(LanguageManager.Instance);
 			LanguageManager.Instance.OnChangeLanguage += OnUIChangeLanguage;
 			_state = UIState.START;
@@ -44,6 +47,8 @@ public class UIComponent : MonoBehaviour {
 
 	public	virtual	void OnUIPause() {
 		if (_state==UIState.START) {
+			Observer.GetInstance().maskOpen -= OnMaskOpen;
+			Observer.GetInstance().maskClose -= OnMaskClose;
 			LanguageManager.Instance.OnChangeLanguage -= OnUIChangeLanguage;
 			_state = UIState.PAUSED;
 			gameObject.SetActive(false);
@@ -52,6 +57,8 @@ public class UIComponent : MonoBehaviour {
 
 	public	virtual	void OnUIResume() {
 		if (_state==UIState.PAUSED) {
+			Observer.GetInstance().maskOpen += OnMaskOpen;
+			Observer.GetInstance().maskClose += OnMaskClose;
 			OnUIChangeLanguage(LanguageManager.Instance);
 			LanguageManager.Instance.OnChangeLanguage += OnUIChangeLanguage;
 			_state = UIState.START;
@@ -60,6 +67,8 @@ public class UIComponent : MonoBehaviour {
 	}
 
 	public	virtual	void OnUIStop() {
+		Observer.GetInstance().maskOpen -= OnMaskOpen;
+		Observer.GetInstance().maskClose -= OnMaskClose;
 		LanguageManager.Instance.OnChangeLanguage -= OnUIChangeLanguage;
 		_state = UIState.STOPPED;
 		gameObject.SetActive(false);
@@ -79,5 +88,13 @@ public class UIComponent : MonoBehaviour {
 
 	public	virtual	void OnUIChangeLanguage(LanguageManager lm) {
 
+	}
+
+	private	void OnMaskOpen() {
+		escapable = true;
+	}
+
+	private	void OnMaskClose() {
+		escapable = false;
 	}
 }

@@ -58,6 +58,10 @@ public class SettingComponent : UIComponent {
 			WhichInOut(curFB);
 			lastFB = curFB;
 		}
+
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			OnClickClose();
+		}
 	}
 
 	public	override void OnUIStop() {

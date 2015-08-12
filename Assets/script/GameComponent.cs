@@ -24,6 +24,9 @@ public class GameComponent : UIComponent {
 	private	BackgroundComponent	bg;
 	private	Observer			observer;
 
+	void Update() {
+	}
+
 	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
 		base.OnUIChangeLanguage (lm);
 		labelBest.text = lm.GetTextValue ("fnf.ui.best");

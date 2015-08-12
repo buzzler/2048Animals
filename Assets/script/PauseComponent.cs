@@ -8,6 +8,12 @@ public class PauseComponent : UIComponent {
     public  Text labelOption;
 	public	Text labelRetry;
 
+	void Update() {
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			OnClickClose();
+		}
+	}
+
 	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
 		base.OnUIChangeLanguage (lm);
 		labelPause.text	= lm.GetTextValue ("fnf.ui.pause");
