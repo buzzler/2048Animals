@@ -166,7 +166,9 @@ public class TitleComponent : UIComponent {
 
 	public	void OnClickBuy(ThemeInfo info) {
 		AudioPlayerComponent.Play ("fx_click");
-		StoreInventory.BuyItem(info.id);
+//		StoreInventory.BuyItem(info.id);
+		StoreInventory.GiveItem (info.id, 1);
+		StoreInventory.TakeItem (StoreAssetInfo.COIN, info.costAmount);
 	}
 
 	public	void CheckLock() {
