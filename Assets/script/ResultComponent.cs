@@ -61,6 +61,7 @@ public class ResultComponent : UIComponent {
 		base.OnUIStart();
 
 		Observer.GetInstance ().maskOpen += OnMaskOpen;
+		Observer.GetInstance ().currencyChange += OnChangeCurrency;
 
 		info = PlayerInfoManager.instance;
 		flash = 0;
@@ -79,12 +80,17 @@ public class ResultComponent : UIComponent {
 		PlayerInfoManager.Save();
 	}
 
+	private	void OnChangeCurrency(int balance, int delta) {
+		textCoin.text = balance.ToString ();
+	}
+
 	public override void OnUIStop () {
 		base.OnUIStop ();
 		for (int i = boxHolder.childCount-1 ; i >= 0 ; i--) {
 			DestroyImmediate(boxHolder.GetChild(i).gameObject);
 		}
 		CancelInvoke ();
+		Observer.GetInstance ().currencyChange -= OnChangeCurrency;
 		Observer.GetInstance ().maskOpen -= OnMaskOpen;
 		interactable = false;
 	}

@@ -33,6 +33,7 @@ public class ThemeSelectorComponent : MonoBehaviour {
 				Personal();
 			}
 		} else if ((theme.costType==CostType.COIN) && (balance>0)) {
+			Debug.Log(theme.buffInfo.type);
 			switch (theme.buffInfo.type) {
 			case BuffType.COIN:
 				info.buffInfoCoin = BuffInfo.Max(info.buffInfoCoin, theme.buffInfo);

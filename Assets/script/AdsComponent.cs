@@ -58,7 +58,7 @@ public class AdsComponent : MonoBehaviour {
 	public	void OnShowComplete(ShowResult result) {
 		switch (result) {
 		case ShowResult.Finished:
-			StoreInventory.GiveItem(StoreAssetInfo.COIN, Mathf.Max((int)info.buffInfoReward.Calculate(1100),1100));
+			StoreInventory.GiveItem(StoreAssetInfo.COIN, (int)info.buffInfoReward.Calculate(1100));
 			info.dateAds = DateTime.Now;
 			PlayerInfoManager.Save();
 			EffectComponent.Show(EffectType.BONUS, Vector3.zero);
@@ -98,7 +98,7 @@ public class AdsComponent : MonoBehaviour {
 	}
 
 	private	void SetReward() {
-		int reward = Mathf.Max((int)info.buffInfoReward.Calculate(1100),1100);
+		int reward = (int)info.buffInfoReward.Calculate(1100);
 		textReward.text = reward.ToString();
 
 		if (!objectCoin.activeSelf) {

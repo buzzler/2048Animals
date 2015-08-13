@@ -14,15 +14,15 @@ public class BuffInfo {
 
 	public	BuffInfo() {
 		_type = BuffType.NONE;
-		_rate = 1;
+		_rate = 0.25f;
 		_add = 0;
 	}
 
 	public	static BuffInfo Max(BuffInfo a, BuffInfo b) {
-		if (a._rate==b._rate) {
-			return (a._add>b._add) ? a:b;
+		if (a.Calculate (100f) > b.Calculate (100f)) {
+			return a;
 		} else {
-			return (a._rate>b._rate) ? a:b;
+			return b;
 		}
 	}
 

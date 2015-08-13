@@ -122,8 +122,9 @@ public class GameComponent : UIComponent {
 	}
 
 	public	void AppendCoin(int delta = 110) {
-		playerInfo.gameCoin += (int)playerInfo.buffInfoCoin.Calculate((float)delta);
-		StoreInventory.GiveItem(StoreAssetInfo.COIN, delta);
+		int d = (int)playerInfo.buffInfoCoin.Calculate((float)delta);
+		playerInfo.gameCoin += d;
+		StoreInventory.GiveItem(StoreAssetInfo.COIN, d);
 	}
 
     public  void NoMoreMove() {
