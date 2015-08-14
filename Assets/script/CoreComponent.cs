@@ -73,7 +73,11 @@ public class CoreComponent : MonoBehaviour {
 		count++;
 		boxCount++;
 //		BoxComponent box = Instantiate(prefabs[level], slot.transform.position, Quaternion.identity) as BoxComponent;
-		BoxComponent box = ObjectPool.Spawn<BoxComponent> (prefabs[level], transform);
+		BoxComponent prefab = prefabs [level];
+		BoxComponent box = ObjectPool.Spawn<BoxComponent> (prefab, transform);
+		if (ObjectPool.CountPooled<BoxComponent> (prefab) > 2) {
+			ObjectPool.DestroyPooled<BoxComponent>(prefab);
+		}
 		box.transform.localPosition = slot.transform.localPosition;
 //		box.transform.SetParent(transform);
 //		box.id = count.ToString();
@@ -93,11 +97,13 @@ public class CoreComponent : MonoBehaviour {
 			slot.Clear();
 		}
 		if (boxes!=null) {
-//			foreach (BoxComponent box in boxes.Values) {
-//				GameObject.Destroy(box.gameObject);
-//			}
+			foreach (BoxComponent box in boxes.Values) {
+				GameObject.Destroy(box.gameObject);
+			}
 			boxes.Clear();
-			ObjectPool.RecycleAll();
+			foreach (BoxComponent box in prefabs) {
+				ObjectPool.DestroyPooled(box.gameObject);
+			}
 		}
 		Init();
 	}

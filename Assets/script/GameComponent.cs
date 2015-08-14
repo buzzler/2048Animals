@@ -59,6 +59,7 @@ public class GameComponent : UIComponent {
 		base.OnUIStop();
         observer.beat -= OnBeat;
 		FeverOff();
+		core.Clear();
 		SendMessageUpwards("TurnOnFilter");
 	}
 

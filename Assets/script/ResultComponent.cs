@@ -179,13 +179,22 @@ public class ResultComponent : UIComponent {
 			EffectComponent.Show (EffectType.FACE_DRAG_OUT, boxHolder.position + new Vector3 (rndX, rndY, 0f));
 			Invoke ("Flash", 0.5f);
 		} else if (!info.flagRate) {
+<<<<<<< Updated upstream
 			if ((DateTime.Now.Subtract(info.dateRate).TotalHours >= 12) && (StoreInventory.GetItemBalance(StoreAssetInfo.COIN) > 3300)) {
 				RateOverlay overlay = GameObject.Instantiate<RateOverlay>(overlayRate);
 				overlay.transform.SetParent(transform, false);
 				overlay.Show();
 			} else if (buttonAds.interactable && (DateTime.Now.Subtract(info.dateAds).TotalHours >= 1)) {
 				buttonAds.GetComponent<AdsComponent>().OnClick();
+=======
+			if ((DateTime.Now.Subtract (info.dateRate).TotalHours >= 12) && (StoreInventory.GetItemBalance (StoreAssetInfo.COIN) > 3300)) {
+				RateOverlay overlay = GameObject.Instantiate<RateOverlay> (overlayRate);
+				overlay.transform.SetParent (transform, false);
+				overlay.Show ();
+>>>>>>> Stashed changes
 			}
+		} else if ((DateTime.Now.Subtract (info.dateAds).TotalHours >= 1) && buttonAds.interactable) {
+			buttonAds.GetComponent<AdsComponent>().OnClick();
 		}
 	}
 }

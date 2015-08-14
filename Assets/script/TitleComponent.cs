@@ -104,6 +104,7 @@ public class TitleComponent : UIComponent {
 		ThemeSelectorComponent tsc = dictionary[info.type];
 		if (tsc.state == ThemeSelectorState.UNLOCKED) {
 			head = GameObject.Instantiate (Resources.Load("head/"+info.code.ToLower()+"_"+level.ToString())) as GameObject;
+			head.GetComponent<HeadComponent>().SetDraggable(true);
 			purchaser.ClearThemeInfo();
 			buttonStart.interactable = true;
 		} else if (tsc.state == ThemeSelectorState.BLINDED) {
@@ -147,6 +148,9 @@ public class TitleComponent : UIComponent {
 
 	public void OnClickPlay() {
 		AudioPlayerComponent.Play ("fx_click");
+		if (head != null) {
+			head.GetComponent<HeadComponent>().SetDraggable(false);
+		}
 
 		if (PlayerInfoManager.instance.flagTutorial != true) {
 			TutorialComponent overlay = GameObject.Instantiate<TutorialComponent> (overlayTutorial);
