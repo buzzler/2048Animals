@@ -24,6 +24,7 @@ public class ResultComponent : UIComponent {
 	public	Button			buttonHome;
 	public	Button			buttonShare;
 	public	Button			buttonRetry;
+	public	Button			buttonAds;
 	public	RateOverlay		overlayRate;
 	private	PlayerInfo		info;
 	private	int				flash;
@@ -182,6 +183,8 @@ public class ResultComponent : UIComponent {
 				RateOverlay overlay = GameObject.Instantiate<RateOverlay>(overlayRate);
 				overlay.transform.SetParent(transform, false);
 				overlay.Show();
+			} else if (buttonAds.interactable && (DateTime.Now.Subtract(info.dateAds).TotalHours >= 1)) {
+				buttonAds.GetComponent<AdsComponent>().OnClick();
 			}
 		}
 	}

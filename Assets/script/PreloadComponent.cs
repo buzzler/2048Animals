@@ -37,7 +37,7 @@ public class PreloadComponent : UIComponent {
         #endif
 
 		if (info.flagFoot != true) {
-			StoreInventory.GiveItem (StoreAssetInfo.FOOT, 5);
+			Utility.GiveFoot(5);
 			info.flagFoot = true;
 			PlayerInfoManager.Save ();
 		}

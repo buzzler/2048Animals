@@ -84,7 +84,7 @@ public class DebugComponent : MonoBehaviour {
 	}
 
 	public	void GetCoin() {
-		StoreInventory.GiveItem(StoreAssetInfo.COIN,100000);
+		Utility.GiveCoin(100000);
 	}
 
 	public	void TakeAllCoin() {

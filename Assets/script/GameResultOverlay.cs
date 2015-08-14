@@ -133,6 +133,6 @@ public class GameResultOverlay : PopupOverlay {
 	}
 
 	public	void OnCoinComplete(int coin) {
-		StoreInventory.GiveItem(StoreAssetInfo.COIN, coin);
+		Utility.GiveCoin(coin);
 	}
 }

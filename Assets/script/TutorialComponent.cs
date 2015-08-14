@@ -10,6 +10,7 @@ public class TutorialComponent : PopupOverlay {
 	public	Text labelOk;
 
 	void OnEnable() {
+		OnUIChangeLanguage (LanguageManager.Instance);
 		LanguageManager.Instance.OnChangeLanguage += OnUIChangeLanguage;
 	}
 
