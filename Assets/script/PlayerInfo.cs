@@ -90,7 +90,7 @@ public class PlayerInfo {
 		flagRate = false;
 		lastAnimalType = AnimalType.BEAR;
 		dateAds = DateTime.MinValue;
-		dateAds = DateTime.MinValue;
+		dateRate = DateTime.MinValue;
 		buffInfoCoin = new BuffInfo();
 		buffInfoScore = new BuffInfo();
 		buffInfoReward = new BuffInfo();

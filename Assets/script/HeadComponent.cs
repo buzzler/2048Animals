@@ -6,8 +6,11 @@ public class HeadComponent : MonoBehaviour {
 	private	UnityJellySprite	jelly;
 	private	bool				flash;
 
-	void Start() {
+	void Awake() {
 		jelly = GetComponent<UnityJellySprite> ();
+	}
+
+	void Start() {
 		Invoke("TestForce", Random.Range(2, 5));
 	}
 

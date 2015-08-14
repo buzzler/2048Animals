@@ -97,7 +97,7 @@ public class DebugComponent : MonoBehaviour {
 				StoreInventory.GiveItem(theme.id, 1);
 			}
 		}
-		Application.Quit ();
+		PlayerPrefs.DeleteAll ();
 	}
 
 	public void TurnOn () {
