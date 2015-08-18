@@ -14,7 +14,7 @@ public class BuffInfo {
 
 	public	BuffInfo() {
 		_type = BuffType.NONE;
-		_rate = 0.25f;
+		_rate = 0.5f;
 		_add = 0;
 	}
 
@@ -29,7 +29,11 @@ public class BuffInfo {
 	public	static BuffInfo Parse(string type, string rate, string add) {
 		BuffInfo info = new BuffInfo();
 		info._type = (BuffType)System.Enum.Parse(typeof(BuffType), type, true);
-		info._rate = float.Parse(rate);
+		if (info._type == BuffType.SCORE) {
+			info._rate = 1f;
+		} else {
+			info._rate = float.Parse (rate);
+		}
 		info._add = float.Parse(add);
 		return info;
 	}

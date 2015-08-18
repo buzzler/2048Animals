@@ -93,7 +93,8 @@ public class GameComponent : UIComponent {
 	}
 
 	public	bool AppendScore(int level) {
-		score += (uint)playerInfo.buffInfoScore.Calculate(Mathf.Pow(2, fever.activeSelf ? level+1:level));
+//		score += (uint)playerInfo.buffInfoScore.Calculate(Mathf.Pow(2, fever.activeSelf ? level+1:level));
+		score += (uint)Mathf.Pow(2, fever.activeSelf ? level+1:level);
 		UpdateScore();
 
 		level += 1;
