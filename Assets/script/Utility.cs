@@ -1,7 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Soomla.Store;
 
 public class Utility {
+
+	public	static void GiveCoin(int amount) {
+		int MAX = 99999999;
+		int balance = StoreInventory.GetItemBalance(StoreAssetInfo.COIN);
+		amount = Mathf.Min(amount, MAX-balance);
+		if (amount>0) {
+			StoreInventory.GiveItem(StoreAssetInfo.COIN, Mathf.Min(amount, MAX-balance));
+		}
+	}
+
+	public	static void GiveFoot(int amount) {
+		int MAX = 99999999;
+		int balance = StoreInventory.GetItemBalance(StoreAssetInfo.FOOT);
+		amount = Mathf.Min(amount, MAX-balance);
+		if (amount>0) {
+			StoreInventory.GiveItem(StoreAssetInfo.FOOT, Mathf.Min(amount, MAX-balance));
+		}
+	}
 
     public  static string ToCurrency(int price) {
         return ToCurrency((float)price);

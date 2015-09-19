@@ -7,10 +7,19 @@ using Soomla.Store;
 [RequireComponent(typeof(Image))]
 public class ThemeSelectorComponent : MonoBehaviour {
 	public	ThemeInfo			theme;
-	public	Animator			animator;
+	public	Image				imageAnimal;
+	public	Image				imageIcon;
+	public	Sprite				spriteLock;
+	public	Sprite				spriteNew;
+	public	Vector2				positionLock;
+	public	Vector2				positionNew;
 	public	ThemeSelectorState	state {get{return _state;}}
 	private	ThemeSelectorState	_state;
-	
+
+	void Awake() {
+		Blinded (true);
+	}
+
 	public	bool SetGetAnimalType(PlayerInfo info) {
 		theme = ThemeInfo.Find((AnimalType)System.Enum.Parse(typeof(AnimalType), GetComponent<Image>().sprite.name, true));
 
@@ -24,6 +33,7 @@ public class ThemeSelectorComponent : MonoBehaviour {
 				Personal();
 			}
 		} else if ((theme.costType==CostType.COIN) && (balance>0)) {
+			Debug.Log(theme.buffInfo.type);
 			switch (theme.buffInfo.type) {
 			case BuffType.COIN:
 				info.buffInfoCoin = BuffInfo.Max(info.buffInfoCoin, theme.buffInfo);
@@ -75,28 +85,38 @@ public class ThemeSelectorComponent : MonoBehaviour {
 	public	void Unlocked(bool forced = false) {
 		if (_state != ThemeSelectorState.UNLOCKED || forced) {
 			_state = ThemeSelectorState.UNLOCKED;
-			animator.SetTrigger("trigger_unlocked");
+			imageAnimal.color = Color.white;
+			imageIcon.gameObject.SetActive(false);
 		}
 	}
 
 	public	void Blinded(bool forced = false) {
 		if (_state != ThemeSelectorState.BLINDED || forced) {
 			_state = ThemeSelectorState.BLINDED;
-			animator.SetTrigger("trigger_blinded");
+			imageAnimal.color = new Color(0.6f,0.6f,0.6f,1f);
+			imageIcon.sprite = spriteLock;
+			imageIcon.rectTransform.anchoredPosition = positionLock;
+			imageIcon.gameObject.SetActive(true);
 		}
 	}
 
 	public	void Locked(bool forced = false) {
 		if (_state != ThemeSelectorState.LOCKED || forced) {
 			_state = ThemeSelectorState.LOCKED;
-			animator.SetTrigger("trigger_locked");
+			imageAnimal.color = Color.white;
+			imageIcon.sprite = spriteNew;
+			imageIcon.rectTransform.anchoredPosition = positionNew;
+			imageIcon.gameObject.SetActive(true);
 		}
 	}
 
 	public	void Personal(bool forced = false) {
 		if (_state != ThemeSelectorState.PERSONAL || forced) {
 			_state = ThemeSelectorState.PERSONAL;
-			animator.SetTrigger("trigger_personal");
+			imageAnimal.color = Color.white;
+			imageIcon.sprite = spriteNew;
+			imageIcon.rectTransform.anchoredPosition = positionNew;
+			imageIcon.gameObject.SetActive(true);
 		}
 	}
 }

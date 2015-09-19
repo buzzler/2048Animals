@@ -27,7 +27,7 @@ public class AdsComponent : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Advertisement.isReady ()) {
+		if (Advertisement.IsReady ()) {
 			double t = DateTime.Now.Subtract (info.dateAds).TotalSeconds - timerMinute*60.0;
 			bool ontime = (t >= 0);
 			button.interactable = ontime;
@@ -44,7 +44,7 @@ public class AdsComponent : MonoBehaviour {
 	}
 
 	public	void OnClick() {
-		if (Advertisement.isReady()) {
+		if (Advertisement.IsReady()) {
 			ShowOptions opt = new ShowOptions();
 			opt.resultCallback = OnShowComplete;
 			Advertisement.Show(null, opt);
@@ -58,7 +58,7 @@ public class AdsComponent : MonoBehaviour {
 	public	void OnShowComplete(ShowResult result) {
 		switch (result) {
 		case ShowResult.Finished:
-			StoreInventory.GiveItem(StoreAssetInfo.COIN, Mathf.Max((int)info.buffInfoReward.Calculate(1100),1100));
+			Utility.GiveCoin((int)info.buffInfoReward.Calculate(1100));
 			info.dateAds = DateTime.Now;
 			PlayerInfoManager.Save();
 			EffectComponent.Show(EffectType.BONUS, Vector3.zero);
@@ -98,7 +98,7 @@ public class AdsComponent : MonoBehaviour {
 	}
 
 	private	void SetReward() {
-		int reward = Mathf.Max((int)info.buffInfoReward.Calculate(1100),1100);
+		int reward = (int)info.buffInfoReward.Calculate(1100);
 		textReward.text = reward.ToString();
 
 		if (!objectCoin.activeSelf) {

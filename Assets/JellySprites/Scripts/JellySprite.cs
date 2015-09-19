@@ -1731,7 +1731,12 @@ public abstract class JellySprite : MonoBehaviour
 		return -1;
 	}
 
+	public	bool draggable;
+
 	public void Boing() {
+		if (!draggable)
+			return;
+
 		ReferencePoint rp = GetRandomReferencePoint ();
 		if (rp != null) {
 			JellySpriteReferencePoint jrp = rp.Body2D.GetComponent<JellySpriteReferencePoint>();
@@ -1740,6 +1745,9 @@ public abstract class JellySprite : MonoBehaviour
 	}
 
 	void UpdateReferencePoint()	{
+		if (!draggable)
+			return;
+
 		if (this.m_ReferencePoints!=null) {
 			if (Input.GetButtonDown ("Fire1")) {
 				float minDist						= float.MaxValue;

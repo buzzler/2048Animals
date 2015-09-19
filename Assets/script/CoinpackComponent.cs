@@ -11,6 +11,12 @@ public class CoinpackComponent : UIComponent {
 	public	CoinpackItemComponent	item;
 	public	Sprite[]				icons;
 
+	void Update() {
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			OnClickClose();
+		}
+	}
+
 	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
 		base.OnUIChangeLanguage (lm);
 		labelBuy.text = lm.GetTextValue ("fnf.ui.buy");

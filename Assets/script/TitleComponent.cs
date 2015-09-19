@@ -23,6 +23,12 @@ public class TitleComponent : UIComponent {
 		themeContent.sizeDelta = new Vector2(160*themeContent.childCount+20*(themeContent.childCount-1), 160);
 	}
 
+	void Update() {
+		if (Input.GetKeyDown (KeyCode.Escape)&&escapable) {
+			Application.Quit();
+		}
+	}
+
 	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) { 
 		base.OnUIChangeLanguage (lm);
 		labelStart.text = lm.GetTextValue ("fnf.ui.start");
@@ -98,6 +104,7 @@ public class TitleComponent : UIComponent {
 		ThemeSelectorComponent tsc = dictionary[info.type];
 		if (tsc.state == ThemeSelectorState.UNLOCKED) {
 			head = GameObject.Instantiate (Resources.Load("head/"+info.code.ToLower()+"_"+level.ToString())) as GameObject;
+			head.GetComponent<HeadComponent>().SetDraggable(true);
 			purchaser.ClearThemeInfo();
 			buttonStart.interactable = true;
 		} else if (tsc.state == ThemeSelectorState.BLINDED) {
@@ -141,6 +148,9 @@ public class TitleComponent : UIComponent {
 
 	public void OnClickPlay() {
 		AudioPlayerComponent.Play ("fx_click");
+		if (head != null) {
+			head.GetComponent<HeadComponent>().SetDraggable(false);
+		}
 
 		if (PlayerInfoManager.instance.flagTutorial != true) {
 			TutorialComponent overlay = GameObject.Instantiate<TutorialComponent> (overlayTutorial);
@@ -160,7 +170,9 @@ public class TitleComponent : UIComponent {
 
 	public	void OnClickBuy(ThemeInfo info) {
 		AudioPlayerComponent.Play ("fx_click");
-		StoreInventory.BuyItem(info.id);
+//		StoreInventory.BuyItem(info.id);
+		StoreInventory.GiveItem (info.id, 1);
+		StoreInventory.TakeItem (StoreAssetInfo.COIN, info.costAmount);
 	}
 
 	public	void CheckLock() {

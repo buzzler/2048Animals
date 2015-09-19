@@ -24,6 +24,7 @@ public class ResultComponent : UIComponent {
 	public	Button			buttonHome;
 	public	Button			buttonShare;
 	public	Button			buttonRetry;
+	public	Button			buttonAds;
 	public	RateOverlay		overlayRate;
 	private	PlayerInfo		info;
 	private	int				flash;
@@ -41,6 +42,10 @@ public class ResultComponent : UIComponent {
 			}
 			OnUIChangeLanguage (SmartLocalization.LanguageManager.Instance);
 		}
+
+		if (Input.GetKeyDown (KeyCode.Escape)&&escapable) {
+			OnClickTitle();
+		}
 	}
 
 	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
@@ -57,6 +62,7 @@ public class ResultComponent : UIComponent {
 		base.OnUIStart();
 
 		Observer.GetInstance ().maskOpen += OnMaskOpen;
+		Observer.GetInstance ().currencyChange += OnChangeCurrency;
 
 		info = PlayerInfoManager.instance;
 		flash = 0;
@@ -75,12 +81,17 @@ public class ResultComponent : UIComponent {
 		PlayerInfoManager.Save();
 	}
 
+	private	void OnChangeCurrency(int balance, int delta) {
+		textCoin.text = balance.ToString ();
+	}
+
 	public override void OnUIStop () {
 		base.OnUIStop ();
 		for (int i = boxHolder.childCount-1 ; i >= 0 ; i--) {
 			DestroyImmediate(boxHolder.GetChild(i).gameObject);
 		}
 		CancelInvoke ();
+		Observer.GetInstance ().currencyChange -= OnChangeCurrency;
 		Observer.GetInstance ().maskOpen -= OnMaskOpen;
 		interactable = false;
 	}
@@ -173,6 +184,8 @@ public class ResultComponent : UIComponent {
 				overlay.transform.SetParent(transform, false);
 				overlay.Show();
 			}
+		} else if ((DateTime.Now.Subtract (info.dateAds).TotalHours >= 1) && buttonAds.interactable) {
+			buttonAds.GetComponent<AdsComponent>().OnClick();
 		}
 	}
 }

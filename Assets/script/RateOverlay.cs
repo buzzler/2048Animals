@@ -53,7 +53,7 @@ public class RateOverlay : PopupOverlay {
 		case 1:
 			// set flag and..
 			PlayerInfoManager.instance.flagRate = true;
-			Soomla.Store.StoreInventory.GiveItem(StoreAssetInfo.FOOT, 5);
+			Utility.GiveFoot(5);
 			#if UNITY_IPHONE
 			Application.OpenURL(urliOS);
 			#elif UNITY_ANDROID

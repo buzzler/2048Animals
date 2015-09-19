@@ -77,14 +77,14 @@ public class DebugComponent : MonoBehaviour {
 
 	public	void ShowAds() {
 #if UNITY_EDITOR || UNITY_ANDROID || UNITY_IOS
-		if (Advertisement.isReady()) {
+		if (Advertisement.IsReady()) {
 			Advertisement.Show();
 		}
 #endif
 	}
 
 	public	void GetCoin() {
-		StoreInventory.GiveItem(StoreAssetInfo.COIN,100000);
+		Utility.GiveCoin(100000);
 	}
 
 	public	void TakeAllCoin() {
@@ -97,7 +97,7 @@ public class DebugComponent : MonoBehaviour {
 				StoreInventory.GiveItem(theme.id, 1);
 			}
 		}
-		Application.Quit ();
+		PlayerPrefs.DeleteAll ();
 	}
 
 	public void TurnOn () {

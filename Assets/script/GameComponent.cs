@@ -24,6 +24,9 @@ public class GameComponent : UIComponent {
 	private	BackgroundComponent	bg;
 	private	Observer			observer;
 
+	void Update() {
+	}
+
 	public override void OnUIChangeLanguage (SmartLocalization.LanguageManager lm) {
 		base.OnUIChangeLanguage (lm);
 		labelBest.text = lm.GetTextValue ("fnf.ui.best");
@@ -56,6 +59,7 @@ public class GameComponent : UIComponent {
 		base.OnUIStop();
         observer.beat -= OnBeat;
 		FeverOff();
+		core.Clear();
 		SendMessageUpwards("TurnOnFilter");
 	}
 
@@ -89,7 +93,8 @@ public class GameComponent : UIComponent {
 	}
 
 	public	bool AppendScore(int level) {
-		score += (uint)playerInfo.buffInfoScore.Calculate(Mathf.Pow(2, fever.activeSelf ? level+1:level));
+//		score += (uint)playerInfo.buffInfoScore.Calculate(Mathf.Pow(2, fever.activeSelf ? level+1:level));
+		score += (uint)Mathf.Pow(2, fever.activeSelf ? level+1:level);
 		UpdateScore();
 
 		level += 1;
@@ -119,8 +124,9 @@ public class GameComponent : UIComponent {
 	}
 
 	public	void AppendCoin(int delta = 110) {
-		playerInfo.gameCoin += (int)playerInfo.buffInfoCoin.Calculate((float)delta);
-		StoreInventory.GiveItem(StoreAssetInfo.COIN, delta);
+		int d = (int)playerInfo.buffInfoCoin.Calculate((float)delta);
+		playerInfo.gameCoin += d;
+		Utility.GiveCoin(d);
 	}
 
     public  void NoMoreMove() {
